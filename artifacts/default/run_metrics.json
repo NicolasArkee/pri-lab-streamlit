@@ -1,288 +1,481 @@
 {
   "command": "run-outlinks-analysis",
-  "started_at": "2026-03-16T10:29:00+00:00",
-  "finished_at": "2026-03-16T10:29:00+00:00",
-  "duration_seconds": 0.310377,
-  "peak_memory_mb": 121.0,
+  "started_at": "2026-03-16T09:42:43+00:00",
+  "finished_at": "2026-03-16T09:43:05+00:00",
+  "duration_seconds": 22.304224,
+  "peak_memory_mb": 2887.062,
   "stages": [
     {
       "name": "prepare-outlinks",
-      "started_at": "2026-03-16T10:29:00+00:00",
-      "finished_at": "2026-03-16T10:29:00+00:00",
-      "duration_seconds": 0.168421,
+      "started_at": "2026-03-16T09:42:43+00:00",
+      "finished_at": "2026-03-16T09:43:04+00:00",
+      "duration_seconds": 21.217725,
       "details": {
-        "input_csv": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/tests/fixtures/outlinks_small.csv",
-        "source_host": "example.com",
-        "raw_row_count": 9,
-        "filtered_row_count": 6,
-        "output_pages_parquet": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/pages.parquet",
-        "output_edges_parquet": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/edges.parquet",
-        "output_anchor_candidates_parquet": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/anchor_candidates.parquet",
-        "page_count": 4,
-        "edge_count": 5,
-        "anchor_candidate_count": 5,
+        "input_csv": "/Users/nicolas/PBN_AUTO/Cars_marketplace/DATA_OUTLIKNS/all_outlinks.csv",
+        "source_host": "achat-or-et-argent.fr",
+        "raw_row_count": 2699210,
+        "filtered_row_count": 1855304,
+        "output_pages_parquet": "/Users/nicolas/PBN_AUTO/Cars_marketplace/labs/pri/artifacts/outlinks/pages.parquet",
+        "output_edges_parquet": "/Users/nicolas/PBN_AUTO/Cars_marketplace/labs/pri/artifacts/outlinks/edges.parquet",
+        "output_anchor_candidates_parquet": "/Users/nicolas/PBN_AUTO/Cars_marketplace/labs/pri/artifacts/outlinks/anchor_candidates.parquet",
+        "page_count": 7716,
+        "edge_count": 479235,
+        "anchor_candidate_count": 479788,
         "max_out_links_per_page": 120,
         "block_counts": [
           {
             "block_type": "content",
-            "count": 3
-          },
-          {
-            "block_type": "navigation",
-            "count": 1
+            "count": 227648
           },
           {
             "block_type": "footer",
-            "count": 1
+            "count": 169984
+          },
+          {
+            "block_type": "navigation",
+            "count": 81603
           }
         ],
         "anchor_type_counts": [
           {
+            "anchor_type": "contextual",
+            "count": 373169
+          },
+          {
             "anchor_type": "exact",
-            "count": 2
+            "count": 95978
           },
           {
             "anchor_type": "partial",
-            "count": 2
+            "count": 10624
           },
           {
-            "anchor_type": "contextual",
-            "count": 1
+            "anchor_type": "generic",
+            "count": 17
           }
         ]
       }
     },
     {
       "name": "compute-pri",
-      "started_at": "2026-03-16T10:29:00+00:00",
-      "finished_at": "2026-03-16T10:29:00+00:00",
-      "duration_seconds": 0.093413,
+      "started_at": "2026-03-16T09:43:04+00:00",
+      "finished_at": "2026-03-16T09:43:04+00:00",
+      "duration_seconds": 0.276072,
       "details": {
-        "input_pages_parquet": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/pages.parquet",
-        "input_edges_parquet": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/edges.parquet",
-        "output_pri_parquet": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/pri_scores.parquet",
-        "node_count": 4,
-        "edge_count": 5,
+        "input_pages_parquet": "/Users/nicolas/PBN_AUTO/Cars_marketplace/labs/pri/artifacts/outlinks/pages.parquet",
+        "input_edges_parquet": "/Users/nicolas/PBN_AUTO/Cars_marketplace/labs/pri/artifacts/outlinks/edges.parquet",
+        "output_pri_parquet": "/Users/nicolas/PBN_AUTO/Cars_marketplace/labs/pri/artifacts/outlinks/pri_scores.parquet",
+        "node_count": 7716,
+        "edge_count": 479235,
         "included_block_types": [],
         "use_weights": true,
         "damping": 0.85,
         "pri_sum": 1.0,
         "cheirank_sum": 1.0,
-        "low_power_threshold": 0.09431147394745505,
-        "donor_threshold": 0.3319483206825427,
-        "low_power_page_count": 1,
-        "donor_page_count": 1,
+        "low_power_threshold": 2.2295577155816052e-05,
+        "donor_threshold": 0.0008734883721666365,
+        "low_power_page_count": 776,
+        "donor_page_count": 772,
         "top_pages": [
           {
-            "page_id": 3,
-            "pri_score": 0.34427071637962064,
+            "page_id": 6426,
+            "pri_score": 0.038002295661855284,
             "rank": 1,
-            "cheirank_score": 0.3021523826981551,
-            "cheirank_rank": 2,
-            "juice_potential_score": 0.3319483206825427,
-            "out_degree": 2,
-            "in_degree": 1,
+            "cheirank_score": 2.190364813861516e-05,
+            "cheirank_rank": 7521,
+            "juice_potential_score": 8.186860017727093e-05,
+            "out_degree": 41,
+            "in_degree": 7300,
+            "is_low_power": false,
+            "can_give_juice": false
+          },
+          {
+            "page_id": 118,
+            "pri_score": 0.03210361146942402,
+            "rank": 2,
+            "cheirank_score": 0.005345259068004782,
+            "cheirank_rank": 3,
+            "juice_potential_score": 0.025634742902102582,
+            "out_degree": 120,
+            "in_degree": 7683,
             "is_low_power": false,
             "can_give_juice": true
           },
           {
-            "page_id": 2,
-            "pri_score": 0.2940696969790183,
-            "rank": 2,
-            "cheirank_score": 0.34891117059293203,
-            "cheirank_rank": 1,
-            "juice_potential_score": 0.24184679416236093,
-            "out_degree": 1,
-            "in_degree": 2,
+            "page_id": 1,
+            "pri_score": 0.027704943105453284,
+            "rank": 3,
+            "cheirank_score": 2.51430322393121e-05,
+            "cheirank_rank": 5546,
+            "juice_potential_score": 9.680438527590617e-05,
+            "out_degree": 46,
+            "in_degree": 11814,
             "is_low_power": false,
             "can_give_juice": false
           },
           {
-            "page_id": 4,
-            "pri_score": 0.26734811269390607,
-            "rank": 3,
-            "cheirank_score": 0.0920816452995002,
-            "cheirank_rank": 4,
+            "page_id": 6427,
+            "pri_score": 0.026652060106913993,
+            "rank": 4,
+            "cheirank_score": 0.00043898336512858036,
+            "cheirank_rank": 349,
+            "juice_potential_score": 0.001984989965952963,
+            "out_degree": 91,
+            "in_degree": 14143,
+            "is_low_power": false,
+            "can_give_juice": true
+          },
+          {
+            "page_id": 7675,
+            "pri_score": 0.02107353804148805,
+            "rank": 5,
+            "cheirank_score": 0.00034163701050867395,
+            "cheirank_rank": 441,
+            "juice_potential_score": 0.0016384195450234332,
+            "out_degree": 120,
+            "in_degree": 12263,
+            "is_low_power": false,
+            "can_give_juice": true
+          },
+          {
+            "page_id": 6588,
+            "pri_score": 0.02072452748612031,
+            "rank": 6,
+            "cheirank_score": 5.915407442584864e-05,
+            "cheirank_rank": 5059,
+            "juice_potential_score": 0.00021967291841957918,
+            "out_degree": 40,
+            "in_degree": 12307,
+            "is_low_power": false,
+            "can_give_juice": false
+          },
+          {
+            "page_id": 7034,
+            "pri_score": 0.02020692493595812,
+            "rank": 7,
+            "cheirank_score": 0.0017819488352606562,
+            "cheirank_rank": 88,
+            "juice_potential_score": 0.0076453792038874615,
+            "out_degree": 72,
+            "in_degree": 6832,
+            "is_low_power": false,
+            "can_give_juice": true
+          },
+          {
+            "page_id": 981,
+            "pri_score": 0.016946975769726084,
+            "rank": 8,
+            "cheirank_score": 2.0124482222355433e-05,
+            "cheirank_rank": 7531,
             "juice_potential_score": 0.0,
             "out_degree": 0,
-            "in_degree": 2,
+            "in_degree": 7530,
             "is_low_power": false,
             "can_give_juice": false
           },
           {
-            "page_id": 1,
-            "pri_score": 0.09431147394745505,
-            "rank": 4,
-            "cheirank_score": 0.25685480140941275,
-            "cheirank_rank": 3,
-            "juice_potential_score": 0.28218384123178775,
-            "out_degree": 2,
-            "in_degree": 0,
-            "is_low_power": true,
+            "page_id": 7066,
+            "pri_score": 0.016022304410510453,
+            "rank": 9,
+            "cheirank_score": 2.990847059441575e-05,
+            "cheirank_rank": 5358,
+            "juice_potential_score": 0.00011385145313816105,
+            "out_degree": 44,
+            "in_degree": 6250,
+            "is_low_power": false,
+            "can_give_juice": false
+          },
+          {
+            "page_id": 7679,
+            "pri_score": 0.015377071776106964,
+            "rank": 10,
+            "cheirank_score": 2.369852291508505e-05,
+            "cheirank_rank": 5573,
+            "juice_potential_score": 8.967970475443921e-05,
+            "out_degree": 43,
+            "in_degree": 6179,
+            "is_low_power": false,
             "can_give_juice": false
           }
         ],
         "top_cheirank_pages": [
           {
-            "page_id": 2,
-            "pri_score": 0.2940696969790183,
-            "rank": 2,
-            "cheirank_score": 0.34891117059293203,
+            "page_id": 539,
+            "pri_score": 0.00025363951099970945,
+            "rank": 395,
+            "cheirank_score": 0.00734377103177328,
             "cheirank_rank": 1,
-            "juice_potential_score": 0.24184679416236093,
-            "out_degree": 1,
-            "in_degree": 2,
-            "is_low_power": false,
-            "can_give_juice": false
-          },
-          {
-            "page_id": 3,
-            "pri_score": 0.34427071637962064,
-            "rank": 1,
-            "cheirank_score": 0.3021523826981551,
-            "cheirank_rank": 2,
-            "juice_potential_score": 0.3319483206825427,
-            "out_degree": 2,
-            "in_degree": 1,
+            "juice_potential_score": 0.035219187683205526,
+            "out_degree": 120,
+            "in_degree": 104,
             "is_low_power": false,
             "can_give_juice": true
           },
           {
-            "page_id": 1,
-            "pri_score": 0.09431147394745505,
-            "rank": 4,
-            "cheirank_score": 0.25685480140941275,
-            "cheirank_rank": 3,
-            "juice_potential_score": 0.28218384123178775,
-            "out_degree": 2,
-            "in_degree": 0,
-            "is_low_power": true,
-            "can_give_juice": false
+            "page_id": 854,
+            "pri_score": 0.00023937869789813194,
+            "rank": 402,
+            "cheirank_score": 0.006571505106002456,
+            "cheirank_rank": 2,
+            "juice_potential_score": 0.03151556205770729,
+            "out_degree": 120,
+            "in_degree": 130,
+            "is_low_power": false,
+            "can_give_juice": true
           },
           {
-            "page_id": 4,
-            "pri_score": 0.26734811269390607,
-            "rank": 3,
-            "cheirank_score": 0.0920816452995002,
+            "page_id": 118,
+            "pri_score": 0.03210361146942402,
+            "rank": 2,
+            "cheirank_score": 0.005345259068004782,
+            "cheirank_rank": 3,
+            "juice_potential_score": 0.025634742902102582,
+            "out_degree": 120,
+            "in_degree": 7683,
+            "is_low_power": false,
+            "can_give_juice": true
+          },
+          {
+            "page_id": 819,
+            "pri_score": 0.00013881805725048354,
+            "rank": 584,
+            "cheirank_score": 0.004915543598694585,
             "cheirank_rank": 4,
-            "juice_potential_score": 0.0,
-            "out_degree": 0,
+            "juice_potential_score": 0.023237680930818204,
+            "out_degree": 112,
+            "in_degree": 69,
+            "is_low_power": false,
+            "can_give_juice": true
+          },
+          {
+            "page_id": 741,
+            "pri_score": 0.00011764194602185588,
+            "rank": 790,
+            "cheirank_score": 0.004014744359826982,
+            "cheirank_rank": 5,
+            "juice_potential_score": 0.018488581030239065,
+            "out_degree": 99,
+            "in_degree": 56,
+            "is_low_power": false,
+            "can_give_juice": true
+          },
+          {
+            "page_id": 565,
+            "pri_score": 0.00016351532739035274,
+            "rank": 484,
+            "cheirank_score": 0.0036331708833173782,
+            "cheirank_rank": 6,
+            "juice_potential_score": 0.016506566317271147,
+            "out_degree": 93,
+            "in_degree": 50,
+            "is_low_power": false,
+            "can_give_juice": true
+          },
+          {
+            "page_id": 860,
+            "pri_score": 9.522839344040993e-05,
+            "rank": 914,
+            "cheirank_score": 0.0030501133640109613,
+            "cheirank_rank": 7,
+            "juice_potential_score": 0.013586264216248915,
+            "out_degree": 85,
+            "in_degree": 42,
+            "is_low_power": false,
+            "can_give_juice": true
+          },
+          {
+            "page_id": 925,
+            "pri_score": 9.165979218567987e-05,
+            "rank": 951,
+            "cheirank_score": 0.002904377060557006,
+            "cheirank_rank": 8,
+            "juice_potential_score": 0.012868762670091146,
+            "out_degree": 83,
+            "in_degree": 40,
+            "is_low_power": false,
+            "can_give_juice": true
+          },
+          {
+            "page_id": 6505,
+            "pri_score": 2.3222326225890606e-05,
+            "rank": 3448,
+            "cheirank_score": 0.0027000949630563405,
+            "cheirank_rank": 9,
+            "juice_potential_score": 0.011186857205993586,
+            "out_degree": 62,
             "in_degree": 2,
             "is_low_power": false,
-            "can_give_juice": false
+            "can_give_juice": true
+          },
+          {
+            "page_id": 946,
+            "pri_score": 8.368758526409856e-05,
+            "rank": 1003,
+            "cheirank_score": 0.002662299775288338,
+            "cheirank_rank": 10,
+            "juice_potential_score": 0.01169934099700046,
+            "out_degree": 80,
+            "in_degree": 36,
+            "is_low_power": false,
+            "can_give_juice": true
           }
         ],
         "top_juice_donors": [
           {
-            "page_id": 3,
-            "pri_score": 0.34427071637962064,
-            "rank": 1,
-            "cheirank_score": 0.3021523826981551,
-            "cheirank_rank": 2,
-            "juice_potential_score": 0.3319483206825427,
-            "out_degree": 2,
-            "in_degree": 1,
+            "page_id": 539,
+            "pri_score": 0.00025363951099970945,
+            "rank": 395,
+            "cheirank_score": 0.00734377103177328,
+            "cheirank_rank": 1,
+            "juice_potential_score": 0.035219187683205526,
+            "out_degree": 120,
+            "in_degree": 104,
             "is_low_power": false,
             "can_give_juice": true
           },
           {
-            "page_id": 1,
-            "pri_score": 0.09431147394745505,
-            "rank": 4,
-            "cheirank_score": 0.25685480140941275,
-            "cheirank_rank": 3,
-            "juice_potential_score": 0.28218384123178775,
-            "out_degree": 2,
-            "in_degree": 0,
-            "is_low_power": true,
-            "can_give_juice": false
+            "page_id": 854,
+            "pri_score": 0.00023937869789813194,
+            "rank": 402,
+            "cheirank_score": 0.006571505106002456,
+            "cheirank_rank": 2,
+            "juice_potential_score": 0.03151556205770729,
+            "out_degree": 120,
+            "in_degree": 130,
+            "is_low_power": false,
+            "can_give_juice": true
           },
           {
-            "page_id": 2,
-            "pri_score": 0.2940696969790183,
+            "page_id": 118,
+            "pri_score": 0.03210361146942402,
             "rank": 2,
-            "cheirank_score": 0.34891117059293203,
-            "cheirank_rank": 1,
-            "juice_potential_score": 0.24184679416236093,
-            "out_degree": 1,
-            "in_degree": 2,
+            "cheirank_score": 0.005345259068004782,
+            "cheirank_rank": 3,
+            "juice_potential_score": 0.025634742902102582,
+            "out_degree": 120,
+            "in_degree": 7683,
             "is_low_power": false,
-            "can_give_juice": false
+            "can_give_juice": true
           },
           {
-            "page_id": 4,
-            "pri_score": 0.26734811269390607,
-            "rank": 3,
-            "cheirank_score": 0.0920816452995002,
+            "page_id": 819,
+            "pri_score": 0.00013881805725048354,
+            "rank": 584,
+            "cheirank_score": 0.004915543598694585,
             "cheirank_rank": 4,
-            "juice_potential_score": 0.0,
-            "out_degree": 0,
-            "in_degree": 2,
+            "juice_potential_score": 0.023237680930818204,
+            "out_degree": 112,
+            "in_degree": 69,
             "is_low_power": false,
-            "can_give_juice": false
-          }
-        ]
-      }
-    },
-    {
-      "name": "prepare-dashboard-data",
-      "started_at": "2026-03-16T10:29:00+00:00",
-      "finished_at": "2026-03-16T10:29:00+00:00",
-      "duration_seconds": 0.014787,
-      "details": {
-        "input_pages_parquet": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/pages.parquet",
-        "input_edges_parquet": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/edges.parquet",
-        "input_pri_parquet": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/pri_scores.parquet",
-        "input_anchor_candidates_parquet": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/anchor_candidates.parquet",
-        "output_page_segments_parquet": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/page_segments.parquet",
-        "output_url_metrics_parquet": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/url_metrics.parquet",
-        "output_segment_metrics_parquet": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/segment_metrics.parquet",
-        "anchor_candidates_used": true,
-        "page_count": 4,
-        "page_segment_rows": 8,
-        "segment_count": 4,
-        "top_level_1_segments": [
-          {
-            "segment_path": "/cars",
-            "page_count": 2,
-            "pri_sum": 0.638340413358639
+            "can_give_juice": true
           },
           {
-            "segment_path": "/contact",
-            "page_count": 1,
-            "pri_sum": 0.26734811269390607
+            "page_id": 741,
+            "pri_score": 0.00011764194602185588,
+            "rank": 790,
+            "cheirank_score": 0.004014744359826982,
+            "cheirank_rank": 5,
+            "juice_potential_score": 0.018488581030239065,
+            "out_degree": 99,
+            "in_degree": 56,
+            "is_low_power": false,
+            "can_give_juice": true
+          },
+          {
+            "page_id": 565,
+            "pri_score": 0.00016351532739035274,
+            "rank": 484,
+            "cheirank_score": 0.0036331708833173782,
+            "cheirank_rank": 6,
+            "juice_potential_score": 0.016506566317271147,
+            "out_degree": 93,
+            "in_degree": 50,
+            "is_low_power": false,
+            "can_give_juice": true
+          },
+          {
+            "page_id": 860,
+            "pri_score": 9.522839344040993e-05,
+            "rank": 914,
+            "cheirank_score": 0.0030501133640109613,
+            "cheirank_rank": 7,
+            "juice_potential_score": 0.013586264216248915,
+            "out_degree": 85,
+            "in_degree": 42,
+            "is_low_power": false,
+            "can_give_juice": true
+          },
+          {
+            "page_id": 925,
+            "pri_score": 9.165979218567987e-05,
+            "rank": 951,
+            "cheirank_score": 0.002904377060557006,
+            "cheirank_rank": 8,
+            "juice_potential_score": 0.012868762670091146,
+            "out_degree": 83,
+            "in_degree": 40,
+            "is_low_power": false,
+            "can_give_juice": true
+          },
+          {
+            "page_id": 946,
+            "pri_score": 8.368758526409856e-05,
+            "rank": 1003,
+            "cheirank_score": 0.002662299775288338,
+            "cheirank_rank": 10,
+            "juice_potential_score": 0.01169934099700046,
+            "out_degree": 80,
+            "in_degree": 36,
+            "is_low_power": false,
+            "can_give_juice": true
+          },
+          {
+            "page_id": 6509,
+            "pri_score": 2.3206719439370773e-05,
+            "rank": 3452,
+            "cheirank_score": 0.0026574455207742285,
+            "cheirank_rank": 11,
+            "juice_potential_score": 0.011327839545737883,
+            "out_degree": 70,
+            "in_degree": 2,
+            "is_low_power": false,
+            "can_give_juice": true
           }
         ]
       }
     },
     {
       "name": "model-anchor-scenarios",
-      "started_at": "2026-03-16T10:29:00+00:00",
-      "finished_at": "2026-03-16T10:29:00+00:00",
-      "duration_seconds": 0.033622,
+      "started_at": "2026-03-16T09:43:04+00:00",
+      "finished_at": "2026-03-16T09:43:05+00:00",
+      "duration_seconds": 0.810212,
       "details": {
-        "input_pages_parquet": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/pages.parquet",
-        "input_edges_parquet": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/edges.parquet",
-        "output_dir": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/scenarios",
-        "anchor_candidates_parquet": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/anchor_candidates.parquet",
-        "scenario_comparison_parquet": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/scenarios/scenario_pri_comparison.parquet",
+        "input_pages_parquet": "/Users/nicolas/PBN_AUTO/Cars_marketplace/labs/pri/artifacts/outlinks/pages.parquet",
+        "input_edges_parquet": "/Users/nicolas/PBN_AUTO/Cars_marketplace/labs/pri/artifacts/outlinks/edges.parquet",
+        "output_dir": "/Users/nicolas/PBN_AUTO/Cars_marketplace/labs/pri/artifacts/outlinks/scenarios",
+        "anchor_candidates_parquet": "/Users/nicolas/PBN_AUTO/Cars_marketplace/labs/pri/artifacts/outlinks/anchor_candidates.parquet",
+        "scenario_comparison_parquet": "/Users/nicolas/PBN_AUTO/Cars_marketplace/labs/pri/artifacts/outlinks/scenarios/scenario_pri_comparison.parquet",
         "prepare_anchor_dataset": {
-          "input_pages_parquet": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/pages.parquet",
-          "input_edges_parquet": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/edges.parquet",
-          "output_anchor_candidates_parquet": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/anchor_candidates.parquet",
-          "candidate_count": 5,
+          "input_pages_parquet": "/Users/nicolas/PBN_AUTO/Cars_marketplace/labs/pri/artifacts/outlinks/pages.parquet",
+          "input_edges_parquet": "/Users/nicolas/PBN_AUTO/Cars_marketplace/labs/pri/artifacts/outlinks/edges.parquet",
+          "output_anchor_candidates_parquet": "/Users/nicolas/PBN_AUTO/Cars_marketplace/labs/pri/artifacts/outlinks/anchor_candidates.parquet",
+          "candidate_count": 479788,
           "anchor_type_counts": [
             {
+              "anchor_type": "contextual",
+              "count": 373169
+            },
+            {
               "anchor_type": "exact",
-              "count": 2
+              "count": 95978
             },
             {
               "anchor_type": "partial",
-              "count": 2
+              "count": 10624
             },
             {
-              "anchor_type": "contextual",
-              "count": 1
+              "anchor_type": "generic",
+              "count": 17
             }
           ],
           "source": "provided"
@@ -290,70 +483,78 @@
         "scenarios": [
           {
             "scenario": "scenario_1_exact_focus",
-            "scenario_edges_parquet": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/scenarios/scenario_1_exact_focus_edges.parquet",
-            "scenario_pri_parquet": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/scenarios/scenario_1_exact_focus_pri.parquet",
-            "edge_count": 5,
-            "avg_anchor_diversity_score": 0.5,
+            "scenario_edges_parquet": "/Users/nicolas/PBN_AUTO/Cars_marketplace/labs/pri/artifacts/outlinks/scenarios/scenario_1_exact_focus_edges.parquet",
+            "scenario_pri_parquet": "/Users/nicolas/PBN_AUTO/Cars_marketplace/labs/pri/artifacts/outlinks/scenarios/scenario_1_exact_focus_pri.parquet",
+            "edge_count": 479235,
+            "avg_anchor_diversity_score": 0.38844263553619385,
             "anchor_mix": [
               {
                 "anchor_type": "exact",
-                "count": 3
-              },
-              {
-                "anchor_type": "generic",
-                "count": 1
+                "count": 359087
               },
               {
                 "anchor_type": "partial",
-                "count": 1
+                "count": 72050
+              },
+              {
+                "anchor_type": "contextual",
+                "count": 33606
+              },
+              {
+                "anchor_type": "generic",
+                "count": 14492
               }
             ],
             "pri_sum": 1.0
           },
           {
             "scenario": "scenario_2_balanced_mix",
-            "scenario_edges_parquet": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/scenarios/scenario_2_balanced_mix_edges.parquet",
-            "scenario_pri_parquet": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/scenarios/scenario_2_balanced_mix_pri.parquet",
-            "edge_count": 5,
-            "avg_anchor_diversity_score": 0.6000000238418579,
+            "scenario_edges_parquet": "/Users/nicolas/PBN_AUTO/Cars_marketplace/labs/pri/artifacts/outlinks/scenarios/scenario_2_balanced_mix_edges.parquet",
+            "scenario_pri_parquet": "/Users/nicolas/PBN_AUTO/Cars_marketplace/labs/pri/artifacts/outlinks/scenarios/scenario_2_balanced_mix_pri.parquet",
+            "edge_count": 479235,
+            "avg_anchor_diversity_score": 0.5818207263946533,
             "anchor_mix": [
               {
+                "anchor_type": "exact",
+                "count": 191565
+              },
+              {
                 "anchor_type": "partial",
-                "count": 2
+                "count": 143428
               },
               {
                 "anchor_type": "contextual",
-                "count": 1
-              },
-              {
-                "anchor_type": "exact",
-                "count": 1
+                "count": 96144
               },
               {
                 "anchor_type": "generic",
-                "count": 1
+                "count": 48098
               }
             ],
-            "pri_sum": 0.9999999999999999
+            "pri_sum": 1.0
           },
           {
             "scenario": "scenario_3_diversity_first",
-            "scenario_edges_parquet": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/scenarios/scenario_3_diversity_first_edges.parquet",
-            "scenario_pri_parquet": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/scenarios/scenario_3_diversity_first_pri.parquet",
-            "edge_count": 5,
-            "avg_anchor_diversity_score": 0.5,
+            "scenario_edges_parquet": "/Users/nicolas/PBN_AUTO/Cars_marketplace/labs/pri/artifacts/outlinks/scenarios/scenario_3_diversity_first_edges.parquet",
+            "scenario_pri_parquet": "/Users/nicolas/PBN_AUTO/Cars_marketplace/labs/pri/artifacts/outlinks/scenarios/scenario_3_diversity_first_pri.parquet",
+            "edge_count": 479235,
+            "avg_anchor_diversity_score": 0.6311651468276978,
             "anchor_mix": [
               {
-                "anchor_type": "contextual",
-                "count": 3
+                "anchor_type": "partial",
+                "count": 143919
               },
               {
-                "anchor_type": "exact",
-                "count": 1
+                "anchor_type": "contextual",
+                "count": 143740
               },
               {
                 "anchor_type": "generic",
-                "count": 1
+                "count": 96067
+              },
+              {
+                "anchor_type": "exact",
+                "count": 95509
               }
             ],
             "pri_sum": 1.0
@@ -363,17 +564,14 @@
     }
   ],
   "status": "ok",
-  "workspace": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default",
-  "input_csv": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/tests/fixtures/outlinks_small.csv",
+  "workspace": "/Users/nicolas/PBN_AUTO/Cars_marketplace/labs/pri/artifacts/outlinks",
+  "input_csv": "/Users/nicolas/PBN_AUTO/Cars_marketplace/DATA_OUTLIKNS/all_outlinks.csv",
   "source_host": null,
   "max_out_links_per_page": 120,
   "damping": 0.85,
-  "pages_parquet": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/pages.parquet",
-  "edges_parquet": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/edges.parquet",
-  "pri_scores_parquet": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/pri_scores.parquet",
-  "anchor_candidates_parquet": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/anchor_candidates.parquet",
-  "scenarios_dir": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/scenarios",
-  "page_segments_parquet": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/page_segments.parquet",
-  "url_metrics_parquet": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/url_metrics.parquet",
-  "segment_metrics_parquet": "/Users/nicolas/PBN_AUTO/pri-lab-streamlit/artifacts/default/segment_metrics.parquet"
+  "pages_parquet": "/Users/nicolas/PBN_AUTO/Cars_marketplace/labs/pri/artifacts/outlinks/pages.parquet",
+  "edges_parquet": "/Users/nicolas/PBN_AUTO/Cars_marketplace/labs/pri/artifacts/outlinks/edges.parquet",
+  "pri_scores_parquet": "/Users/nicolas/PBN_AUTO/Cars_marketplace/labs/pri/artifacts/outlinks/pri_scores.parquet",
+  "anchor_candidates_parquet": "/Users/nicolas/PBN_AUTO/Cars_marketplace/labs/pri/artifacts/outlinks/anchor_candidates.parquet",
+  "scenarios_dir": "/Users/nicolas/PBN_AUTO/Cars_marketplace/labs/pri/artifacts/outlinks/scenarios"
 }

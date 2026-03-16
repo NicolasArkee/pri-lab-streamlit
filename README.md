@@ -1,11 +1,11 @@
-# PRi Lab (Local R&D)
+# PRi Lab (Streamlit deployment repo)
 
-`labs/pri` is a local, decoupled data-science workspace to model internal-link graphs and compute PRi (internal PageRank) at high volume with Polars + igraph.
+This repository is deployment-ready for Streamlit and includes precomputed artifacts in `artifacts/default` so the dashboard can start directly in exploration mode.
 
 ## 1. Setup
 
 ```bash
-cd labs/pri
+cd pri-lab-streamlit
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -e ".[dev]"
@@ -17,8 +17,8 @@ pip install -e ".[dev]"
 pri-lab run-experiment
 ```
 
-Default config: `labs/pri/configs/default.toml`  
-Default workspace: `labs/pri/artifacts/default/`
+Default config: `configs/default.toml`  
+Default workspace: `artifacts/default/`
 
 ## 3. Run commands independently
 
@@ -89,10 +89,10 @@ You can inject a real anchor dataset:
 
 ```bash
 pri-lab model-anchor-scenarios \
-  --input-pages labs/pri/artifacts/outlinks/pages.parquet \
-  --input-edges labs/pri/artifacts/outlinks/edges.parquet \
-  --input-anchor-candidates labs/pri/artifacts/outlinks/anchor_candidates.parquet \
-  --output-dir labs/pri/artifacts/outlinks/scenarios
+  --input-pages artifacts/outlinks/pages.parquet \
+  --input-edges artifacts/outlinks/edges.parquet \
+  --input-anchor-candidates artifacts/outlinks/anchor_candidates.parquet \
+  --output-dir artifacts/outlinks/scenarios
 ```
 
 ## 8. Outlinks CSV full analysis
@@ -102,7 +102,7 @@ Run the full PRi/CheiRank/anchors/scenarios pipeline directly from an outlinks c
 ```bash
 pri-lab run-outlinks-analysis \
   --input-csv DATA_OUTLIKNS/all_outlinks.csv \
-  --workspace labs/pri/artifacts/outlinks
+  --workspace artifacts/outlinks
 ```
 
 This command now also generates dashboard datasets (`page_segments`, `url_metrics`, `segment_metrics`).
@@ -113,8 +113,8 @@ Tu peux exporter tous les artefacts parquet du workspace en CSV, avec un rapport
 
 ```bash
 pri-lab export-report \
-  --workspace labs/pri/artifacts/outlinks \
-  --output-dir labs/pri/artifacts/outlinks/exports/latest
+  --workspace artifacts/outlinks \
+  --output-dir artifacts/outlinks/exports/latest
 ```
 
 Sorties:
@@ -136,7 +136,19 @@ pytest
 Launch visual dashboard from generated artifacts:
 
 ```bash
-pri-lab dashboard --workspace labs/pri/artifacts/default --host 127.0.0.1 --port 8501
+pri-lab dashboard --workspace artifacts/default --host 127.0.0.1 --port 8501
 ```
 
 Then open: `http://127.0.0.1:8501`
+
+## 12. Streamlit Cloud deploy
+
+Use these exact values:
+
+- Repository: `NicolasArkee/pri-lab-streamlit`
+- Branch: `main` (or `master` fallback)
+- Main file path: `streamlit_app.py`
+
+Direct deploy link:
+
+`https://share.streamlit.io/deploy?repository=https://github.com/NicolasArkee/pri-lab-streamlit&branch=main&mainModule=streamlit_app.py`
