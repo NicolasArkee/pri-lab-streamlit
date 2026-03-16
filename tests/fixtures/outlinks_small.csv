@@ -1,0 +1,10 @@
+Type,From,To,Anchor Text,Alt Text,Follow,Target,Rel,Status Code,Status,Path Type,Link Path,Link Position,Link Origin,Size,Transferred
+Hyperlink,https://www.example.com/,https://www.example.com/cars,Cars,,True,,,200,OK,Root-Relative,//nav/a[1],Navigation,HTML,1000,500
+Hyperlink,https://www.example.com/,https://www.example.com/contact,Contact,,True,,,200,OK,Root-Relative,//footer/a[1],Footer,HTML,1000,500
+Hyperlink,https://www.example.com/cars,https://www.example.com/cars/suv,SUV d'occasion,,True,,,200,OK,Path-Relative,//main/a[1],Content,HTML,1000,500
+Hyperlink,https://www.example.com/cars,https://www.example.com/cars/suv,SUV d'occasion,,True,,,200,OK,Path-Relative,//main/a[2],Content,HTML,1000,500
+Hyperlink,https://www.example.com/cars/suv,https://www.example.com/cars,Voir voitures,,True,,,200,OK,Path-Relative,//main/a[2],Content,HTML,1000,500
+Hyperlink,https://www.example.com/cars/suv,https://www.example.com/contact,,Contact image,True,,,200,OK,Path-Relative,//main/a[3],Content,HTML,1000,500
+Hyperlink,https://www.example.com/cars/suv,https://www.external.com/,External link,,True,,,200,OK,Absolute,//main/a[4],Content,HTML,1000,500
+Hyperlink,https://www.example.com/contact,https://www.example.com/,Retour accueil,,False,,,200,OK,Path-Relative,//main/a[5],Content,HTML,1000,500
+Hyperlink,https://www.example.com/contact,https://www.example.com/cars,Cars,,True,,,404,Not Found,Path-Relative,//main/a[6],Content,HTML,1000,500

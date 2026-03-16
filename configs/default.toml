@@ -1,0 +1,36 @@
+[paths]
+input_json = "../../../data/arborescence_ecommerce_auto.json"
+workspace = "../artifacts/default"
+pages_parquet = "pages.parquet"
+edges_parquet = "edges.parquet"
+pri_scores_parquet = "pri_scores.parquet"
+run_metrics_json = "run_metrics.json"
+experiment_log_parquet = "experiment_runs.parquet"
+
+[rules]
+enable_hierarchy_up = true
+enable_hierarchy_down = true
+enable_cluster_peer = true
+cluster_peer_k = 8
+max_out_links_per_page = 40
+weight_hierarchy_up = 1.0
+weight_hierarchy_down = 0.7
+weight_cluster_peer = 0.4
+
+[pagerank]
+damping = 0.85
+included_block_types = ["hierarchy_up", "hierarchy_down", "cluster_peer"]
+use_weights = true
+
+[anchor_scenarios]
+output_dir = "scenarios"
+scenario_names = [
+  "scenario_1_exact_focus",
+  "scenario_2_balanced_mix",
+  "scenario_3_diversity_first",
+]
+
+[benchmark]
+node_count = 200000
+target_edge_count = 4000000
+cluster_count = 2000

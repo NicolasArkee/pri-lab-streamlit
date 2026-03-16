@@ -1,0 +1,15 @@
+{
+  "catalog/": {
+    "brand-a": {
+      "modeles/": {
+        "model-1": "# model one",
+        "model-2/": "# model two"
+      },
+      "_meta": "# brand a metadata"
+    },
+    "brand-b/": "# brand b landing"
+  },
+  "services/": {
+    "financement/": "# financing"
+  }
+}
