@@ -878,6 +878,8 @@ def _render_overview_tab(
   )
   st.dataframe(top_df.to_pandas(), use_container_width=True, hide_index=True)
 
+  _render_depth_analysis_section(filtered_url_df=filtered_url_df)
+
   if metrics_payload:
     st.caption("Dernier run pipeline")
     st.json(
@@ -889,6 +891,93 @@ def _render_overview_tab(
       },
       expanded=False,
     )
+
+
+def _render_depth_analysis_section(
+  filtered_url_df: pl.DataFrame,
+) -> None:
+  if filtered_url_df.height == 0:
+    st.info("Aucune donnée de profondeur sur le périmètre filtré.")
+    return
+
+  min_depth = int(filtered_url_df.select(pl.min("depth")).item())
+  max_depth = int(filtered_url_df.select(pl.max("depth")).item())
+  median_depth = float(filtered_url_df.select(pl.median("depth")).item())
+  p90_depth = float(filtered_url_df.select(pl.col("depth").quantile(0.90, interpolation="nearest")).item())
+  deep_page_count = int(filtered_url_df.filter(pl.col("depth") >= 3).height)
+
+  st.subheader("État des lieux de la profondeur")
+  kpis = st.columns(5)
+  kpis[0].metric("Profondeur min", str(min_depth))
+  kpis[1].metric("Profondeur max", str(max_depth))
+  kpis[2].metric("Profondeur médiane", f"{median_depth:.1f}")
+  kpis[3].metric("Profondeur P90", f"{p90_depth:.1f}")
+  kpis[4].metric("Pages profondeur ≥ 3", f"{deep_page_count:,}")
+
+  depth_stats_df = (
+    filtered_url_df
+    .group_by("depth")
+    .agg(
+      pl.len().cast(pl.Int32).alias("page_count"),
+      pl.sum("pri_score").cast(pl.Float64).alias("pri_sum"),
+      pl.mean("pri_score").cast(pl.Float64).alias("pri_mean"),
+      pl.col("pri_score").quantile(0.10, interpolation="nearest").cast(pl.Float64).alias("pri_p10"),
+      pl.col("pri_score").quantile(0.50, interpolation="nearest").cast(pl.Float64).alias("pri_p50"),
+      pl.col("pri_score").quantile(0.90, interpolation="nearest").cast(pl.Float64).alias("pri_p90"),
+      pl.col("can_give_juice").cast(pl.Float64).mean().cast(pl.Float64).alias("donor_ratio"),
+      pl.col("is_low_power").cast(pl.Float64).mean().cast(pl.Float64).alias("low_power_ratio"),
+    )
+    .sort("depth")
+  )
+
+  pri_total = float(depth_stats_df.select(pl.sum("pri_sum")).item())
+  depth_stats_df = depth_stats_df.with_columns(
+    (
+      pl.col("pri_sum")
+      / (pl.lit(pri_total) if pri_total > 0 else pl.lit(1.0))
+    ).cast(pl.Float64).alias("pri_share"),
+  )
+
+  st.caption("Distribution PRi par profondeur (P10 / médiane / P90)")
+  pri_distribution_df = depth_stats_df.select("depth", "pri_p10", "pri_p50", "pri_p90", "pri_mean")
+  st.line_chart(
+    pri_distribution_df.to_pandas().set_index("depth"),
+    use_container_width=True,
+  )
+
+  st.caption("Part de PRi par profondeur")
+  st.bar_chart(
+    depth_stats_df.select("depth", "pri_share").to_pandas().set_index("depth"),
+    use_container_width=True,
+  )
+
+  st.caption("Tableau profondeur (pages + PRi + ratios)")
+  depth_overview_df = (
+    depth_stats_df
+    .with_columns(
+      (pl.col("pri_share") * 100).cast(pl.Float64).alias("pri_share_pct"),
+      (pl.col("donor_ratio") * 100).cast(pl.Float64).alias("donor_ratio_pct"),
+      (pl.col("low_power_ratio") * 100).cast(pl.Float64).alias("low_power_ratio_pct"),
+    )
+    .select(
+      "depth",
+      "page_count",
+      "pri_sum",
+      "pri_share_pct",
+      "pri_mean",
+      "pri_p10",
+      "pri_p50",
+      "pri_p90",
+      "donor_ratio_pct",
+      "low_power_ratio_pct",
+    )
+    .sort("depth")
+  )
+  st.dataframe(
+    depth_overview_df.to_pandas(),
+    use_container_width=True,
+    hide_index=True,
+  )
 
 
 def _render_segments_tab(
