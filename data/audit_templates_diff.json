@@ -1,0 +1,2075 @@
+{
+  "meta": {
+    "date": "2026-03-25",
+    "total_files": 210,
+    "template_types": 13,
+    "files_with_next_data": 203
+  },
+  "template_summary": {
+    "/ad/": {
+      "count": 35,
+      "files": [
+        "ad_accessoires_bagagerie",
+        "ad_ameublement",
+        "ad_animaux",
+        "ad_bricolage",
+        "ad_btp_chantier_gros_oeuvre",
+        "ad_bureaux_commerces",
+        "ad_caravaning",
+        "ad_chaussures",
+        "ad_collection",
+        "ad_colocations",
+        "ad_consoles",
+        "ad_decoration",
+        "ad_electromenager",
+        "ad_emploi",
+        "ad_formations_professionnelles",
+        "ad_instruments_de_musique",
+        "ad_jardin_plantes",
+        "ad_jeux_jouets",
+        "ad_jeux_video",
+        "ad_linge_de_maison",
+        "ad_livres",
+        "ad_locations",
+        "ad_locations_saisonnieres",
+        "ad_locations_saisonnieres_v2",
+        "ad_materiel_agricole",
+        "ad_montres_bijoux",
+        "ad_motos",
+        "ad_nautisme",
+        "ad_photo_audio_video",
+        "ad_services_a_la_personne",
+        "ad_sport_plein_air",
+        "ad_velos",
+        "ad_ventes_immobilieres",
+        "ad_vetements",
+        "ad_voitures_pro"
+      ],
+      "avg_file_size": 480438,
+      "avg_scripts": 62.4,
+      "has_next_data_pct": 100.0
+    },
+    "/boutique/": {
+      "count": 1,
+      "files": [
+        "boutiques"
+      ],
+      "avg_file_size": 344507,
+      "avg_scripts": 22.0,
+      "has_next_data_pct": 100.0
+    },
+    "/c/": {
+      "count": 83,
+      "files": [
+        "c_accessoires_animaux",
+        "c_accessoires_bagagerie",
+        "c_accessoires_informatique",
+        "c_accessoires_telephone_objets_connectes",
+        "c_ameublement",
+        "c_animaux",
+        "c_animaux_perdus",
+        "c_antiquites",
+        "c_artistes_musiciens",
+        "c_arts_de_la_table",
+        "c_autres",
+        "c_autres_services",
+        "c_baby_sitting",
+        "c_billetterie",
+        "c_bricolage",
+        "c_btp_chantier_gros_oeuvre",
+        "c_bureaux_commerces",
+        "c_caravaning",
+        "c_cd_musique",
+        "c_chaussures",
+        "c_collection",
+        "c_colocations",
+        "c_consoles",
+        "c_cours_particuliers",
+        "c_covoiturage",
+        "c_decoration",
+        "c_dvd_films",
+        "c_electromenager",
+        "c_entraide_entre_voisins",
+        "c_equipement_auto",
+        "c_equipement_bebe",
+        "c_equipement_caravaning",
+        "c_equipement_moto",
+        "c_equipement_nautisme",
+        "c_equipements_fournitures_de_bureau",
+        "c_equipements_industriels",
+        "c_equipements_pour_commerces_marches",
+        "c_equipements_pour_restaurants_hotels",
+        "c_equipements_velos",
+        "c_evenements",
+        "c_formations_professionnelles",
+        "c_instruments_de_musique",
+        "c_jardin_plantes",
+        "c_jeux_jouets",
+        "c_jeux_video",
+        "c_linge_de_maison",
+        "c_livres",
+        "c_locations",
+        "c_locations_saisonnieres",
+        "c_loisirs_creatifs",
+        "c_manutention_levage",
+        "c_materiel_agricole",
+        "c_materiel_medical",
+        "c_mobilier_enfant",
+        "c_modelisme",
+        "c_montres_bijoux",
+        "c_motos",
+        "c_nautisme",
+        "c_offres_d_emploi",
+        "c_offres_emploi",
+        "c_ordinateurs",
+        "c_papeterie_fournitures_scolaires",
+        "c_photo_audio_video",
+        "c_poids_lourds",
+        "c_services_a_la_personne",
+        "c_services_aux_animaux",
+        "c_services_de_demenagement",
+        "c_services_de_jardinerie_bricolage",
+        "c_services_de_reparations_electroniques",
+        "c_services_de_reparations_mecaniques",
+        "c_services_evenementiels",
+        "c_sport_plein_air",
+        "c_tablettes_liseuses",
+        "c_telephones",
+        "c_telephones_objets_connectes",
+        "c_tracteurs",
+        "c_utilitaires",
+        "c_velos",
+        "c_ventes_immobilieres",
+        "c_vetements",
+        "c_vetements_bebe",
+        "c_vins_gastronomie",
+        "c_voitures"
+      ],
+      "avg_file_size": 983388,
+      "avg_scripts": 48.1,
+      "has_next_data_pct": 100.0
+    },
+    "/c/ facets": {
+      "count": 16,
+      "files": [
+        "c_chaussures_type_femme",
+        "c_emploi_contrat_cdi",
+        "c_locations_type_appart",
+        "c_motos_brand_honda",
+        "c_motos_honda_cbr",
+        "c_telephones_apple_256go_iphone15pro",
+        "c_telephones_apple_iphone15pro",
+        "c_telephones_brand_apple",
+        "c_vetements_femme_taille38",
+        "c_vetements_type_femme",
+        "c_voitures_bmw_serie3",
+        "c_voitures_brand_renault",
+        "c_voitures_diesel_bmw",
+        "c_voitures_diesel_bmw_serie3",
+        "c_voitures_fuel_diesel",
+        "c_voitures_renault_clio"
+      ],
+      "avg_file_size": 1422863,
+      "avg_scripts": 48.5,
+      "has_next_data_pct": 100.0
+    },
+    "/c/ super": {
+      "count": 15,
+      "files": [
+        "c_super__animaux_",
+        "c_super__electronique_",
+        "c_super__emploi_",
+        "c_super__famille_",
+        "c_super__locations_de_vacances_",
+        "c_super__loisirs_",
+        "c_super__maison_jardin_",
+        "c_super__materiel_professionnel_",
+        "c_super__mode_",
+        "c_super__services_",
+        "c_super__vehicules_",
+        "c_super_electronique",
+        "c_super_immobilier",
+        "c_super_mode",
+        "c_super_vehicules"
+      ],
+      "avg_file_size": 998420,
+      "avg_scripts": 48.1,
+      "has_next_data_pct": 100.0
+    },
+    "/ck/": {
+      "count": 7,
+      "files": [
+        "ck_ameublement_meuble_tv",
+        "ck_locations_studio_paris",
+        "ck_motos_scooter_3_roues",
+        "ck_telephones_apple_watch",
+        "ck_vetements_robe_mariee",
+        "ck_voitures_clio4",
+        "ck_voitures_golf7"
+      ],
+      "avg_file_size": 1375988,
+      "avg_scripts": 48.6,
+      "has_next_data_pct": 100.0
+    },
+    "/cl/": {
+      "count": 10,
+      "files": [
+        "cl_ameublement_rp_bretagne",
+        "cl_emploi_dp_rhone",
+        "cl_locations_dp_gironde",
+        "cl_locations_paris_meuble",
+        "cl_ventes_immo_dp_paris",
+        "cl_ventes_immo_idf_appart",
+        "cl_vetements_rp_paca",
+        "cl_voitures_dp_nord",
+        "cl_voitures_meaux_brand_renault",
+        "cl_voitures_rp_idf"
+      ],
+      "avg_file_size": 1647625,
+      "avg_scripts": 49.5,
+      "has_next_data_pct": 100.0
+    },
+    "/dc/": {
+      "count": 9,
+      "files": [
+        "dc_accessibilite",
+        "dc_avis_utilisateurs",
+        "dc_cgu",
+        "dc_cgv",
+        "dc_charte",
+        "dc_cookies",
+        "dc_droits_obligations",
+        "dc_paiement_plusieurs_fois",
+        "dc_rules"
+      ],
+      "avg_file_size": 438683,
+      "avg_scripts": 20.2,
+      "has_next_data_pct": 100.0
+    },
+    "/guide/": {
+      "count": 6,
+      "files": [
+        "guide_biarritz",
+        "guide_dune_du_pilat",
+        "guide_dune_pilat",
+        "guide_gorges_du_verdon",
+        "guide_gorges_verdon",
+        "guide_vacances"
+      ],
+      "avg_file_size": 92514,
+      "avg_scripts": 44.5,
+      "has_next_data_pct": 16.7
+    },
+    "/l/": {
+      "count": 4,
+      "files": [
+        "l_dp_gironde",
+        "l_rp_idf",
+        "l_rp_nord_pas_de_calais",
+        "l_rp_reunion"
+      ],
+      "avg_file_size": 878825,
+      "avg_scripts": 48.0,
+      "has_next_data_pct": 100.0
+    },
+    "deep": {
+      "count": 22,
+      "files": [
+        "deep_c__chaussures__shoe_type_1",
+        "deep_c__motos__u_moto_brand_HONDA",
+        "deep_c__motos__u_moto_brand_HONDA_PLUS_u_moto_model_HONDA_CBR",
+        "deep_c__telephones_objets_connectes__phone_brand_apple",
+        "deep_c__telephones_objets_connectes__phone_brand_apple_PLUS_phone_model_iphone15pro",
+        "deep_c__vetements__clothing_st_4_PLUS_clothing_type_1",
+        "deep_c__vetements__clothing_type_1",
+        "deep_c__voitures__fuel_2",
+        "deep_c__voitures__fuel_2_PLUS_u_car_brand_BMW",
+        "deep_c__voitures__u_car_brand_BMW",
+        "deep_c__voitures__u_car_brand_BMW_PLUS_u_car_model_BMW_SPC3PA9rieP203",
+        "deep_c__voitures__u_car_brand_RENAULT",
+        "deep_c__voitures__u_car_brand_RENAULT_PLUS_u_car_model_RENAULT_Clio",
+        "deep_ck__locations__studio-paris",
+        "deep_ck__vetements__robe-de-mariee",
+        "deep_ck__voitures__clio-4",
+        "deep_cl__locations__dp_gironde",
+        "deep_cl__voitures__cp_meaux_77100__u_car_brand_RENAULT",
+        "deep_cl__voitures__rp_ile-de-france",
+        "deep_f__voitures",
+        "deep_guide__vacances",
+        "deep_v__voitures"
+      ],
+      "avg_file_size": 1353651,
+      "avg_scripts": 47.5,
+      "has_next_data_pct": 90.9
+    },
+    "homepage": {
+      "count": 1,
+      "files": [
+        "homepage"
+      ],
+      "avg_file_size": 340881,
+      "avg_scripts": 29.0,
+      "has_next_data_pct": 100.0
+    },
+    "plan_du_site": {
+      "count": 1,
+      "files": [
+        "plan_du_site"
+      ],
+      "avg_file_size": 145594,
+      "avg_scripts": 20.0,
+      "has_next_data_pct": 100.0
+    }
+  },
+  "pageProps_diff": {
+    "global_shared_keys": [],
+    "per_template": {
+      "/ad/": {
+        "common_keys": [
+          "ad",
+          "experimentData",
+          "isClientSideNavigation",
+          "libertyData",
+          "seoIndexingData",
+          "seoLocation"
+        ],
+        "all_keys": [
+          "ad",
+          "experimentData",
+          "isClientSideNavigation",
+          "libertyData",
+          "seoIndexingData",
+          "seoLocation",
+          "title"
+        ],
+        "variable_keys": [
+          "title"
+        ]
+      },
+      "/boutique/": {
+        "common_keys": [
+          "activitySector",
+          "data",
+          "department",
+          "page",
+          "seoContent"
+        ],
+        "all_keys": [
+          "activitySector",
+          "data",
+          "department",
+          "page",
+          "seoContent"
+        ],
+        "variable_keys": []
+      },
+      "/c/": {
+        "common_keys": [
+          "experimentData",
+          "isHardNavigation",
+          "libertyData",
+          "search",
+          "searchData",
+          "seoBoxColumns",
+          "seoBreadcrumb",
+          "seoIndexingData",
+          "seoMetadata",
+          "seoTopFilters"
+        ],
+        "all_keys": [
+          "experimentData",
+          "isHardNavigation",
+          "libertyData",
+          "search",
+          "searchData",
+          "seoBoxColumns",
+          "seoBreadcrumb",
+          "seoIndexingData",
+          "seoMetadata",
+          "seoTopFilters"
+        ],
+        "variable_keys": []
+      },
+      "/c/ facets": {
+        "common_keys": [
+          "experimentData",
+          "isHardNavigation",
+          "libertyData",
+          "search",
+          "searchData",
+          "seoBoxColumns",
+          "seoBreadcrumb",
+          "seoIndexingData",
+          "seoMetadata",
+          "seoTopFilters"
+        ],
+        "all_keys": [
+          "experimentData",
+          "isHardNavigation",
+          "libertyData",
+          "search",
+          "searchData",
+          "seoBoxColumns",
+          "seoBreadcrumb",
+          "seoIndexingData",
+          "seoMetadata",
+          "seoTopFilters"
+        ],
+        "variable_keys": []
+      },
+      "/c/ super": {
+        "common_keys": [
+          "experimentData",
+          "isHardNavigation",
+          "libertyData",
+          "search",
+          "searchData",
+          "seoBoxColumns",
+          "seoBreadcrumb",
+          "seoIndexingData",
+          "seoMetadata",
+          "seoTopFilters"
+        ],
+        "all_keys": [
+          "experimentData",
+          "isHardNavigation",
+          "libertyData",
+          "search",
+          "searchData",
+          "seoBoxColumns",
+          "seoBreadcrumb",
+          "seoIndexingData",
+          "seoMetadata",
+          "seoTopFilters"
+        ],
+        "variable_keys": []
+      },
+      "/ck/": {
+        "common_keys": [
+          "experimentData",
+          "isHardNavigation",
+          "libertyData",
+          "search",
+          "searchData",
+          "seoBoxColumns",
+          "seoBreadcrumb",
+          "seoIndexingData",
+          "seoMetadata",
+          "seoTopFilters"
+        ],
+        "all_keys": [
+          "experimentData",
+          "isHardNavigation",
+          "libertyData",
+          "search",
+          "searchData",
+          "seoBoxColumns",
+          "seoBreadcrumb",
+          "seoIndexingData",
+          "seoMetadata",
+          "seoTopFilters"
+        ],
+        "variable_keys": []
+      },
+      "/cl/": {
+        "common_keys": [
+          "experimentData",
+          "isHardNavigation",
+          "libertyData",
+          "search",
+          "searchData",
+          "seoBoxColumns",
+          "seoBreadcrumb",
+          "seoIndexingData",
+          "seoTopFilters"
+        ],
+        "all_keys": [
+          "experimentData",
+          "isHardNavigation",
+          "libertyData",
+          "search",
+          "searchData",
+          "seoBoxColumns",
+          "seoBreadcrumb",
+          "seoIndexingData",
+          "seoMetadata",
+          "seoTopFilters"
+        ],
+        "variable_keys": [
+          "seoMetadata"
+        ]
+      },
+      "/dc/": {
+        "common_keys": [
+          "data",
+          "versions"
+        ],
+        "all_keys": [
+          "data",
+          "versions"
+        ],
+        "variable_keys": []
+      },
+      "deep": {
+        "common_keys": [
+          "libertyData"
+        ],
+        "all_keys": [
+          "data",
+          "experimentData",
+          "isHardNavigation",
+          "libertyData",
+          "search",
+          "searchData",
+          "seoBoxColumns",
+          "seoBreadcrumb",
+          "seoIndexingData",
+          "seoMetadata",
+          "seoTopFilters"
+        ],
+        "variable_keys": [
+          "data",
+          "experimentData",
+          "isHardNavigation",
+          "search",
+          "searchData",
+          "seoBoxColumns",
+          "seoBreadcrumb",
+          "seoIndexingData",
+          "seoMetadata",
+          "seoTopFilters"
+        ]
+      },
+      "/guide/": {
+        "common_keys": [
+          "data",
+          "libertyData"
+        ],
+        "all_keys": [
+          "data",
+          "libertyData"
+        ],
+        "variable_keys": []
+      },
+      "homepage": {
+        "common_keys": [
+          "experimentData",
+          "libertyData"
+        ],
+        "all_keys": [
+          "experimentData",
+          "libertyData"
+        ],
+        "variable_keys": []
+      },
+      "/l/": {
+        "common_keys": [
+          "experimentData",
+          "isHardNavigation",
+          "libertyData",
+          "search",
+          "searchData",
+          "seoBoxColumns",
+          "seoBreadcrumb",
+          "seoIndexingData",
+          "seoTopFilters"
+        ],
+        "all_keys": [
+          "experimentData",
+          "isHardNavigation",
+          "libertyData",
+          "search",
+          "searchData",
+          "seoBoxColumns",
+          "seoBreadcrumb",
+          "seoIndexingData",
+          "seoTopFilters"
+        ],
+        "variable_keys": []
+      },
+      "plan_du_site": {
+        "common_keys": [],
+        "all_keys": [],
+        "variable_keys": []
+      }
+    },
+    "unique_per_template": {
+      "/ad/": [
+        "ad",
+        "isClientSideNavigation",
+        "seoLocation",
+        "title"
+      ],
+      "/boutique/": [
+        "activitySector",
+        "department",
+        "page",
+        "seoContent"
+      ],
+      "/c/": [],
+      "/c/ facets": [],
+      "/c/ super": [],
+      "/ck/": [],
+      "/cl/": [],
+      "/dc/": [
+        "versions"
+      ],
+      "deep": [],
+      "/guide/": [],
+      "homepage": [],
+      "/l/": [],
+      "plan_du_site": []
+    }
+  },
+  "seo_indexing_diff": {
+    "/ad/": {
+      "shouldIndex": true,
+      "min_ads": null,
+      "pagination_max_pages": null,
+      "pagination_follow_max_pages": null,
+      "lifecycle": 365,
+      "excluded_categories": [
+        28,
+        38,
+        77
+      ]
+    },
+    "/boutique/": null,
+    "/c/": {
+      "shouldIndex": true,
+      "min_ads": 5,
+      "pagination_max_pages": 9,
+      "pagination_follow_max_pages": null,
+      "lifecycle": null,
+      "excluded_categories": []
+    },
+    "/c/ facets": {
+      "shouldIndex": true,
+      "min_ads": 5,
+      "pagination_max_pages": 9,
+      "pagination_follow_max_pages": null,
+      "lifecycle": null,
+      "excluded_categories": []
+    },
+    "/c/ super": {
+      "shouldIndex": true,
+      "min_ads": 5,
+      "pagination_max_pages": 9,
+      "pagination_follow_max_pages": null,
+      "lifecycle": null,
+      "excluded_categories": []
+    },
+    "/ck/": {
+      "shouldIndex": true,
+      "min_ads": 5,
+      "pagination_max_pages": 9,
+      "pagination_follow_max_pages": null,
+      "lifecycle": null,
+      "excluded_categories": []
+    },
+    "/cl/": {
+      "shouldIndex": true,
+      "min_ads": 5,
+      "pagination_max_pages": 9,
+      "pagination_follow_max_pages": null,
+      "lifecycle": null,
+      "excluded_categories": []
+    },
+    "/dc/": null,
+    "deep": {
+      "shouldIndex": true,
+      "min_ads": 5,
+      "pagination_max_pages": 9,
+      "pagination_follow_max_pages": null,
+      "lifecycle": null,
+      "excluded_categories": []
+    },
+    "/guide/": null,
+    "homepage": null,
+    "/l/": {
+      "shouldIndex": true,
+      "min_ads": 5,
+      "pagination_max_pages": 9,
+      "pagination_follow_max_pages": null,
+      "lifecycle": null,
+      "excluded_categories": []
+    },
+    "plan_du_site": null
+  },
+  "canonical_diff": {
+    "/ad/": {
+      "type": "mixed",
+      "samples": [
+        "/ad/accessoires_bagagerie/3168207623",
+        "/ad/accessoires_animaux/3167800000",
+        "https://www.leboncoin.fr/ad/animaux/3168162344"
+      ],
+      "anomaly": false
+    },
+    "/boutique/": {
+      "type": "absolute",
+      "samples": [
+        "https://www.leboncoin.fr/boutiques/tout_secteur_d_activite/toutes_categories"
+      ],
+      "anomaly": false
+    },
+    "/c/": {
+      "type": "absolute",
+      "samples": [
+        "https://www.leboncoin.fr/c/accessoires_animaux",
+        "https://www.leboncoin.fr/c/accessoires_bagagerie",
+        "https://www.leboncoin.fr/c/accessoires_informatique"
+      ],
+      "anomaly": false
+    },
+    "/c/ facets": {
+      "type": "absolute",
+      "samples": [
+        "https://www.leboncoin.fr/c/chaussures/shoe_type:1",
+        "https://www.leboncoin.fr/c/offres_d_emploi/jobcontract:1",
+        "https://www.leboncoin.fr/c/locations/real_estate_type:2"
+      ],
+      "anomaly": false
+    },
+    "/c/ super": {
+      "type": "absolute",
+      "samples": [
+        "https://www.leboncoin.fr/c/_animaux_",
+        "https://www.leboncoin.fr/c/_electronique_",
+        "https://www.leboncoin.fr/c/_emploi_"
+      ],
+      "anomaly": false
+    },
+    "/ck/": {
+      "type": "absolute",
+      "samples": [
+        "https://www.leboncoin.fr/ck/ameublement/meuble-tv",
+        "https://www.leboncoin.fr/ck/locations/studio-paris",
+        "https://www.leboncoin.fr/ck/motos/scooter-3-roues"
+      ],
+      "anomaly": false
+    },
+    "/cl/": {
+      "type": "absolute",
+      "samples": [
+        "https://www.leboncoin.fr/cl/ameublement/rp_bretagne",
+        "https://www.leboncoin.fr/cl/offres_d_emploi/dp_rh%C3%B4ne",
+        "https://www.leboncoin.fr/cl/locations/dp_gironde"
+      ],
+      "anomaly": false
+    },
+    "/dc/": {
+      "type": "absolute",
+      "samples": [
+        "https://www.leboncoin.fr/dc/accessibilite",
+        "https://www.leboncoin.fr/dc/avis_utilisateurs",
+        "https://www.leboncoin.fr/dc/cgu"
+      ],
+      "anomaly": false
+    },
+    "deep": {
+      "type": "absolute",
+      "samples": [
+        "https://www.leboncoin.fr/c/chaussures/shoe_type:1",
+        "https://www.leboncoin.fr/c/motos/u_moto_brand:HONDA",
+        "https://www.leboncoin.fr/c/motos/u_moto_brand:HONDA+u_moto_model:HONDA_CBR"
+      ],
+      "anomaly": false
+    },
+    "/guide/": {
+      "type": "absolute",
+      "samples": [
+        "https://www.leboncoin.fr/guide/vacances"
+      ],
+      "anomaly": false
+    },
+    "homepage": {
+      "type": "absolute",
+      "samples": [
+        "https://www.leboncoin.fr"
+      ],
+      "anomaly": false
+    },
+    "/l/": {
+      "type": "absolute",
+      "samples": [
+        "https://www.leboncoin.fr/l/dp_gironde",
+        "https://www.leboncoin.fr/l/rp_ile-de-france",
+        "https://www.leboncoin.fr/l/rp_nord-pas-de-calais"
+      ],
+      "anomaly": false
+    },
+    "plan_du_site": {
+      "type": "absolute",
+      "samples": [
+        "https://www.leboncoin.fr/plan-du-site"
+      ],
+      "anomaly": false
+    }
+  },
+  "json_ld_diff": {
+    "/ad/": {
+      "schemas_found": {
+        "Product": 22,
+        "Vehicle": 1
+      },
+      "has_schema": true
+    },
+    "/boutique/": {
+      "schemas_found": {},
+      "has_schema": false
+    },
+    "/c/": {
+      "schemas_found": {},
+      "has_schema": false
+    },
+    "/c/ facets": {
+      "schemas_found": {},
+      "has_schema": false
+    },
+    "/c/ super": {
+      "schemas_found": {},
+      "has_schema": false
+    },
+    "/ck/": {
+      "schemas_found": {},
+      "has_schema": false
+    },
+    "/cl/": {
+      "schemas_found": {},
+      "has_schema": false
+    },
+    "/dc/": {
+      "schemas_found": {},
+      "has_schema": false
+    },
+    "deep": {
+      "schemas_found": {},
+      "has_schema": false
+    },
+    "/guide/": {
+      "schemas_found": {},
+      "has_schema": false
+    },
+    "homepage": {
+      "schemas_found": {
+        "Organization": 1
+      },
+      "has_schema": true
+    },
+    "/l/": {
+      "schemas_found": {},
+      "has_schema": false
+    },
+    "plan_du_site": {
+      "schemas_found": {},
+      "has_schema": false
+    }
+  },
+  "internal_linking_diff": {
+    "/ad/": {
+      "other": 35.1,
+      "/dc/": 9.9,
+      "/cl/": 5.5,
+      "/boutique/": 2.0,
+      "/c/": 1.9,
+      "/ad/": 1.1
+    },
+    "/boutique/": {
+      "/boutique/": 38.0,
+      "other": 25.0,
+      "/dc/": 9.0
+    },
+    "/c/": {
+      "/ad/": 60.0,
+      "/cl/": 34.0,
+      "/c/": 32.5,
+      "other": 27.7,
+      "/ck/": 15.7,
+      "/dc/": 9.0,
+      "/boutique/": 2.5
+    },
+    "/c/ facets": {
+      "/ad/": 118.1,
+      "/c/": 43.7,
+      "/cl/": 34.3,
+      "other": 28.2,
+      "/ck/": 22.2,
+      "/dc/": 9.0,
+      "/boutique/": 3.9
+    },
+    "/c/ super": {
+      "/ad/": 57.7,
+      "/cl/": 34.3,
+      "other": 28.1,
+      "/c/": 21.8,
+      "/dc/": 9.0,
+      "/boutique/": 2.3
+    },
+    "/ck/": {
+      "/ad/": 123.1,
+      "/c/": 45.6,
+      "/cl/": 34.0,
+      "/ck/": 30.0,
+      "other": 28.4,
+      "/dc/": 9.0,
+      "/boutique/": 5.0
+    },
+    "/cl/": {
+      "/ad/": 156.8,
+      "/c/": 35.1,
+      "other": 30.8,
+      "/cl/": 25.3,
+      "/ck/": 17.5,
+      "/boutique/": 13.2,
+      "/dc/": 9.0
+    },
+    "/dc/": {
+      "other": 25.3,
+      "/dc/": 9.0,
+      "/boutique/": 2.0
+    },
+    "deep": {
+      "/ad/": 120.6,
+      "/c/": 39.7,
+      "/cl/": 27.8,
+      "other": 26.1,
+      "/ck/": 21.2,
+      "/dc/": 8.2,
+      "/boutique/": 4.6
+    },
+    "/guide/": {
+      "other": 7.7,
+      "/c/": 6.7,
+      "/dc/": 1.5,
+      "/boutique/": 0.3
+    },
+    "homepage": {
+      "/c/": 272.0,
+      "other": 53.0,
+      "/l/": 26.0,
+      "/dc/": 9.0,
+      "/boutique/": 2.0,
+      "/guide/": 1.0
+    },
+    "/l/": {
+      "/ad/": 37.0,
+      "other": 25.0,
+      "/l/": 21.8,
+      "/dc/": 9.0,
+      "/boutique/": 2.0
+    },
+    "plan_du_site": {
+      "/c/": 93.0,
+      "other": 32.0,
+      "/l/": 26.0,
+      "/dc/": 9.0,
+      "/boutique/": 2.0
+    }
+  },
+  "meta_tags_diff": {
+    "/ad/": {
+      "has_meta_description": "32/35",
+      "has_meta_robots": "0/35",
+      "has_hreflang": "0/35",
+      "has_rel_prev_next": "0/35",
+      "og_tags_present": [
+        "og:description",
+        "og:image",
+        "og:locale",
+        "og:site_name",
+        "og:title",
+        "og:type",
+        "og:url"
+      ],
+      "title_samples": [
+        "Sacs Longchamp neuf - Accessoires &amp; Bagagerie",
+        "Tronc à griffer Natural Paradise - Accessoires animaux",
+        "Annonce introuvable"
+      ],
+      "description_samples": [
+        "Magnifique petit sacs Longchamp très tendance !",
+        "Pièce de rechange Natural Paradise - tronc à griffer rond b/G (14,3 cm de diamètre x L 40 cm) pour a"
+      ]
+    },
+    "/boutique/": {
+      "has_meta_description": "1/1",
+      "has_meta_robots": "0/1",
+      "has_hreflang": "0/1",
+      "has_rel_prev_next": "0/1",
+      "og_tags_present": [
+        "og:locale",
+        "og:site_name"
+      ],
+      "title_samples": [
+        "84,301 pros dans toute la France dans l&#x27;annuaire des professionnels"
+      ],
+      "description_samples": [
+        "A la recherche d&#x27;un bien ou service professionnel dans toute la France ? Consultez les services"
+      ]
+    },
+    "/c/": {
+      "has_meta_description": "83/83",
+      "has_meta_robots": "0/83",
+      "has_hreflang": "0/83",
+      "has_rel_prev_next": "83/83",
+      "og_tags_present": [
+        "og:locale",
+        "og:site_name"
+      ],
+      "title_samples": [
+        "Accessoires animaux  - leboncoin",
+        "Accessoires mode d&#x27;occasion  - leboncoin",
+        "Accessoires informatique d&#x27;occasion  - leboncoin"
+      ],
+      "description_samples": [
+        "Toutes nos annonces gratuites Accessoires animaux . Consultez nos annonces de particuliers et profes",
+        "Toutes nos annonces gratuites Accessoires mode d&#x27;occasion . Consultez nos annonces de particuli",
+        "Toutes nos annonces gratuites Accessoires informatique d&#x27;occasion . Consultez nos annonces de p"
+      ]
+    },
+    "/c/ facets": {
+      "has_meta_description": "16/16",
+      "has_meta_robots": "0/16",
+      "has_hreflang": "0/16",
+      "has_rel_prev_next": "16/16",
+      "og_tags_present": [
+        "og:locale",
+        "og:site_name"
+      ],
+      "title_samples": [
+        "Chaussures Femme d&#x27;occasion  - leboncoin",
+        "Offres d&#x27;emploi CDD  - leboncoin",
+        "Locations Appartement  - leboncoin"
+      ],
+      "description_samples": [
+        "Toutes nos annonces gratuites Chaussures Femme d&#x27;occasion . Consultez nos annonces de particuli",
+        "▷ Consultez nos annonces d&#x27;offres d&#x27;emploi CDD. Découvrez toutes nos annonces d&#x27;Offre",
+        "▷ Consultez nos annonces immos de locations Appartement  sur leboncoin."
+      ]
+    },
+    "/c/ super": {
+      "has_meta_description": "15/15",
+      "has_meta_robots": "0/15",
+      "has_hreflang": "0/15",
+      "has_rel_prev_next": "15/15",
+      "og_tags_present": [
+        "og:locale",
+        "og:site_name"
+      ],
+      "title_samples": [
+        "Animaux, chien, chat, cheval  - leboncoin",
+        "Multimédia d&#x27;occasion  - leboncoin",
+        "Emploi  - leboncoin"
+      ],
+      "description_samples": [
+        "Toutes nos annonces gratuites Animaux, chien, chat, cheval . Consultez nos annonces de particuliers ",
+        "Toutes nos annonces gratuites Multimédia d&#x27;occasion . Consultez nos annonces de particuliers et",
+        "Toutes nos annonces gratuites Emploi . Consultez nos annonces de particuliers et professionnels sur "
+      ]
+    },
+    "/ck/": {
+      "has_meta_description": "7/7",
+      "has_meta_robots": "0/7",
+      "has_hreflang": "0/7",
+      "has_rel_prev_next": "7/7",
+      "og_tags_present": [
+        "og:locale",
+        "og:site_name"
+      ],
+      "title_samples": [
+        "Meuble tv d&#x27;occasion - Ameublement - leboncoin",
+        "Studio paris - Locations - leboncoin",
+        "Scooter 3 roues d&#x27;occasion - Motos - leboncoin"
+      ],
+      "description_samples": [
+        "▷ Consultez nos annonces de meuble tv d&#x27;occasion. Trouvez toutes nos annonces de Ameublement su",
+        "▷ Consultez nos annonces de studio paris. Trouvez toutes nos annonces de Locations sur leboncoin",
+        "▷ Consultez nos annonces de scooter 3 roues d&#x27;occasion. Trouvez toutes nos annonces de Motos su"
+      ]
+    },
+    "/cl/": {
+      "has_meta_description": "10/10",
+      "has_meta_robots": "0/10",
+      "has_hreflang": "0/10",
+      "has_rel_prev_next": "10/10",
+      "og_tags_present": [
+        "og:locale",
+        "og:site_name"
+      ],
+      "title_samples": [
+        "Mobilier et meubles d’occasion Bretagne - leboncoin",
+        "Offre d’emploi Rhône (69) - leboncoin",
+        "Location appartement et maison à louer Gironde (33) - leboncoin"
+      ],
+      "description_samples": [
+        "Toutes nos annonces gratuites Mobilier et meubles d’occasion Bretagne. Consultez nos 336917 annonces",
+        "Toutes nos annonces gratuites Offre d’emploi Rhône (69). Consultez nos 2803 annonces de particuliers",
+        "Toutes nos annonces gratuites Location appartement et maison à louer Gironde (33). Consultez nos 542"
+      ]
+    },
+    "/dc/": {
+      "has_meta_description": "0/9",
+      "has_meta_robots": "0/9",
+      "has_hreflang": "0/9",
+      "has_rel_prev_next": "0/9",
+      "og_tags_present": [
+        "og:locale",
+        "og:site_name"
+      ],
+      "title_samples": [
+        "Accessibilité",
+        "Avis Utilisateurs",
+        "Mentions légales &amp; Conditions générales d&#x27;utilisation"
+      ],
+      "description_samples": []
+    },
+    "deep": {
+      "has_meta_description": "22/22",
+      "has_meta_robots": "2/22",
+      "has_hreflang": "0/22",
+      "has_rel_prev_next": "19/22",
+      "og_tags_present": [
+        "og:description",
+        "og:locale",
+        "og:site_name",
+        "og:title"
+      ],
+      "title_samples": [
+        "Chaussures Femme d&#x27;occasion  - leboncoin",
+        "Annonces deux roues d&#x27;occasion HONDA - leboncoin",
+        "Annonces deux roues d&#x27;occasion HONDA CBR - leboncoin"
+      ],
+      "description_samples": [
+        "Toutes nos annonces gratuites Chaussures Femme d&#x27;occasion . Consultez nos annonces de particuli",
+        "Toutes nos Annonces deux roues d&#x27;occasion HONDA  . . Consultez nos [nb.annonces] annonces de pa",
+        "Toutes nos Annonces deux roues d&#x27;occasion HONDA CBR  . . Consultez nos [nb.annonces] annonces d"
+      ]
+    },
+    "/guide/": {
+      "has_meta_description": "6/6",
+      "has_meta_robots": "5/6",
+      "has_hreflang": "0/6",
+      "has_rel_prev_next": "0/6",
+      "og_tags_present": [
+        "og:description",
+        "og:locale",
+        "og:site_name",
+        "og:title"
+      ],
+      "title_samples": [
+        "404 - Page introuvable - leboncoin",
+        "404 - Page introuvable - leboncoin",
+        "404 - Page introuvable - leboncoin"
+      ],
+      "description_samples": [
+        "La page que vous recherchez n’existe pas.",
+        "La page que vous recherchez n’existe pas.",
+        "La page que vous recherchez n’existe pas."
+      ]
+    },
+    "homepage": {
+      "has_meta_description": "1/1",
+      "has_meta_robots": "0/1",
+      "has_hreflang": "0/1",
+      "has_rel_prev_next": "0/1",
+      "og_tags_present": [
+        "og:locale",
+        "og:site_name"
+      ],
+      "title_samples": [
+        "leboncoin, site de petites annonces gratuites"
+      ],
+      "description_samples": [
+        "Avec leboncoin, trouvez la bonne affaire, réalisez la bonne vente pour votre voiture, immobilier, em"
+      ]
+    },
+    "/l/": {
+      "has_meta_description": "4/4",
+      "has_meta_robots": "0/4",
+      "has_hreflang": "0/4",
+      "has_rel_prev_next": "4/4",
+      "og_tags_present": [
+        "og:locale",
+        "og:site_name"
+      ],
+      "title_samples": [
+        "Gironde (33) - leboncoin",
+        "Ile-de-France - leboncoin",
+        "Nord-Pas-de-Calais - leboncoin"
+      ],
+      "description_samples": [
+        "Toutes nos annonces gratuites Gironde (33). Consultez nos 2298409 annonces de particuliers et profes",
+        "Toutes nos annonces gratuites Ile-de-France. Consultez nos 17280796 annonces de particuliers et prof",
+        "Toutes nos annonces gratuites Nord-Pas-de-Calais. Consultez nos 5826964 annonces de particuliers et "
+      ]
+    },
+    "plan_du_site": {
+      "has_meta_description": "0/1",
+      "has_meta_robots": "0/1",
+      "has_hreflang": "0/1",
+      "has_rel_prev_next": "0/1",
+      "og_tags_present": [
+        "og:locale",
+        "og:site_name"
+      ],
+      "title_samples": [
+        "leboncoin, site de petites annonces gratuites"
+      ],
+      "description_samples": []
+    }
+  },
+  "performance_diff": {
+    "/ad/": {
+      "avg_html_size_kb": 469.2,
+      "min_html_size_kb": 366.0,
+      "max_html_size_kb": 559.5,
+      "avg_scripts": 62.4
+    },
+    "/boutique/": {
+      "avg_html_size_kb": 336.4,
+      "min_html_size_kb": 336.4,
+      "max_html_size_kb": 336.4,
+      "avg_scripts": 22.0
+    },
+    "/c/": {
+      "avg_html_size_kb": 960.3,
+      "min_html_size_kb": 626.0,
+      "max_html_size_kb": 1849.6,
+      "avg_scripts": 48.1
+    },
+    "/c/ facets": {
+      "avg_html_size_kb": 1389.5,
+      "min_html_size_kb": 675.5,
+      "max_html_size_kb": 2010.6,
+      "avg_scripts": 48.5
+    },
+    "/c/ super": {
+      "avg_html_size_kb": 975.0,
+      "min_html_size_kb": 657.5,
+      "max_html_size_kb": 1827.4,
+      "avg_scripts": 48.1
+    },
+    "/ck/": {
+      "avg_html_size_kb": 1343.7,
+      "min_html_size_kb": 873.5,
+      "max_html_size_kb": 1857.5,
+      "avg_scripts": 48.6
+    },
+    "/cl/": {
+      "avg_html_size_kb": 1609.0,
+      "min_html_size_kb": 676.4,
+      "max_html_size_kb": 2200.1,
+      "avg_scripts": 49.5
+    },
+    "/dc/": {
+      "avg_html_size_kb": 428.4,
+      "min_html_size_kb": 123.7,
+      "max_html_size_kb": 1095.5,
+      "avg_scripts": 20.2
+    },
+    "deep": {
+      "avg_html_size_kb": 1321.9,
+      "min_html_size_kb": 84.8,
+      "max_html_size_kb": 2190.2,
+      "avg_scripts": 47.5
+    },
+    "/guide/": {
+      "avg_html_size_kb": 90.3,
+      "min_html_size_kb": 84.8,
+      "max_html_size_kb": 118.0,
+      "avg_scripts": 44.5
+    },
+    "homepage": {
+      "avg_html_size_kb": 332.9,
+      "min_html_size_kb": 332.9,
+      "max_html_size_kb": 332.9,
+      "avg_scripts": 29.0
+    },
+    "/l/": {
+      "avg_html_size_kb": 858.2,
+      "min_html_size_kb": 824.1,
+      "max_html_size_kb": 896.0,
+      "avg_scripts": 48.0
+    },
+    "plan_du_site": {
+      "avg_html_size_kb": 142.2,
+      "min_html_size_kb": 142.2,
+      "max_html_size_kb": 142.2,
+      "avg_scripts": 20.0
+    }
+  },
+  "intra_template_diff": {
+    "/ad/ by vertical": {
+      "ad_accessoires_bagagerie": {
+        "category_id": "47",
+        "json_ld_types": [
+          "Product"
+        ],
+        "has_schema": true,
+        "file_size_kb": 496.2
+      },
+      "ad_ameublement": {
+        "category_id": "76",
+        "json_ld_types": [
+          "Product"
+        ],
+        "has_schema": true,
+        "file_size_kb": 468.1
+      },
+      "ad_animaux": {
+        "category_id": null,
+        "json_ld_types": [],
+        "has_schema": false,
+        "file_size_kb": 366.0
+      },
+      "ad_bricolage": {
+        "category_id": "21",
+        "json_ld_types": [
+          "Product"
+        ],
+        "has_schema": true,
+        "file_size_kb": 470.2
+      },
+      "ad_btp_chantier_gros_oeuvre": {
+        "category_id": "59",
+        "json_ld_types": [],
+        "has_schema": false,
+        "file_size_kb": 438.0
+      },
+      "ad_bureaux_commerces": {
+        "category_id": "13",
+        "json_ld_types": [],
+        "has_schema": false,
+        "file_size_kb": 463.0
+      },
+      "ad_caravaning": {
+        "category_id": "4",
+        "json_ld_types": [],
+        "has_schema": false,
+        "file_size_kb": 475.8
+      },
+      "ad_chaussures": {
+        "category_id": "53",
+        "json_ld_types": [
+          "Product"
+        ],
+        "has_schema": true,
+        "file_size_kb": 484.9
+      },
+      "ad_collection": {
+        "category_id": "40",
+        "json_ld_types": [
+          "Product"
+        ],
+        "has_schema": true,
+        "file_size_kb": 469.0
+      },
+      "ad_colocations": {
+        "category_id": "11",
+        "json_ld_types": [],
+        "has_schema": false,
+        "file_size_kb": 514.0
+      },
+      "ad_consoles": {
+        "category_id": "43",
+        "json_ld_types": [
+          "Product"
+        ],
+        "has_schema": true,
+        "file_size_kb": 476.1
+      },
+      "ad_decoration": {
+        "category_id": "39",
+        "json_ld_types": [
+          "Product"
+        ],
+        "has_schema": true,
+        "file_size_kb": 469.7
+      },
+      "ad_electromenager": {
+        "category_id": "20",
+        "json_ld_types": [
+          "Product"
+        ],
+        "has_schema": true,
+        "file_size_kb": 490.9
+      },
+      "ad_emploi": {
+        "category_id": "27",
+        "json_ld_types": [
+          "Product"
+        ],
+        "has_schema": true,
+        "file_size_kb": 470.3
+      },
+      "ad_formations_professionnelles": {
+        "category_id": "74",
+        "json_ld_types": [],
+        "has_schema": false,
+        "file_size_kb": 455.0
+      },
+      "ad_instruments_de_musique": {
+        "category_id": "30",
+        "json_ld_types": [
+          "Product"
+        ],
+        "has_schema": true,
+        "file_size_kb": 472.7
+      },
+      "ad_jardin_plantes": {
+        "category_id": "52",
+        "json_ld_types": [
+          "Product"
+        ],
+        "has_schema": true,
+        "file_size_kb": 469.7
+      },
+      "ad_jeux_jouets": {
+        "category_id": "41",
+        "json_ld_types": [
+          "Product"
+        ],
+        "has_schema": true,
+        "file_size_kb": 472.0
+      },
+      "ad_jeux_video": {
+        "category_id": "84",
+        "json_ld_types": [
+          "Product"
+        ],
+        "has_schema": true,
+        "file_size_kb": 476.3
+      },
+      "ad_linge_de_maison": {
+        "category_id": "46",
+        "json_ld_types": [
+          "Product"
+        ],
+        "has_schema": true,
+        "file_size_kb": 482.1
+      },
+      "ad_livres": {
+        "category_id": "27",
+        "json_ld_types": [],
+        "has_schema": false,
+        "file_size_kb": 469.4
+      },
+      "ad_locations": {
+        "category_id": "41",
+        "json_ld_types": [
+          "Product"
+        ],
+        "has_schema": true,
+        "file_size_kb": 491.9
+      },
+      "ad_locations_saisonnieres": {
+        "category_id": null,
+        "json_ld_types": [],
+        "has_schema": false,
+        "file_size_kb": 366.2
+      },
+      "ad_locations_saisonnieres_v2": {
+        "category_id": "41",
+        "json_ld_types": [
+          "Product"
+        ],
+        "has_schema": true,
+        "file_size_kb": 492.1
+      },
+      "ad_materiel_agricole": {
+        "category_id": "57",
+        "json_ld_types": [],
+        "has_schema": false,
+        "file_size_kb": 437.6
+      },
+      "ad_montres_bijoux": {
+        "category_id": "42",
+        "json_ld_types": [
+          "Product"
+        ],
+        "has_schema": true,
+        "file_size_kb": 480.3
+      },
+      "ad_motos": {
+        "category_id": "45",
+        "json_ld_types": [
+          "Product"
+        ],
+        "has_schema": true,
+        "file_size_kb": 477.5
+      },
+      "ad_nautisme": {
+        "category_id": null,
+        "json_ld_types": [],
+        "has_schema": false,
+        "file_size_kb": 366.0
+      },
+      "ad_photo_audio_video": {
+        "category_id": "16",
+        "json_ld_types": [
+          "Product"
+        ],
+        "has_schema": true,
+        "file_size_kb": 475.2
+      },
+      "ad_services_a_la_personne": {
+        "category_id": "99",
+        "json_ld_types": [],
+        "has_schema": false,
+        "file_size_kb": 446.5
+      },
+      "ad_sport_plein_air": {
+        "category_id": "29",
+        "json_ld_types": [
+          "Product"
+        ],
+        "has_schema": true,
+        "file_size_kb": 468.4
+      },
+      "ad_velos": {
+        "category_id": "55",
+        "json_ld_types": [
+          "Product"
+        ],
+        "has_schema": true,
+        "file_size_kb": 478.5
+      },
+      "ad_ventes_immobilieres": {
+        "category_id": "9",
+        "json_ld_types": [],
+        "has_schema": false,
+        "file_size_kb": 535.1
+      },
+      "ad_vetements": {
+        "category_id": "42",
+        "json_ld_types": [
+          "Product"
+        ],
+        "has_schema": true,
+        "file_size_kb": 496.9
+      },
+      "ad_voitures_pro": {
+        "category_id": "2",
+        "json_ld_types": [
+          "Vehicle"
+        ],
+        "has_schema": true,
+        "file_size_kb": 559.5
+      }
+    },
+    "/c/ depth levels": {
+      "c_accessoires_animaux": {
+        "template": "/c/",
+        "breadcrumb_depth": 3,
+        "total_ads": 494459,
+        "category_id": "76",
+        "seo_h1": "Annonces Accessoires animaux"
+      },
+      "c_accessoires_bagagerie": {
+        "template": "/c/",
+        "breadcrumb_depth": 3,
+        "total_ads": 2026017,
+        "category_id": "47",
+        "seo_h1": "Annonces Accessoires mode d'occasion"
+      },
+      "c_accessoires_informatique": {
+        "template": "/c/",
+        "breadcrumb_depth": 3,
+        "total_ads": 965202,
+        "category_id": "83",
+        "seo_h1": "Annonces Accessoires informatique d'occasion"
+      },
+      "c_accessoires_telephone_objets_connectes": {
+        "template": "/c/",
+        "breadcrumb_depth": 3,
+        "total_ads": 379548,
+        "category_id": "81",
+        "seo_h1": "Annonces Accessoires téléphone & Objets connectés d'occasion"
+      },
+      "c_ameublement": {
+        "template": "/c/",
+        "breadcrumb_depth": 3,
+        "total_ads": 6234049,
+        "category_id": "19",
+        "seo_h1": "Annonces Mobilier et meubles d'occasion"
+      },
+      "c_chaussures_type_femme": {
+        "template": "/c/ facets",
+        "breadcrumb_depth": 4,
+        "total_ads": 1420802,
+        "category_id": "53",
+        "seo_h1": "Annonces Chaussures Femme d'occasion"
+      },
+      "c_emploi_contrat_cdi": {
+        "template": "/c/ facets",
+        "breadcrumb_depth": 4,
+        "total_ads": 3490,
+        "category_id": "33",
+        "seo_h1": "Annonces Offres d'emploi CDD"
+      },
+      "c_locations_type_appart": {
+        "template": "/c/ facets",
+        "breadcrumb_depth": 4,
+        "total_ads": 128708,
+        "category_id": "10",
+        "seo_h1": "Annonces immos de locations Appartement"
+      },
+      "c_motos_brand_honda": {
+        "template": "/c/ facets",
+        "breadcrumb_depth": 4,
+        "total_ads": 23956,
+        "category_id": "3",
+        "seo_h1": "Annonces deux roues d'occasion HONDA"
+      },
+      "c_motos_honda_cbr": {
+        "template": "/c/ facets",
+        "breadcrumb_depth": 5,
+        "total_ads": 1862,
+        "category_id": "3",
+        "seo_h1": "Annonces deux roues d'occasion HONDA CBR"
+      },
+      "c_super__animaux_": {
+        "template": "/c/ super",
+        "breadcrumb_depth": 2,
+        "total_ads": 561267,
+        "category_id": "75",
+        "seo_h1": "Annonces Animaux, chien, chat, cheval"
+      },
+      "c_super__electronique_": {
+        "template": "/c/ super",
+        "breadcrumb_depth": 2,
+        "total_ads": 5520777,
+        "category_id": "14",
+        "seo_h1": "Annonces Multimédia d'occasion"
+      },
+      "c_super__emploi_": {
+        "template": "/c/ super",
+        "breadcrumb_depth": 2,
+        "total_ads": 83415,
+        "category_id": "71",
+        "seo_h1": "Annonces Emploi"
+      }
+    },
+    "/cl/ geo levels": {
+      "cl_ameublement_rp_bretagne": {
+        "geo_type": "region",
+        "has_seo_metadata": false,
+        "breadcrumb_depth": 3,
+        "total_ads": 336917
+      },
+      "cl_emploi_dp_rhone": {
+        "geo_type": "departement",
+        "has_seo_metadata": false,
+        "breadcrumb_depth": 3,
+        "total_ads": 2803
+      },
+      "cl_locations_dp_gironde": {
+        "geo_type": "departement",
+        "has_seo_metadata": false,
+        "breadcrumb_depth": 3,
+        "total_ads": 5420
+      },
+      "cl_locations_paris_meuble": {
+        "geo_type": "ville",
+        "has_seo_metadata": true,
+        "breadcrumb_depth": 4,
+        "total_ads": 1164
+      },
+      "cl_ventes_immo_dp_paris": {
+        "geo_type": "departement",
+        "has_seo_metadata": false,
+        "breadcrumb_depth": 3,
+        "total_ads": 9361
+      },
+      "cl_ventes_immo_idf_appart": {
+        "geo_type": "unknown",
+        "has_seo_metadata": true,
+        "breadcrumb_depth": 4,
+        "total_ads": 49972
+      },
+      "cl_vetements_rp_paca": {
+        "geo_type": "region",
+        "has_seo_metadata": false,
+        "breadcrumb_depth": 3,
+        "total_ads": 619983
+      },
+      "cl_voitures_dp_nord": {
+        "geo_type": "departement",
+        "has_seo_metadata": false,
+        "breadcrumb_depth": 3,
+        "total_ads": 31354
+      },
+      "cl_voitures_meaux_brand_renault": {
+        "geo_type": "ville",
+        "has_seo_metadata": true,
+        "breadcrumb_depth": 4,
+        "total_ads": 281
+      },
+      "cl_voitures_rp_idf": {
+        "geo_type": "region",
+        "has_seo_metadata": false,
+        "breadcrumb_depth": 3,
+        "total_ads": 93350
+      }
+    }
+  },
+  "anomalies": [
+    {
+      "severity": "HIGH",
+      "type": "relative_canonical",
+      "file": "ad_accessoires_bagagerie",
+      "template": "/ad/",
+      "detail": "Canonical relatif: /ad/accessoires_bagagerie/3168207623"
+    },
+    {
+      "severity": "HIGH",
+      "type": "relative_canonical",
+      "file": "ad_ameublement",
+      "template": "/ad/",
+      "detail": "Canonical relatif: /ad/accessoires_animaux/3167800000"
+    },
+    {
+      "severity": "HIGH",
+      "type": "relative_canonical",
+      "file": "ad_bricolage",
+      "template": "/ad/",
+      "detail": "Canonical relatif: /ad/bricolage/3168244450"
+    },
+    {
+      "severity": "HIGH",
+      "type": "relative_canonical",
+      "file": "ad_btp_chantier_gros_oeuvre",
+      "template": "/ad/",
+      "detail": "Canonical relatif: /ad/btp_chantier_gros_oeuvre/3133291546"
+    },
+    {
+      "severity": "HIGH",
+      "type": "relative_canonical",
+      "file": "ad_bureaux_commerces",
+      "template": "/ad/",
+      "detail": "Canonical relatif: /ad/bureaux_commerces/3168160292"
+    },
+    {
+      "severity": "HIGH",
+      "type": "relative_canonical",
+      "file": "ad_caravaning",
+      "template": "/ad/",
+      "detail": "Canonical relatif: /ad/caravaning/3168207752"
+    },
+    {
+      "severity": "HIGH",
+      "type": "relative_canonical",
+      "file": "ad_chaussures",
+      "template": "/ad/",
+      "detail": "Canonical relatif: /ad/chaussures/3168207829"
+    },
+    {
+      "severity": "HIGH",
+      "type": "relative_canonical",
+      "file": "ad_collection",
+      "template": "/ad/",
+      "detail": "Canonical relatif: /ad/collection/3133340767"
+    },
+    {
+      "severity": "HIGH",
+      "type": "relative_canonical",
+      "file": "ad_colocations",
+      "template": "/ad/",
+      "detail": "Canonical relatif: /ad/colocations/3168150027"
+    },
+    {
+      "severity": "HIGH",
+      "type": "relative_canonical",
+      "file": "ad_consoles",
+      "template": "/ad/",
+      "detail": "Canonical relatif: /ad/consoles/3168207798"
+    },
+    {
+      "severity": "HIGH",
+      "type": "relative_canonical",
+      "file": "ad_decoration",
+      "template": "/ad/",
+      "detail": "Canonical relatif: /ad/decoration/3168244435"
+    },
+    {
+      "severity": "HIGH",
+      "type": "relative_canonical",
+      "file": "ad_electromenager",
+      "template": "/ad/",
+      "detail": "Canonical relatif: /ad/electromenager/3168163148"
+    },
+    {
+      "severity": "HIGH",
+      "type": "relative_canonical",
+      "file": "ad_emploi",
+      "template": "/ad/",
+      "detail": "Canonical relatif: /ad/livres/3165000000"
+    },
+    {
+      "severity": "HIGH",
+      "type": "relative_canonical",
+      "file": "ad_formations_professionnelles",
+      "template": "/ad/",
+      "detail": "Canonical relatif: /ad/formations_professionnelles/3168113277"
+    },
+    {
+      "severity": "HIGH",
+      "type": "relative_canonical",
+      "file": "ad_instruments_de_musique",
+      "template": "/ad/",
+      "detail": "Canonical relatif: /ad/instruments_de_musique/3168208081"
+    },
+    {
+      "severity": "HIGH",
+      "type": "relative_canonical",
+      "file": "ad_jardin_plantes",
+      "template": "/ad/",
+      "detail": "Canonical relatif: /ad/jardin_plantes/3168208151"
+    },
+    {
+      "severity": "HIGH",
+      "type": "relative_canonical",
+      "file": "ad_jeux_jouets",
+      "template": "/ad/",
+      "detail": "Canonical relatif: /ad/jeux_jouets/3168208261"
+    },
+    {
+      "severity": "HIGH",
+      "type": "relative_canonical",
+      "file": "ad_jeux_video",
+      "template": "/ad/",
+      "detail": "Canonical relatif: /ad/jeux_video/3168208101"
+    },
+    {
+      "severity": "HIGH",
+      "type": "relative_canonical",
+      "file": "ad_linge_de_maison",
+      "template": "/ad/",
+      "detail": "Canonical relatif: /ad/linge_de_maison/3168207875"
+    },
+    {
+      "severity": "HIGH",
+      "type": "relative_canonical",
+      "file": "ad_livres",
+      "template": "/ad/",
+      "detail": "Canonical relatif: /ad/livres/3168208249"
+    },
+    {
+      "severity": "HIGH",
+      "type": "relative_canonical",
+      "file": "ad_locations",
+      "template": "/ad/",
+      "detail": "Canonical relatif: /ad/jeux_jouets/3168000000"
+    },
+    {
+      "severity": "HIGH",
+      "type": "relative_canonical",
+      "file": "ad_locations_saisonnieres_v2",
+      "template": "/ad/",
+      "detail": "Canonical relatif: /ad/jeux_jouets/3168000000"
+    },
+    {
+      "severity": "HIGH",
+      "type": "relative_canonical",
+      "file": "ad_materiel_agricole",
+      "template": "/ad/",
+      "detail": "Canonical relatif: /ad/materiel_agricole/3168162876"
+    },
+    {
+      "severity": "HIGH",
+      "type": "relative_canonical",
+      "file": "ad_montres_bijoux",
+      "template": "/ad/",
+      "detail": "Canonical relatif: /ad/montres_bijoux/3168207863"
+    },
+    {
+      "severity": "HIGH",
+      "type": "relative_canonical",
+      "file": "ad_motos",
+      "template": "/ad/",
+      "detail": "Canonical relatif: /ad/arts_de_la_table/3167000000"
+    },
+    {
+      "severity": "HIGH",
+      "type": "relative_canonical",
+      "file": "ad_photo_audio_video",
+      "template": "/ad/",
+      "detail": "Canonical relatif: /ad/photo_audio_video/3168207917"
+    },
+    {
+      "severity": "HIGH",
+      "type": "relative_canonical",
+      "file": "ad_services_a_la_personne",
+      "template": "/ad/",
+      "detail": "Canonical relatif: /ad/services_a_la_personne/3168150839"
+    },
+    {
+      "severity": "HIGH",
+      "type": "relative_canonical",
+      "file": "ad_sport_plein_air",
+      "template": "/ad/",
+      "detail": "Canonical relatif: /ad/sport_plein_air/3168244274"
+    },
+    {
+      "severity": "HIGH",
+      "type": "relative_canonical",
+      "file": "ad_velos",
+      "template": "/ad/",
+      "detail": "Canonical relatif: /ad/velos/3168208047"
+    },
+    {
+      "severity": "HIGH",
+      "type": "relative_canonical",
+      "file": "ad_ventes_immobilieres",
+      "template": "/ad/",
+      "detail": "Canonical relatif: /ad/ventes_immobilieres/3158676532"
+    },
+    {
+      "severity": "HIGH",
+      "type": "relative_canonical",
+      "file": "ad_vetements",
+      "template": "/ad/",
+      "detail": "Canonical relatif: /ad/montres_bijoux/3167500000"
+    },
+    {
+      "severity": "HIGH",
+      "type": "relative_canonical",
+      "file": "ad_voitures_pro",
+      "template": "/ad/",
+      "detail": "Canonical relatif: /ad/voitures/3155739113"
+    },
+    {
+      "severity": "HIGH",
+      "type": "missing_json_ld",
+      "file": "c_accessoires_animaux",
+      "template": "/c/",
+      "detail": "Pas de schema JSON-LD (BreadcrumbList, CollectionPage manquants)"
+    },
+    {
+      "severity": "HIGH",
+      "type": "missing_json_ld",
+      "file": "c_chaussures_type_femme",
+      "template": "/c/ facets",
+      "detail": "Pas de schema JSON-LD (BreadcrumbList, CollectionPage manquants)"
+    },
+    {
+      "severity": "HIGH",
+      "type": "missing_json_ld",
+      "file": "c_super__animaux_",
+      "template": "/c/ super",
+      "detail": "Pas de schema JSON-LD (BreadcrumbList, CollectionPage manquants)"
+    },
+    {
+      "severity": "HIGH",
+      "type": "missing_json_ld",
+      "file": "ck_ameublement_meuble_tv",
+      "template": "/ck/",
+      "detail": "Pas de schema JSON-LD (BreadcrumbList, CollectionPage manquants)"
+    },
+    {
+      "severity": "HIGH",
+      "type": "missing_json_ld",
+      "file": "cl_ameublement_rp_bretagne",
+      "template": "/cl/",
+      "detail": "Pas de schema JSON-LD (BreadcrumbList, CollectionPage manquants)"
+    },
+    {
+      "severity": "HIGH",
+      "type": "missing_json_ld",
+      "file": "l_dp_gironde",
+      "template": "/l/",
+      "detail": "Pas de schema JSON-LD (BreadcrumbList, CollectionPage manquants)"
+    },
+    {
+      "severity": "HIGH",
+      "type": "missing_schema_immo",
+      "file": "ad_colocations",
+      "template": "/ad/",
+      "detail": "Pas de schema JSON-LD pour annonce immobilier (RealEstateListing manquant)"
+    },
+    {
+      "severity": "HIGH",
+      "type": "missing_schema_immo",
+      "file": "ad_locations_saisonnieres",
+      "template": "/ad/",
+      "detail": "Pas de schema JSON-LD pour annonce immobilier (RealEstateListing manquant)"
+    },
+    {
+      "severity": "HIGH",
+      "type": "missing_schema_immo",
+      "file": "ad_ventes_immobilieres",
+      "template": "/ad/",
+      "detail": "Pas de schema JSON-LD pour annonce immobilier (RealEstateListing manquant)"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "missing_seo_metadata",
+      "file": "cl_ameublement_rp_bretagne",
+      "template": "/cl/",
+      "detail": "seoMetadata.h1 manquant ou vide"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "missing_seo_metadata",
+      "file": "cl_emploi_dp_rhone",
+      "template": "/cl/",
+      "detail": "seoMetadata.h1 manquant ou vide"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "missing_seo_metadata",
+      "file": "cl_locations_dp_gironde",
+      "template": "/cl/",
+      "detail": "seoMetadata.h1 manquant ou vide"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "missing_seo_metadata",
+      "file": "cl_ventes_immo_dp_paris",
+      "template": "/cl/",
+      "detail": "seoMetadata.h1 manquant ou vide"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "missing_seo_metadata",
+      "file": "cl_vetements_rp_paca",
+      "template": "/cl/",
+      "detail": "seoMetadata.h1 manquant ou vide"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "missing_seo_metadata",
+      "file": "cl_voitures_dp_nord",
+      "template": "/cl/",
+      "detail": "seoMetadata.h1 manquant ou vide"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "missing_seo_metadata",
+      "file": "cl_voitures_rp_idf",
+      "template": "/cl/",
+      "detail": "seoMetadata.h1 manquant ou vide"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "no_hreflang",
+      "file": "ALL",
+      "template": "ALL",
+      "detail": "Aucun tag hreflang sur les 210 pages analysees"
+    },
+    {
+      "severity": "HIGH",
+      "type": "missing_article_schema",
+      "file": "guide_vacances",
+      "template": "/guide/",
+      "detail": "Pas de schema Article/NewsArticle sur page guide editoriale"
+    }
+  ],
+  "anomalies_summary": {
+    "total": 50,
+    "HIGH": 42,
+    "MEDIUM": 8,
+    "LOW": 0
+  }
+}

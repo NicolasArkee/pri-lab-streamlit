@@ -1,0 +1,658 @@
+{
+  "meta": {
+    "date": "2026-03-25",
+    "description": "Audit du maillage interne par section HTML et par template",
+    "sections_identified": {
+      "header_nav": "Header + barre de navigation + search bar",
+      "breadcrumb": "Fil d'ariane SEO (#seo-breadcrumb)",
+      "filters_bar": "Barre de filtres SEO (#sticky-filters-panel)",
+      "main_content": "Contenu principal (#mainContent) - annonces ou detail",
+      "seo_footer": "Bloc SEO footer (#seoFooter) - top_searches, top_locations, categories-nav",
+      "footer_ads": "Zone pub footer (#footer-ads, #afs-main)",
+      "footer": "Footer corporate (#footer) - liens pro, legaux, app stores"
+    }
+  },
+  "linking_rules_per_template": {
+    "/ad/": {
+      "file_count": 35,
+      "sections": {
+        "header_nav": {
+          "avg_total_links": 2.0,
+          "avg_links_by_destination": {
+            "/deposer": 1.0,
+            "homepage": 1.0
+          }
+        },
+        "main_content": {
+          "avg_total_links": 16.1,
+          "avg_links_by_destination": {
+            "/c/": 1.9,
+            "/cl/": 5.5,
+            "/ad/": 0.1,
+            "/dc/": 0.9,
+            "homepage": 1.9,
+            "external": 0.9,
+            "other_internal": 4.9
+          }
+        },
+        "footer_ads": {
+          "avg_total_links": 2.3,
+          "avg_links_by_destination": {
+            "other_internal": 2.3
+          }
+        },
+        "footer": {
+          "avg_total_links": 43.0,
+          "avg_links_by_destination": {
+            "/dc/": 9.0,
+            "/boutique/": 2.0,
+            "/service": 5.0,
+            "/solutions": 2.0,
+            "/evenement": 3.0,
+            "external": 21.0,
+            "other_internal": 1.0
+          }
+        },
+        "unknown": {
+          "avg_total_links": 8.9,
+          "avg_links_by_destination": {
+            "/ad/": 0.9,
+            "homepage": 1.0,
+            "external": 1.0,
+            "other_internal": 6.0
+          }
+        }
+      }
+    },
+    "/boutique/": {
+      "file_count": 1,
+      "sections": {
+        "header_nav": {
+          "avg_total_links": 2.0,
+          "avg_links_by_destination": {
+            "/deposer": 1.0,
+            "homepage": 1.0
+          }
+        },
+        "main_content": {
+          "avg_total_links": 36.0,
+          "avg_links_by_destination": {
+            "/boutique/": 36.0
+          }
+        },
+        "footer": {
+          "avg_total_links": 43.0,
+          "avg_links_by_destination": {
+            "/dc/": 9.0,
+            "/boutique/": 2.0,
+            "/service": 5.0,
+            "/solutions": 2.0,
+            "/evenement": 3.0,
+            "external": 21.0,
+            "other_internal": 1.0
+          }
+        },
+        "unknown": {
+          "avg_total_links": 7.0,
+          "avg_links_by_destination": {
+            "external": 1.0,
+            "other_internal": 6.0
+          }
+        }
+      }
+    },
+    "/c/": {
+      "file_count": 83,
+      "sections": {
+        "header_nav": {
+          "avg_total_links": 2.0,
+          "avg_links_by_destination": {
+            "/deposer": 1.0,
+            "homepage": 1.0
+          }
+        },
+        "main_content": {
+          "avg_total_links": 61.5,
+          "avg_links_by_destination": {
+            "/ad/": 60.0,
+            "/boutique/": 0.5,
+            "external": 1.0
+          }
+        },
+        "footer_ads": {
+          "avg_total_links": 65.7,
+          "avg_links_by_destination": {
+            "/c/": 15.0,
+            "/cl/": 34.0,
+            "/ck/": 15.7,
+            "/recherche": 0.0,
+            "homepage": 1.0
+          }
+        },
+        "footer": {
+          "avg_total_links": 61.3,
+          "avg_links_by_destination": {
+            "/c/": 16.5,
+            "/dc/": 9.0,
+            "/boutique/": 2.0,
+            "/recherche": 1.7,
+            "/service": 5.0,
+            "/solutions": 2.0,
+            "/evenement": 3.0,
+            "external": 21.1,
+            "other_internal": 1.0
+          }
+        },
+        "unknown": {
+          "avg_total_links": 8.0,
+          "avg_links_by_destination": {
+            "/c/": 1.0,
+            "external": 1.0,
+            "other_internal": 6.0
+          }
+        }
+      }
+    },
+    "/c/ facets": {
+      "file_count": 16,
+      "sections": {
+        "header_nav": {
+          "avg_total_links": 2.0,
+          "avg_links_by_destination": {
+            "/deposer": 1.0,
+            "homepage": 1.0
+          }
+        },
+        "main_content": {
+          "avg_total_links": 121.0,
+          "avg_links_by_destination": {
+            "/ad/": 118.1,
+            "/boutique/": 1.9,
+            "external": 1.0
+          }
+        },
+        "footer_ads": {
+          "avg_total_links": 79.7,
+          "avg_links_by_destination": {
+            "/c/": 22.2,
+            "/cl/": 34.3,
+            "/ck/": 22.2,
+            "homepage": 1.0
+          }
+        },
+        "footer": {
+          "avg_total_links": 66.2,
+          "avg_links_by_destination": {
+            "/c/": 20.5,
+            "/dc/": 9.0,
+            "/boutique/": 2.0,
+            "/recherche": 2.1,
+            "/service": 5.1,
+            "/solutions": 2.0,
+            "/evenement": 3.0,
+            "external": 21.5,
+            "other_internal": 1.0
+          }
+        },
+        "unknown": {
+          "avg_total_links": 8.0,
+          "avg_links_by_destination": {
+            "/c/": 1.0,
+            "external": 1.0,
+            "other_internal": 6.0
+          }
+        }
+      }
+    },
+    "/c/ super": {
+      "file_count": 15,
+      "sections": {
+        "header_nav": {
+          "avg_total_links": 2.0,
+          "avg_links_by_destination": {
+            "/deposer": 1.0,
+            "homepage": 1.0
+          }
+        },
+        "main_content": {
+          "avg_total_links": 59.0,
+          "avg_links_by_destination": {
+            "/ad/": 57.7,
+            "/boutique/": 0.3,
+            "external": 1.0
+          }
+        },
+        "footer_ads": {
+          "avg_total_links": 40.3,
+          "avg_links_by_destination": {
+            "/c/": 5.0,
+            "/cl/": 34.3,
+            "homepage": 1.0
+          }
+        },
+        "footer": {
+          "avg_total_links": 61.1,
+          "avg_links_by_destination": {
+            "/c/": 15.8,
+            "/dc/": 9.0,
+            "/boutique/": 2.0,
+            "/recherche": 2.1,
+            "/service": 5.1,
+            "/solutions": 2.0,
+            "/evenement": 3.0,
+            "external": 21.1,
+            "other_internal": 1.0
+          }
+        },
+        "unknown": {
+          "avg_total_links": 8.0,
+          "avg_links_by_destination": {
+            "/c/": 1.0,
+            "external": 1.0,
+            "other_internal": 6.0
+          }
+        }
+      }
+    },
+    "/ck/": {
+      "file_count": 7,
+      "sections": {
+        "header_nav": {
+          "avg_total_links": 2.0,
+          "avg_links_by_destination": {
+            "/deposer": 1.0,
+            "homepage": 1.0
+          }
+        },
+        "main_content": {
+          "avg_total_links": 127.1,
+          "avg_links_by_destination": {
+            "/ad/": 123.1,
+            "/boutique/": 3.0,
+            "external": 1.0
+          }
+        },
+        "footer_ads": {
+          "avg_total_links": 84.7,
+          "avg_links_by_destination": {
+            "/c/": 20.7,
+            "/cl/": 34.0,
+            "/ck/": 29.0,
+            "homepage": 1.0
+          }
+        },
+        "footer": {
+          "avg_total_links": 70.7,
+          "avg_links_by_destination": {
+            "/c/": 24.9,
+            "/dc/": 9.0,
+            "/boutique/": 2.0,
+            "/recherche": 2.3,
+            "/service": 5.1,
+            "/solutions": 2.0,
+            "/evenement": 3.0,
+            "external": 21.4,
+            "other_internal": 1.0
+          }
+        },
+        "unknown": {
+          "avg_total_links": 8.0,
+          "avg_links_by_destination": {
+            "/ck/": 1.0,
+            "external": 1.0,
+            "other_internal": 6.0
+          }
+        }
+      }
+    },
+    "/cl/": {
+      "file_count": 10,
+      "sections": {
+        "header_nav": {
+          "avg_total_links": 2.0,
+          "avg_links_by_destination": {
+            "/deposer": 1.0,
+            "homepage": 1.0
+          }
+        },
+        "main_content": {
+          "avg_total_links": 169.0,
+          "avg_links_by_destination": {
+            "/ad/": 156.8,
+            "/boutique/": 11.2,
+            "external": 1.0
+          }
+        },
+        "footer_ads": {
+          "avg_total_links": 60.5,
+          "avg_links_by_destination": {
+            "/c/": 16.5,
+            "/cl/": 24.3,
+            "/ck/": 17.5,
+            "/recherche": 0.2,
+            "homepage": 1.0,
+            "other_internal": 1.0
+          }
+        },
+        "footer": {
+          "avg_total_links": 64.9,
+          "avg_links_by_destination": {
+            "/c/": 18.6,
+            "/dc/": 9.0,
+            "/boutique/": 2.0,
+            "/recherche": 2.6,
+            "/service": 5.4,
+            "/solutions": 2.0,
+            "/evenement": 3.0,
+            "external": 21.3,
+            "other_internal": 1.0
+          }
+        },
+        "unknown": {
+          "avg_total_links": 8.0,
+          "avg_links_by_destination": {
+            "/cl/": 1.0,
+            "external": 1.0,
+            "other_internal": 6.0
+          }
+        }
+      }
+    },
+    "/dc/": {
+      "file_count": 9,
+      "sections": {
+        "header_nav": {
+          "avg_total_links": 2.0,
+          "avg_links_by_destination": {
+            "/deposer": 1.0,
+            "homepage": 1.0
+          }
+        },
+        "main_content": {
+          "avg_total_links": 17.1,
+          "avg_links_by_destination": {
+            "external": 16.8,
+            "other_internal": 0.3
+          }
+        },
+        "footer": {
+          "avg_total_links": 43.0,
+          "avg_links_by_destination": {
+            "/dc/": 9.0,
+            "/boutique/": 2.0,
+            "/service": 5.0,
+            "/solutions": 2.0,
+            "/evenement": 3.0,
+            "external": 21.0,
+            "other_internal": 1.0
+          }
+        },
+        "unknown": {
+          "avg_total_links": 7.0,
+          "avg_links_by_destination": {
+            "external": 1.0,
+            "other_internal": 6.0
+          }
+        }
+      }
+    },
+    "/guide/": {
+      "file_count": 6,
+      "sections": {
+        "header_nav": {
+          "avg_total_links": 9.6,
+          "avg_links_by_destination": {
+            "/c/": 6.7,
+            "/deposer": 0.2,
+            "homepage": 2.7
+          }
+        },
+        "main_content": {
+          "avg_total_links": 0.2,
+          "avg_links_by_destination": {
+            "homepage": 0.2
+          }
+        },
+        "footer": {
+          "avg_total_links": 7.1,
+          "avg_links_by_destination": {
+            "/dc/": 1.5,
+            "/boutique/": 0.3,
+            "/service": 0.8,
+            "/solutions": 0.3,
+            "/evenement": 0.5,
+            "external": 3.5,
+            "other_internal": 0.2
+          }
+        },
+        "unknown": {
+          "avg_total_links": 2.0,
+          "avg_links_by_destination": {
+            "external": 0.2,
+            "other_internal": 1.8
+          }
+        }
+      }
+    },
+    "/l/": {
+      "file_count": 4,
+      "sections": {
+        "header_nav": {
+          "avg_total_links": 2.0,
+          "avg_links_by_destination": {
+            "/deposer": 1.0,
+            "homepage": 1.0
+          }
+        },
+        "main_content": {
+          "avg_total_links": 38.0,
+          "avg_links_by_destination": {
+            "/ad/": 37.0,
+            "external": 1.0
+          }
+        },
+        "footer_ads": {
+          "avg_total_links": 20.8,
+          "avg_links_by_destination": {
+            "/l/": 20.8
+          }
+        },
+        "footer": {
+          "avg_total_links": 43.0,
+          "avg_links_by_destination": {
+            "/dc/": 9.0,
+            "/boutique/": 2.0,
+            "/service": 5.0,
+            "/solutions": 2.0,
+            "/evenement": 3.0,
+            "external": 21.0,
+            "other_internal": 1.0
+          }
+        },
+        "unknown": {
+          "avg_total_links": 8.0,
+          "avg_links_by_destination": {
+            "/l/": 1.0,
+            "external": 1.0,
+            "other_internal": 6.0
+          }
+        }
+      }
+    },
+    "homepage": {
+      "file_count": 1,
+      "sections": {
+        "header_nav": {
+          "avg_total_links": 1.0,
+          "avg_links_by_destination": {
+            "/deposer": 1.0
+          }
+        },
+        "main_content": {
+          "avg_total_links": 12.0,
+          "avg_links_by_destination": {
+            "/c/": 9.0,
+            "/guide/": 1.0,
+            "/deposer": 1.0,
+            "/service": 1.0
+          }
+        },
+        "seo_footer": {
+          "avg_total_links": 120.0,
+          "avg_links_by_destination": {
+            "/c/": 93.0,
+            "/l/": 26.0,
+            "external": 1.0
+          }
+        },
+        "footer": {
+          "avg_total_links": 241.0,
+          "avg_links_by_destination": {
+            "/c/": 170.0,
+            "/dc/": 9.0,
+            "/boutique/": 2.0,
+            "/recherche": 26.0,
+            "/service": 6.0,
+            "/solutions": 2.0,
+            "/evenement": 3.0,
+            "external": 22.0,
+            "other_internal": 1.0
+          }
+        },
+        "unknown": {
+          "avg_total_links": 7.0,
+          "avg_links_by_destination": {
+            "external": 1.0,
+            "other_internal": 6.0
+          }
+        }
+      }
+    },
+    "plan_du_site": {
+      "file_count": 1,
+      "sections": {
+        "header_nav": {
+          "avg_total_links": 2.0,
+          "avg_links_by_destination": {
+            "/deposer": 1.0,
+            "homepage": 1.0
+          }
+        },
+        "main_content": {
+          "avg_total_links": 125.0,
+          "avg_links_by_destination": {
+            "/c/": 93.0,
+            "/l/": 26.0,
+            "/deposer": 1.0,
+            "homepage": 1.0,
+            "external": 2.0,
+            "other_internal": 2.0
+          }
+        },
+        "footer": {
+          "avg_total_links": 43.0,
+          "avg_links_by_destination": {
+            "/dc/": 9.0,
+            "/boutique/": 2.0,
+            "/service": 5.0,
+            "/solutions": 2.0,
+            "/evenement": 3.0,
+            "external": 21.0,
+            "other_internal": 1.0
+          }
+        },
+        "unknown": {
+          "avg_total_links": 7.0,
+          "avg_links_by_destination": {
+            "external": 1.0,
+            "other_internal": 6.0
+          }
+        }
+      }
+    }
+  },
+  "linking_matrix_section_x_destination": {
+    "header_nav": {
+      "/c/": 8.0,
+      "/deposer": 1.0,
+      "homepage": 1.1
+    },
+    "main_content": {
+      "/c/": 5.0,
+      "/cl/": 6.0,
+      "/ad/": 73.7,
+      "/l/": 26.0,
+      "/dc/": 1.0,
+      "/guide/": 1.0,
+      "/boutique/": 10.0,
+      "/deposer": 1.0,
+      "/service": 1.0,
+      "homepage": 1.9,
+      "external": 1.8,
+      "other_internal": 5.9
+    },
+    "seo_footer": {
+      "/c/": 93.0,
+      "/l/": 26.0,
+      "external": 1.0
+    },
+    "footer_ads": {
+      "/c/": 15.1,
+      "/cl/": 33.3,
+      "/ck/": 21.0,
+      "/l/": 20.8,
+      "/recherche": 1.0,
+      "homepage": 1.0,
+      "other_internal": 3.3
+    },
+    "footer": {
+      "/c/": 26.8,
+      "/dc/": 9.0,
+      "/boutique/": 2.0,
+      "/recherche": 3.3,
+      "/service": 5.1,
+      "/solutions": 2.0,
+      "/evenement": 3.0,
+      "external": 21.1,
+      "other_internal": 1.0
+    }
+  },
+  "anomalies": [
+    {
+      "severity": "HIGH",
+      "template": "/c/",
+      "type": "missing_seo_footer",
+      "detail": "Pas de bloc #seoFooter (liens SEO internes manquants)"
+    },
+    {
+      "severity": "HIGH",
+      "template": "/c/ facets",
+      "type": "missing_seo_footer",
+      "detail": "Pas de bloc #seoFooter (liens SEO internes manquants)"
+    },
+    {
+      "severity": "HIGH",
+      "template": "/c/ super",
+      "type": "missing_seo_footer",
+      "detail": "Pas de bloc #seoFooter (liens SEO internes manquants)"
+    },
+    {
+      "severity": "HIGH",
+      "template": "/ck/",
+      "type": "missing_seo_footer",
+      "detail": "Pas de bloc #seoFooter (liens SEO internes manquants)"
+    },
+    {
+      "severity": "HIGH",
+      "template": "/cl/",
+      "type": "missing_seo_footer",
+      "detail": "Pas de bloc #seoFooter (liens SEO internes manquants)"
+    },
+    {
+      "severity": "HIGH",
+      "template": "/l/",
+      "type": "missing_seo_footer",
+      "detail": "Pas de bloc #seoFooter (liens SEO internes manquants)"
+    }
+  ]
+}

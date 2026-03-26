@@ -7,6 +7,8 @@ from pathlib import Path
 
 from pri_lab.config import default_config_path, load_experiment_config
 from pri_lab.dashboard import launch_dashboard
+from pri_lab.lbc_edges import LbcBuildEdgesOptions, build_lbc_edges
+from pri_lab.lbc_generator import generate_lbc_pages
 from pri_lab.metrics import MetricsRecorder
 from pri_lab.pipeline import (
   BuildEdgesOptions,
@@ -41,6 +43,7 @@ def main() -> None:
     "run-experiment": _handle_run_experiment,
     "run-outlinks-analysis": _handle_run_outlinks_analysis,
     "benchmark-synthetic": _handle_benchmark_synthetic,
+    "run-lbc-experiment": _handle_run_lbc_experiment,
   }
 
   handler = command_handlers[args.command]
@@ -503,6 +506,113 @@ def _handle_benchmark_synthetic(args: argparse.Namespace) -> dict[str, object]:
   return payload
 
 
+def _handle_run_lbc_experiment(args: argparse.Namespace) -> dict[str, object]:
+  """Run the full LBC maillage pipeline: generate pages → build LBC edges → PRi → dashboard data."""
+  config = load_experiment_config(
+    config_path=args.config.resolve(),
+    workspace_override=args.workspace.resolve() if args.workspace else None,
+  )
+  config.paths.workspace.mkdir(parents=True, exist_ok=True)
+
+  run_id = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
+  recorder = MetricsRecorder(command="run-lbc-experiment")
+
+  # 1. Generate realistic LBC pages (~2M)
+  with recorder.stage("generate-lbc-pages") as details:
+    details.update(
+      generate_lbc_pages(
+        output_path=config.paths.pages_parquet,
+        target_total=config.page_generation.target_total_pages,
+      ),
+    )
+
+  # 2. Build edges using real LBC maillage rules
+  with recorder.stage("build-lbc-edges") as details:
+    lbc_options = LbcBuildEdgesOptions(
+      blocks=config.blocks,
+      max_out_links_per_page=config.rules.max_out_links_per_page,
+      enable_hierarchy_up=config.rules.enable_hierarchy_up,
+      enable_hierarchy_down=config.rules.enable_hierarchy_down,
+      enable_cluster_peer=config.rules.enable_cluster_peer,
+      cluster_peer_k=config.rules.cluster_peer_k,
+      weight_hierarchy_up=config.rules.weight_hierarchy_up,
+      weight_hierarchy_down=config.rules.weight_hierarchy_down,
+      weight_cluster_peer=config.rules.weight_cluster_peer,
+    )
+    details.update(
+      build_lbc_edges(
+        input_pages_path=config.paths.pages_parquet,
+        output_edges_path=config.paths.edges_parquet,
+        options=lbc_options,
+      ),
+    )
+
+  # 3. Compute PRi / CheiRank
+  with recorder.stage("compute-pri") as details:
+    details.update(
+      compute_pri(
+        input_pages_path=config.paths.pages_parquet,
+        input_edges_path=config.paths.edges_parquet,
+        output_pri_path=config.paths.pri_scores_parquet,
+        options=ComputePriOptions(
+          damping=config.pagerank.damping,
+          include_block_types=config.pagerank.included_block_types,
+          use_weights=config.pagerank.use_weights,
+        ),
+      ),
+    )
+
+  # 4. Prepare dashboard data
+  page_segments_path = config.paths.workspace / "page_segments.parquet"
+  url_metrics_path = config.paths.workspace / "url_metrics.parquet"
+  segment_metrics_path = config.paths.workspace / "segment_metrics.parquet"
+  anchors_path = config.paths.workspace / "anchor_candidates.parquet"
+  with recorder.stage("prepare-dashboard-data") as details:
+    details.update(
+      prepare_dashboard_data(
+        input_pages_path=config.paths.pages_parquet,
+        input_edges_path=config.paths.edges_parquet,
+        input_pri_path=config.paths.pri_scores_parquet,
+        output_page_segments_path=page_segments_path,
+        output_url_metrics_path=url_metrics_path,
+        output_segment_metrics_path=segment_metrics_path,
+        input_anchor_candidates_path=anchors_path if anchors_path.exists() else None,
+      ),
+    )
+
+  payload = recorder.finish(
+    extra={
+      "status": "ok",
+      "run_id": run_id,
+      "workspace": str(config.paths.workspace),
+      "config_path": str(args.config.resolve()),
+      "page_segments_parquet": str(page_segments_path),
+      "url_metrics_parquet": str(url_metrics_path),
+      "segment_metrics_parquet": str(segment_metrics_path),
+    },
+  )
+
+  _write_json(config.paths.run_metrics_json, payload)
+
+  summary_record = {
+    "run_id": run_id,
+    "timestamp": payload["finished_at"],
+    "workspace": str(config.paths.workspace),
+    "page_count": _find_stage_value(payload, "generate-lbc-pages", "page_count"),
+    "edge_count": _find_stage_value(payload, "build-lbc-edges", "edge_count"),
+    "pri_sum": _find_stage_value(payload, "compute-pri", "pri_sum"),
+    "duration_seconds": payload["duration_seconds"],
+    "damping": config.pagerank.damping,
+    "included_block_types": ",".join(config.pagerank.included_block_types),
+    "max_out_links_per_page": config.rules.max_out_links_per_page,
+    "cluster_peer_k": config.rules.cluster_peer_k,
+  }
+  append_experiment_log(config.paths.experiment_log_parquet, summary_record)
+  payload["experiment_log_parquet"] = str(config.paths.experiment_log_parquet)
+  payload["run_metrics_json"] = str(config.paths.run_metrics_json)
+  return payload
+
+
 def _find_stage_value(payload: dict[str, object], stage_name: str, key: str) -> object:
   for stage in payload.get("stages", []):
     if stage.get("name") == stage_name:
@@ -798,6 +908,19 @@ def _build_parser() -> argparse.ArgumentParser:
   benchmark_parser.add_argument("--target-edge-count", type=int, default=None, help="Target synthetic edges.")
   benchmark_parser.add_argument("--cluster-count", type=int, default=None, help="Synthetic cluster count.")
   benchmark_parser.add_argument("--damping", type=float, default=0.85, help="PageRank damping factor.")
+
+  lbc_config_default = (default_config.parent / "lbc.toml").resolve()
+  lbc_parser = subparsers.add_parser(
+    "run-lbc-experiment",
+    help="Run full LBC maillage pipeline: generate ~2M pages → build real LBC edges → PRi → dashboard.",
+  )
+  lbc_parser.add_argument(
+    "--config",
+    type=Path,
+    default=lbc_config_default,
+    help="Path to LBC TOML config (default: configs/lbc.toml).",
+  )
+  lbc_parser.add_argument("--workspace", type=Path, default=None, help="Optional workspace override.")
 
   return parser
 

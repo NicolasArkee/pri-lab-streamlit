@@ -12,6 +12,7 @@ import polars as pl
 import streamlit as st
 
 from pri_lab.dashboard import default_workspace_path
+from pri_lab.lbc_generator import CATEGORY_TO_VERTICALE
 from pri_lab.pipeline import prepare_dashboard_data
 
 
@@ -78,7 +79,13 @@ def main() -> None:
   st.title("PRi Lab Visual Dashboard v2")
   st.caption("Analyse granulaire du maillage interne, segments URL, ancres, PRi et CheiRank.")
 
+  # Workspace selector: auto-discover available workspaces
+  artifacts_root = Path(__file__).resolve().parents[2] / "artifacts"
+  available_workspaces = sorted([d.name for d in artifacts_root.iterdir() if d.is_dir() and (d / "pages.parquet").exists()]) if artifacts_root.exists() else []
   st.sidebar.header("Workspace")
+  if available_workspaces and len(available_workspaces) > 1:
+    chosen = st.sidebar.selectbox("Dataset", available_workspaces, index=available_workspaces.index(workspace.name) if workspace.name in available_workspaces else 0)
+    workspace = (artifacts_root / chosen).resolve()
   st.sidebar.code(str(workspace))
 
   pages_path = workspace / "pages.parquet"
@@ -120,6 +127,8 @@ def main() -> None:
       and PAGE_SEGMENTS_REQUIRED_COLUMNS.issubset(set(page_segments_df.columns))
       and SEGMENT_METRICS_REQUIRED_COLUMNS.issubset(set(segment_metrics_df.columns))
     )
+    if dashboard_artifacts_ready:
+      url_metrics_df = _enrich_with_template_verticale(url_metrics_df, pages_df)
   else:
     page_segments_df = None
     url_metrics_df = None
@@ -145,6 +154,7 @@ def main() -> None:
       pri_df=pri_df,
       anchors_df=anchors_df,
     )
+    url_metrics_df = _enrich_with_template_verticale(url_metrics_df, pages_df)
     page_segments_df = None
     segment_metrics_df = None
 
@@ -195,7 +205,25 @@ def main() -> None:
     selected_page_id=selected_page_id,
   )
 
-  tabs = st.tabs(["Vue globale", "Segments URL", "URL Explorer", "Ancres", "CheiRank & jus", "Scénarios"])
+  # Load R&D audit data for new tabs
+  # data/ lives at project root (pri-lab-streamlit/data/)
+  data_dir = Path(__file__).resolve().parent.parent.parent / "data"
+  audit_templates_data = _load_json(data_dir / "audit_templates_diff.json") if (data_dir / "audit_templates_diff.json").exists() else None
+  audit_maillage_data = _load_json(data_dir / "audit_maillage_interne.json") if (data_dir / "audit_maillage_interne.json").exists() else None
+  maillage_model_data = _load_json(data_dir / "maillage_model.json") if (data_dir / "maillage_model.json").exists() else None
+
+  tabs = st.tabs([
+    "Vue globale",
+    "Opportunités",
+    "Verticales",
+    "Maillage Section",
+    "Audit Technique",
+    "Segments URL",
+    "URL Explorer",
+    "Ancres",
+    "CheiRank & jus",
+    "Scénarios",
+  ])
 
   with tabs[0]:
     _render_overview_tab(
@@ -206,12 +234,32 @@ def main() -> None:
     )
 
   with tabs[1]:
+    _render_opportunities_tab(filtered_url_df=filtered_url_df, filtered_edges_df=filtered_edges_df)
+
+  with tabs[2]:
+    _render_verticales_tab(filtered_url_df=filtered_url_df, filtered_edges_df=filtered_edges_df)
+
+  with tabs[3]:
+    _render_maillage_section_tab(
+      audit_maillage_data=audit_maillage_data,
+      maillage_model_data=maillage_model_data,
+      filtered_edges_df=filtered_edges_df,
+      filtered_url_df=filtered_url_df,
+    )
+
+  with tabs[4]:
+    _render_audit_technique_tab(
+      audit_templates_data=audit_templates_data,
+      audit_maillage_data=audit_maillage_data,
+    )
+
+  with tabs[5]:
     _render_segments_tab(
       segment_metrics_df=segment_metrics_df,
       filters=filters,
     )
 
-  with tabs[2]:
+  with tabs[6]:
     _render_url_explorer_tab(
       filtered_url_df=filtered_url_df,
       pages_df=pages_df,
@@ -224,7 +272,7 @@ def main() -> None:
       all_anchor_types=all_anchor_types,
     )
 
-  with tabs[3]:
+  with tabs[7]:
     _render_anchors_tab(
       filtered_anchors_df=filtered_anchors_df,
       selected_page_id=selected_page_id,
@@ -234,13 +282,13 @@ def main() -> None:
       all_anchor_types=all_anchor_types,
     )
 
-  with tabs[4]:
+  with tabs[8]:
     _render_cheirank_tab(
       filtered_url_df=filtered_url_df,
       selected_page_id=selected_page_id,
     )
 
-  with tabs[5]:
+  with tabs[9]:
     _render_scenarios_tab(
       scenarios_dir=scenarios_dir,
       comparison_path=comparison_path,
@@ -402,6 +450,32 @@ def _build_light_url_metrics(
   )
 
 
+def _enrich_with_template_verticale(
+  url_metrics_df: pl.DataFrame,
+  pages_df: pl.DataFrame,
+) -> pl.DataFrame:
+  """Join template, category, verticale from pages into url_metrics."""
+  if "template" not in pages_df.columns or "cluster_thematique" not in pages_df.columns:
+    return url_metrics_df
+  enrichment_df = (
+    pages_df
+    .select("page_id", "template", "cluster_thematique")
+    .with_columns(
+      pl.col("cluster_thematique").str.extract(r":(.+)$", 1).alias("category"),
+    )
+    .with_columns(
+      pl.col("category").replace_strict(CATEGORY_TO_VERTICALE, default="_autre_").alias("verticale"),
+    )
+    .select(
+      pl.col("page_id").cast(pl.Int32),
+      "template",
+      "category",
+      "verticale",
+    )
+  )
+  return url_metrics_df.join(enrichment_df, on="page_id", how="left")
+
+
 def _ensure_pri_columns(pri_df: pl.DataFrame) -> pl.DataFrame:
   schema_columns = set(pri_df.columns)
   normalized_df = pri_df.with_columns(
@@ -543,6 +617,15 @@ def _render_sidebar_filters(
   )
   url_search = st.sidebar.text_input("Recherche URL (contains)").strip()
 
+  templates: list[str] = []
+  verticales: list[str] = []
+  if "template" in url_metrics_df.columns:
+    all_templates = sorted(url_metrics_df.get_column("template").drop_nulls().unique().to_list())
+    templates = st.sidebar.multiselect("Templates", options=all_templates, default=all_templates)
+  if "verticale" in url_metrics_df.columns:
+    all_verticales = sorted(url_metrics_df.get_column("verticale").drop_nulls().unique().to_list())
+    verticales = st.sidebar.multiselect("Verticales", options=all_verticales, default=all_verticales)
+
   return {
     "depth_min": depth_range[0],
     "depth_max": depth_range[1],
@@ -551,6 +634,8 @@ def _render_sidebar_filters(
     "block_types": block_types,
     "anchor_types": anchor_types,
     "url_search": url_search,
+    "templates": templates,
+    "verticales": verticales,
   }
 
 
@@ -586,6 +671,16 @@ def _apply_global_filters(
     filtered_df = filtered_df.filter(
       pl.col("path").str.to_lowercase().str.contains(filters["url_search"].lower(), literal=True),
     )
+
+  if "template" in filtered_df.columns and filters.get("templates"):
+    all_tpl = filtered_df.get_column("template").drop_nulls().unique().to_list()
+    if len(filters["templates"]) < len(all_tpl):
+      filtered_df = filtered_df.filter(pl.col("template").is_in(filters["templates"]))
+
+  if "verticale" in filtered_df.columns and filters.get("verticales"):
+    all_vert = filtered_df.get_column("verticale").drop_nulls().unique().to_list()
+    if len(filters["verticales"]) < len(all_vert):
+      filtered_df = filtered_df.filter(pl.col("verticale").is_in(filters["verticales"]))
 
   if all_block_types:
     if not filters["block_types"]:
@@ -858,27 +953,69 @@ def _render_overview_tab(
       use_container_width=True,
     )
 
+  if "template" in filtered_url_df.columns and filtered_url_df.height > 0:
+    template_stats_df = (
+      filtered_url_df
+      .group_by("template")
+      .agg(
+        pl.len().alias("pages"),
+        pl.sum("pri_score").alias("pri_sum"),
+        pl.mean("pri_score").alias("pri_mean"),
+      )
+      .sort("pri_sum", descending=True)
+    )
+    col_a, col_b = st.columns(2)
+    with col_a:
+      st.caption("PRi total par template")
+      st.bar_chart(template_stats_df.to_pandas().set_index("template")[["pri_sum"]], use_container_width=True)
+    with col_b:
+      st.caption("Nombre de pages par template")
+      st.bar_chart(template_stats_df.to_pandas().set_index("template")[["pages"]], use_container_width=True)
+
   top_n = st.slider("Top pages PRi", min_value=10, max_value=200, value=25, step=5)
+  top_cols = ["rank", "page_id", "path", "depth", "pri_score", "cheirank_score", "in_degree", "out_degree", "can_give_juice", "is_low_power"]
+  if "template" in filtered_url_df.columns:
+    top_cols.insert(4, "template")
   top_df = (
     filtered_url_df
     .sort("pri_score", descending=True)
     .head(top_n)
-    .select(
-      "rank",
-      "page_id",
-      "path",
-      "depth",
-      "pri_score",
-      "cheirank_score",
-      "in_degree",
-      "out_degree",
-      "can_give_juice",
-      "is_low_power",
-    )
+    .select([c for c in top_cols if c in filtered_url_df.columns])
   )
   st.dataframe(top_df.to_pandas(), use_container_width=True, hide_index=True)
 
   _render_depth_analysis_section(filtered_url_df=filtered_url_df)
+
+  # ── Pareto du trafic (si données réelles) ──
+  real_df = _load_real_metrics(filtered_url_df)
+  if real_df is not None:
+    clicks_df = real_df.filter(pl.col("real_clicks").is_not_null() & (pl.col("real_clicks") > 0)).sort("real_clicks", descending=True)
+    if clicks_df.height > 0:
+      st.subheader("Pareto du trafic (données GSC réelles)")
+      total_clicks = float(clicks_df.select(pl.sum("real_clicks")).item())
+      cumulative = clicks_df.with_columns(
+        (pl.col("real_clicks").cum_sum() / total_clicks * 100).alias("cumul_clicks_pct"),
+        (pl.int_range(1, pl.len() + 1) / clicks_df.height * 100).alias("pages_pct"),
+      ).select("pages_pct", "cumul_clicks_pct")
+      try:
+        import plotly.express as px
+        fig = px.line(cumulative.to_pandas(), x="pages_pct", y="cumul_clicks_pct",
+                      labels={"pages_pct": "% des pages (triées par clicks)", "cumul_clicks_pct": "% cumulé des clicks"})
+        fig.add_hline(y=50, line_dash="dash", line_color="red", opacity=0.5, annotation_text="50% clicks")
+        fig.add_hline(y=80, line_dash="dash", line_color="orange", opacity=0.5, annotation_text="80% clicks")
+        fig.update_layout(height=350, margin=dict(t=10, l=10, r=10, b=10))
+        st.plotly_chart(fig, use_container_width=True)
+      except ImportError:
+        pass
+      # Key stats
+      pages_50pct = cumulative.filter(pl.col("cumul_clicks_pct") >= 50).head(1)
+      pages_80pct = cumulative.filter(pl.col("cumul_clicks_pct") >= 80).head(1)
+      p_cols = st.columns(3)
+      p_cols[0].metric("Pages avec clicks", f"{clicks_df.height:,}")
+      if pages_50pct.height > 0:
+        p_cols[1].metric("50% du trafic", f"Top {pages_50pct['pages_pct'].item():.1f}% des pages")
+      if pages_80pct.height > 0:
+        p_cols[2].metric("80% du trafic", f"Top {pages_80pct['pages_pct'].item():.1f}% des pages")
 
   if metrics_payload:
     st.caption("Dernier run pipeline")
@@ -980,6 +1117,747 @@ def _render_depth_analysis_section(
   )
 
 
+def _render_opportunities_tab(
+  filtered_url_df: pl.DataFrame,
+  filtered_edges_df: pl.DataFrame,
+) -> None:
+  """Onglet Opportunités & Bottlenecks — le tab le plus actionnable."""
+  if filtered_url_df.height == 0:
+    st.warning("Aucune page dans le périmètre filtré.")
+    return
+
+  # ── Santé globale du maillage ──
+  total = filtered_url_df.height
+  orphan_count = int(filtered_url_df.filter(pl.col("in_degree") <= 2).height)
+  low_power_count = int(filtered_url_df.filter(pl.col("is_low_power")).height)
+  donor_count = int(filtered_url_df.filter(pl.col("can_give_juice")).height)
+  median_out = float(filtered_url_df.select(pl.median("out_degree")).item()) if total > 0 else 0
+  underused_donors = int(filtered_url_df.filter(pl.col("can_give_juice") & (pl.col("out_degree") < median_out)).height)
+
+  # Score santé (0-100)
+  orphan_pct = orphan_count / max(total, 1)
+  low_power_pct = low_power_count / max(total, 1)
+  health_score = max(0, min(100, int(100 * (1 - orphan_pct * 2 - low_power_pct))))
+
+  cols = st.columns(6)
+  cols[0].metric("Score santé maillage", f"{health_score}/100")
+  cols[1].metric("Pages orphelines (in<=2)", f"{orphan_count:,}", delta=f"{orphan_pct*100:.1f}%", delta_color="inverse")
+  cols[2].metric("Pages low power", f"{low_power_count:,}", delta=f"{low_power_pct*100:.1f}%", delta_color="inverse")
+  cols[3].metric("Donneuses de jus", f"{donor_count:,}")
+  cols[4].metric("Donneuses sous-utilisées", f"{underused_donors:,}", delta_color="inverse")
+  cols[5].metric("Pages total", f"{total:,}")
+
+  # ── Bottlenecks ──
+  st.subheader("Bottlenecks — Pages qui bloquent le jus")
+  st.caption("Pages avec beaucoup de liens entrants mais peu de sortants : le jus entre mais ne circule pas.")
+  p75_in = float(filtered_url_df.select(pl.col("in_degree").quantile(0.75)).item()) if total > 0 else 0
+  p25_out = float(filtered_url_df.select(pl.col("out_degree").quantile(0.25)).item()) if total > 0 else 0
+  bottlenecks = (
+    filtered_url_df
+    .filter((pl.col("in_degree") > p75_in) & (pl.col("out_degree") < max(p25_out, 5)))
+    .sort("in_degree", descending=True)
+    .head(30)
+  )
+  display_cols = [c for c in ["path", "template", "category", "in_degree", "out_degree", "pri_score", "rank"] if c in bottlenecks.columns]
+  if bottlenecks.height > 0:
+    st.dataframe(bottlenecks.select(display_cols).to_pandas(), use_container_width=True, hide_index=True)
+  else:
+    st.success("Aucun bottleneck détecté.")
+
+  # ── Pages orphelines ──
+  st.subheader("Pages orphelines — Quasi-isolées du maillage")
+  st.caption("Pages avec 2 liens entrants ou moins (hors homepage et /dc/).")
+  exclude_tpl = ["homepage", "dc"]
+  orphans = (
+    filtered_url_df
+    .filter((pl.col("in_degree") <= 2) & (~pl.col("template").is_in(exclude_tpl) if "template" in filtered_url_df.columns else pl.lit(True)))
+    .sort("pri_score", descending=True)
+  )
+  if "category" in orphans.columns:
+    orphan_by_cat = orphans.group_by("category").len().sort("len", descending=True).head(15)
+    st.caption("Orphelines par catégorie (top 15)")
+    st.bar_chart(orphan_by_cat.to_pandas().set_index("category").rename(columns={"len": "pages_orphelines"}), use_container_width=True)
+
+  st.dataframe(orphans.head(30).select(display_cols).to_pandas(), use_container_width=True, hide_index=True)
+  st.caption(f"Total orphelines : {orphans.height:,} pages ({orphans.height / max(total, 1) * 100:.1f}%)")
+
+  # ── Donneuses sous-utilisées ──
+  st.subheader("Donneuses sous-utilisées — Potentiel de jus non exploité")
+  st.caption("Pages à fort PRi (can_give_juice) mais avec peu de liens sortants.")
+  underused = (
+    filtered_url_df
+    .filter(pl.col("can_give_juice") & (pl.col("out_degree") < median_out))
+    .sort("pri_score", descending=True)
+    .head(30)
+  )
+  if underused.height > 0:
+    st.dataframe(underused.select(display_cols).to_pandas(), use_container_width=True, hide_index=True)
+
+  # ── Corrélation PRi vs clicks réels ──
+  real_df = _load_real_metrics(filtered_url_df)
+  if real_df is not None:
+    st.subheader("Corrélation PRi modèle vs Clicks GSC réels")
+    st.caption("Croisement du score PRi (maillage interne) avec les vrais clicks Google Search Console.")
+
+    # Join on path
+    corr_df = (
+      filtered_url_df
+      .select("page_id", "path", "pri_score", "in_degree", "template")
+      .join(
+        real_df.select("path", "real_clicks", "botify_pr").filter(pl.col("real_clicks").is_not_null()),
+        on="path",
+        how="inner",
+      )
+    )
+
+    if corr_df.height > 0:
+      # Quadrant metrics
+      med_pri = float(corr_df.select(pl.median("pri_score")).item())
+      med_clicks = float(corr_df.select(pl.median("real_clicks")).item())
+      q_cols = st.columns(4)
+      aligned = corr_df.filter((pl.col("pri_score") >= med_pri) & (pl.col("real_clicks") >= med_clicks)).height
+      over_linked = corr_df.filter((pl.col("pri_score") >= med_pri) & (pl.col("real_clicks") < med_clicks)).height
+      under_linked = corr_df.filter((pl.col("pri_score") < med_pri) & (pl.col("real_clicks") >= med_clicks)).height
+      weak = corr_df.filter((pl.col("pri_score") < med_pri) & (pl.col("real_clicks") < med_clicks)).height
+      q_cols[0].metric("Alignées (fort PRi + clicks)", f"{aligned:,}")
+      q_cols[1].metric("Sur-maillées (PRi ok, clicks faibles)", f"{over_linked:,}")
+      q_cols[2].metric("SOUS-MAILLÉES (clicks ok, PRi faible)", f"{under_linked:,}", delta="Opportunité!", delta_color="normal")
+      q_cols[3].metric("Faibles (ni PRi ni clicks)", f"{weak:,}")
+
+      # Scatter
+      scatter_df = corr_df
+      if scatter_df.height > 30_000:
+        scatter_df = scatter_df.sample(n=30_000, seed=42)
+      try:
+        import plotly.express as px
+        fig = px.scatter(
+          scatter_df.to_pandas(),
+          x="pri_score",
+          y="real_clicks",
+          color="template" if "template" in scatter_df.columns else None,
+          hover_data=["path", "in_degree"],
+          opacity=0.5,
+          log_y=True,
+          labels={"pri_score": "PRi (modèle maillage)", "real_clicks": "Clicks GSC (réel)"},
+        )
+        # Add quadrant lines
+        fig.add_hline(y=med_clicks, line_dash="dash", line_color="gray", opacity=0.5)
+        fig.add_vline(x=med_pri, line_dash="dash", line_color="gray", opacity=0.5)
+        fig.update_layout(height=500, margin=dict(t=10, l=10, r=10, b=10))
+        st.plotly_chart(fig, use_container_width=True)
+      except ImportError:
+        st.info("Installez plotly pour le scatter interactif.")
+
+      # Top sous-maillées
+      st.caption("Top 20 pages sous-maillées — Fort trafic réel, faible PRi (opportunités de liens)")
+      under_linked_df = (
+        corr_df
+        .filter((pl.col("pri_score") < med_pri) & (pl.col("real_clicks") >= med_clicks))
+        .sort("real_clicks", descending=True)
+        .head(20)
+      )
+      ul_cols = [c for c in ["path", "template", "real_clicks", "pri_score", "in_degree", "botify_pr"] if c in under_linked_df.columns]
+      st.dataframe(under_linked_df.select(ul_cols).to_pandas(), use_container_width=True, hide_index=True)
+    else:
+      st.info("Aucune correspondance entre les pages générées et le CSV réel (URLs synthétiques).")
+
+
+def _render_maillage_section_tab(
+  audit_maillage_data: dict[str, Any] | None,
+  maillage_model_data: dict[str, Any] | None,
+  filtered_edges_df: pl.DataFrame,
+  filtered_url_df: pl.DataFrame,
+) -> None:
+  """Onglet Maillage par Section — analyse par section HTML."""
+  if audit_maillage_data is None and maillage_model_data is None:
+    st.info("Données d'audit maillage non disponibles. Placez `audit_maillage_interne.json` et `maillage_model.json` dans le dossier `data/`.")
+    return
+
+  # ── Linking Matrix (section × destination) ──
+  if audit_maillage_data and "linking_matrix_section_x_destination" in audit_maillage_data:
+    st.subheader("Matrice de liens : Section HTML → Destination")
+    st.caption("Nombre moyen de liens par section HTML vers chaque type de destination (données crawl réel).")
+    matrix = audit_maillage_data["linking_matrix_section_x_destination"]
+    # Build DataFrame
+    rows = []
+    for section, dests in matrix.items():
+      if isinstance(dests, dict):
+        for dest, val in dests.items():
+          rows.append({"section": section, "destination": dest, "avg_links": float(val)})
+    if rows:
+      matrix_df = pl.DataFrame(rows)
+      # Pivot for heatmap
+      try:
+        import plotly.express as px
+        pivot_pd = matrix_df.to_pandas().pivot(index="section", columns="destination", values="avg_links").fillna(0)
+        fig = px.imshow(
+          pivot_pd,
+          color_continuous_scale="Blues",
+          text_auto=".0f",
+          aspect="auto",
+          labels={"color": "Avg liens"},
+        )
+        fig.update_layout(height=350, margin=dict(t=10, l=10, r=10, b=10))
+        st.plotly_chart(fig, use_container_width=True)
+      except ImportError:
+        st.dataframe(matrix_df.to_pandas(), use_container_width=True, hide_index=True)
+
+  # ── Stats par template (depuis linking_rules_per_template) ──
+  rules_data = audit_maillage_data.get("linking_rules_per_template", {}) if audit_maillage_data else {}
+  if rules_data:
+    st.subheader("Profil de liens par template")
+    tpl_names = list(rules_data.keys())
+
+    selected_tpl = st.selectbox("Template", tpl_names)
+    if selected_tpl and selected_tpl in rules_data:
+      tpl = rules_data[selected_tpl]
+      t_cols = st.columns(2)
+      t_cols[0].metric("Pages crawlées", tpl.get("file_count", "?"))
+      sections = tpl.get("sections", {})
+      t_cols[1].metric("Sections HTML", str(len(sections)))
+
+      # Per-section breakdown
+      if isinstance(sections, dict):
+        section_rows = []
+        for sec_name, sec_data in sections.items():
+          avg_total = sec_data.get("avg_total_links", 0)
+          dests = sec_data.get("avg_links_by_destination", {})
+          for dest, val in dests.items():
+            section_rows.append({"section": sec_name, "destination": dest, "avg_links": float(val)})
+          if not dests:
+            section_rows.append({"section": sec_name, "destination": "(total)", "avg_links": float(avg_total)})
+        if section_rows:
+          sec_df = pl.DataFrame(section_rows)
+          # Bar chart section → total links
+          sec_totals = sec_df.group_by("section").agg(pl.sum("avg_links").alias("total")).sort("total", descending=True)
+          st.bar_chart(sec_totals.to_pandas().set_index("section"), use_container_width=True)
+          # Detail table
+          st.dataframe(sec_df.sort(["section", "avg_links"], descending=[False, True]).to_pandas(), use_container_width=True, hide_index=True)
+
+  # ── Heatmap complète tous templates × sections ──
+  if rules_data:
+    st.subheader("Heatmap — Liens moyens par section (tous templates)")
+    all_section_rows = []
+    for tpl_name, tpl_data in rules_data.items():
+      sections = tpl_data.get("sections", {})
+      if isinstance(sections, dict):
+        for sec_name, sec_data in sections.items():
+          avg_total = sec_data.get("avg_total_links", 0)
+          all_section_rows.append({"template": tpl_name, "section": sec_name, "avg_links": float(avg_total)})
+    if all_section_rows:
+      heat_df = pl.DataFrame(all_section_rows)
+      try:
+        import plotly.express as px
+        pivot_pd = heat_df.to_pandas().pivot(index="template", columns="section", values="avg_links").fillna(0)
+        fig = px.imshow(
+          pivot_pd,
+          color_continuous_scale="YlOrRd",
+          text_auto=".0f",
+          aspect="auto",
+          labels={"color": "Avg liens"},
+        )
+        fig.update_layout(height=400, margin=dict(t=10, l=10, r=10, b=10))
+        st.plotly_chart(fig, use_container_width=True)
+      except ImportError:
+        st.dataframe(heat_df.to_pandas(), use_container_width=True, hide_index=True)
+
+  # ── Maillage anomalies ──
+  if audit_maillage_data and "anomalies" in audit_maillage_data:
+    st.subheader("Anomalies de maillage")
+    anomalies = audit_maillage_data["anomalies"]
+    if anomalies:
+      anom_df = pl.DataFrame(anomalies)
+      st.dataframe(anom_df.to_pandas(), use_container_width=True, hide_index=True)
+    else:
+      st.success("Aucune anomalie de maillage détectée.")
+
+  # ── Fuite PageRank /ad/ ──
+  st.subheader("Fuite PageRank — Pages /ad/")
+  st.caption("Les pages /ad/ (annonces) représentent 22M de pages mais ne renvoient que 5-6 liens internes. C'est la plus grande fuite de jus du site.")
+  ad_stats_cols = st.columns(3)
+  ad_stats_cols[0].metric("Pages /ad/ estimées", "22.3M")
+  ad_stats_cols[1].metric("Liens retour /ad/ → listing", "5-6 / page")
+  ad_stats_cols[2].metric("Impact", "Massif — 22M × 5 = 110M liens de faible qualité")
+
+  if audit_maillage_data and "linking_rules_per_template" in audit_maillage_data:
+    ad_rules = audit_maillage_data["linking_rules_per_template"].get("/ad/", {})
+    ad_sections = ad_rules.get("sections", {})
+    if isinstance(ad_sections, dict):
+      mc = ad_sections.get("main_content", {})
+      dests = mc.get("avg_links_by_destination", {})
+      st.caption(f"Destinations main_content /ad/ : {dests}")
+      total_out = sum(sec.get("avg_total_links", 0) for sec in ad_sections.values() if isinstance(sec, dict))
+      st.caption(f"Total liens sortants moyen /ad/ : {total_out:.1f}")
+      st.info("**Recommandation** : Augmenter les liens /ad/ → /cl/ (catégorie×géo) de 5.5 à 15. Impact estimé : +40% de PRi pour les pages /cl/ à fort trafic.")
+
+
+def _render_audit_technique_tab(
+  audit_templates_data: dict[str, Any] | None,
+  audit_maillage_data: dict[str, Any] | None,
+) -> None:
+  """Onglet Audit Technique — anomalies, checklist schema, roadmap."""
+  if audit_templates_data is None:
+    st.info("Données d'audit templates non disponibles. Placez `audit_templates_diff.json` dans le dossier `data/`.")
+    return
+
+  # ── Résumé anomalies ──
+  summary = audit_templates_data.get("anomalies_summary", {})
+  total_anom = summary.get("total", 0)
+  high = summary.get("HIGH", 0)
+  medium = summary.get("MEDIUM", 0)
+  low = summary.get("LOW", 0)
+
+  cols = st.columns(4)
+  cols[0].metric("Total anomalies", f"{total_anom}")
+  cols[1].metric("HIGH", f"{high}", delta_color="inverse")
+  cols[2].metric("MEDIUM", f"{medium}")
+  cols[3].metric("LOW", f"{low}")
+
+  # ── Table des anomalies ──
+  st.subheader("Détail des anomalies")
+  anomalies = audit_templates_data.get("anomalies", [])
+  if anomalies:
+    anom_df = pl.DataFrame(anomalies)
+    # Filter by severity
+    sev_filter = st.multiselect("Filtrer par sévérité", options=["HIGH", "MEDIUM", "LOW"], default=["HIGH", "MEDIUM"])
+    if sev_filter:
+      anom_df = anom_df.filter(pl.col("severity").is_in(sev_filter))
+    st.dataframe(anom_df.to_pandas(), use_container_width=True, hide_index=True)
+
+    # By template breakdown
+    if "template" in anom_df.columns:
+      by_tpl = anom_df.group_by("template").len().sort("len", descending=True)
+      st.caption("Anomalies par template")
+      st.bar_chart(by_tpl.to_pandas().set_index("template").rename(columns={"len": "anomalies"}), use_container_width=True)
+
+  # ── Checklist JSON-LD schema ──
+  st.subheader("Checklist Schema JSON-LD par template")
+  json_ld_diff = audit_templates_data.get("json_ld_diff", {})
+  if json_ld_diff:
+    schema_rows = []
+    for tpl, data in json_ld_diff.items():
+      schemas = data.get("schemas_found", {})
+      has_schema = data.get("has_schema", False)
+      schema_rows.append({
+        "template": tpl,
+        "has_schema": has_schema,
+        "BreadcrumbList": "BreadcrumbList" in schemas,
+        "CollectionPage": "CollectionPage" in schemas,
+        "Product": "Product" in schemas or "Vehicle" in schemas,
+        "RealEstateListing": "RealEstateListing" in schemas,
+        "Article": "Article" in schemas,
+        "schemas_found": ", ".join(schemas.keys()) if schemas else "Aucun",
+      })
+    schema_df = pl.DataFrame(schema_rows)
+    st.dataframe(schema_df.to_pandas(), use_container_width=True, hide_index=True)
+
+  # ── Roadmap Impact × Effort ──
+  st.subheader("Roadmap — Impact × Effort")
+  recommendations = [
+    {"action": "Canonicals absolus /ad/", "impact": 10, "effort": 1, "pages": 22_300_000, "sprint": "Sprint 1"},
+    {"action": "Article schema /guide/", "impact": 4, "effort": 1, "pages": 48, "sprint": "Sprint 1"},
+    {"action": "Liens internes /dc/", "impact": 3, "effort": 1, "pages": 9, "sprint": "Sprint 1"},
+    {"action": "BreadcrumbList 6 templates", "impact": 7, "effort": 2, "pages": 1_740_000, "sprint": "Sprint 2"},
+    {"action": "RealEstateListing /ad/ immo", "impact": 9, "effort": 3, "pages": 500_000, "sprint": "Sprint 2"},
+    {"action": "H1 dynamiques /cl/", "impact": 6, "effort": 2, "pages": 1_300_000, "sprint": "Sprint 2"},
+    {"action": "Renforcer liens /ad/ → /cl/", "impact": 9, "effort": 4, "pages": 22_300_000, "sprint": "Sprint 3"},
+    {"action": "Hreflang (multilingue)", "impact": 5, "effort": 5, "pages": 24_000_000, "sprint": "Sprint 3"},
+  ]
+  reco_df = pl.DataFrame(recommendations)
+  st.dataframe(reco_df.to_pandas(), use_container_width=True, hide_index=True)
+
+  try:
+    import plotly.express as px
+    fig = px.scatter(
+      reco_df.to_pandas(),
+      x="effort",
+      y="impact",
+      size="pages",
+      color="sprint",
+      text="action",
+      size_max=50,
+      labels={"effort": "Effort (1=trivial, 5=lourd)", "impact": "Impact SEO (1-10)"},
+      color_discrete_map={"Sprint 1": "#2ecc71", "Sprint 2": "#f39c12", "Sprint 3": "#e74c3c"},
+    )
+    fig.update_traces(textposition="top center", textfont_size=10)
+    fig.update_layout(height=450, margin=dict(t=10, l=10, r=10, b=10))
+    st.plotly_chart(fig, use_container_width=True)
+  except ImportError:
+    pass
+
+  # Maillage anomalies (from audit_maillage_interne.json)
+  if audit_maillage_data and "anomalies" in audit_maillage_data:
+    st.subheader("Anomalies de maillage interne")
+    mail_anom = audit_maillage_data["anomalies"]
+    if mail_anom:
+      st.dataframe(pl.DataFrame(mail_anom).to_pandas(), use_container_width=True, hide_index=True)
+
+
+def _render_verticales_tab(
+  filtered_url_df: pl.DataFrame,
+  filtered_edges_df: pl.DataFrame,
+) -> None:
+  """Render ultra-granular Verticales tab with sub-tabs per verticale."""
+  if "verticale" not in filtered_url_df.columns or "category" not in filtered_url_df.columns:
+    st.info("Colonnes verticale/catégorie non disponibles. Utilisez le workspace LBC (`artifacts/lbc`).")
+    return
+  if filtered_url_df.height == 0:
+    st.warning("Aucune page dans le périmètre filtré.")
+    return
+
+  # Load real metrics if available
+  real_df = _load_real_metrics(filtered_url_df)
+
+  # ── Global KPIs ──
+  n_vert = int(filtered_url_df.get_column("verticale").drop_nulls().n_unique())
+  n_cats = int(filtered_url_df.get_column("category").drop_nulls().n_unique())
+  total_pri = float(filtered_url_df.select(pl.sum("pri_score")).item())
+  kpi_cols = st.columns(5)
+  kpi_cols[0].metric("Verticales", f"{n_vert}")
+  kpi_cols[1].metric("Catégories", f"{n_cats}")
+  kpi_cols[2].metric("Pages (modèle)", f"{filtered_url_df.height:,}")
+  kpi_cols[3].metric("Pages réelles (CSV)", f"{real_df.height:,}" if real_df is not None else "—")
+  total_clicks = int(real_df.select(pl.sum("real_clicks")).item()) if real_df is not None else 0
+  kpi_cols[4].metric("Clicks GSC total", f"{total_clicks:,}" if total_clicks > 0 else "—")
+
+  # ── Treemap ──
+  treemap_df = (
+    filtered_url_df
+    .filter(pl.col("verticale").is_not_null() & pl.col("category").is_not_null())
+    .group_by(["verticale", "category", "template"])
+    .agg(pl.sum("pri_score").alias("pri_sum"), pl.len().alias("page_count"))
+    .filter(pl.col("pri_sum") > 0)
+  )
+  if treemap_df.height > 0:
+    try:
+      import plotly.express as px
+      fig = px.treemap(
+        treemap_df.to_pandas(),
+        path=["verticale", "category", "template"],
+        values="pri_sum",
+        color="pri_sum",
+        color_continuous_scale="Blues",
+      )
+      fig.update_layout(margin=dict(t=10, l=10, r=10, b=10), height=480)
+      st.plotly_chart(fig, use_container_width=True)
+    except ImportError:
+      st.warning("Installez plotly pour le treemap.")
+
+  # ── Sub-tabs per verticale ──
+  st.divider()
+  verticales = (
+    filtered_url_df
+    .filter(pl.col("verticale").is_not_null())
+    .group_by("verticale")
+    .agg(pl.sum("pri_score").alias("pri_sum"))
+    .sort("pri_sum", descending=True)
+    .get_column("verticale")
+    .to_list()
+  )
+  if not verticales:
+    return
+
+  sub_tabs = st.tabs(verticales)
+  for i, vert_name in enumerate(verticales):
+    with sub_tabs[i]:
+      _render_single_verticale(vert_name, filtered_url_df, filtered_edges_df, real_df, total_pri)
+
+
+@st.cache_data(show_spinner=False)
+def _load_real_metrics_cached(parquet_path: str) -> pl.DataFrame:
+  return pl.read_parquet(parquet_path)
+
+
+def _load_real_metrics(filtered_url_df: pl.DataFrame) -> pl.DataFrame | None:
+  """Load real_metrics_1m.parquet if it exists in the workspace."""
+  workspace = _resolve_workspace_from_args()
+  real_path = workspace / "real_metrics_1m.parquet"
+  if not real_path.exists():
+    return None
+  try:
+    return _load_real_metrics_cached(str(real_path))
+  except Exception:
+    return None
+
+
+def _render_single_verticale(
+  verticale: str,
+  full_url_df: pl.DataFrame,
+  full_edges_df: pl.DataFrame,
+  real_df: pl.DataFrame | None,
+  total_pri: float,
+) -> None:
+  """Render a single verticale sub-tab with deep granularity."""
+  vert_df = full_url_df.filter(pl.col("verticale") == verticale)
+  if vert_df.height == 0:
+    st.info("Aucune page pour cette verticale.")
+    return
+
+  vert_pri = float(vert_df.select(pl.sum("pri_score")).item())
+
+  # ── A. KPIs ──
+  cols = st.columns(7)
+  cols[0].metric("Pages", f"{vert_df.height:,}")
+  cols[1].metric("PRi total", f"{vert_pri:.6f}")
+  cols[2].metric("% du PRi global", f"{vert_pri / max(total_pri, 1e-12) * 100:.1f}%")
+  cols[3].metric("PRi moyen", f"{vert_pri / max(vert_df.height, 1):.8f}")
+  avg_in = float(vert_df.select(pl.mean("in_degree")).item()) if vert_df.height > 0 else 0
+  cols[4].metric("Avg in-degree", f"{avg_in:.0f}")
+  cols[5].metric("Donneuses", f"{vert_df.filter(pl.col('can_give_juice')).height:,}")
+  cols[6].metric("Low power", f"{vert_df.filter(pl.col('is_low_power')).height:,}")
+
+  # Real clicks KPI if available
+  if real_df is not None:
+    vert_real = _real_for_verticale(real_df, verticale)
+    if vert_real is not None and vert_real.height > 0:
+      real_clicks = int(vert_real.select(pl.sum("real_clicks")).item()) if vert_real.select(pl.sum("real_clicks")).item() is not None else 0
+      real_pages = vert_real.height
+      avg_clicks = real_clicks / max(real_pages, 1)
+      rc = st.columns(4)
+      rc[0].metric("Pages réelles (CSV)", f"{real_pages:,}")
+      rc[1].metric("Clicks GSC", f"{real_clicks:,}")
+      rc[2].metric("Clicks/page", f"{avg_clicks:.0f}")
+      rc[3].metric("Avg Botify PR", f"{vert_real.select(pl.mean('botify_pr')).item():.1f}" if vert_real.select(pl.mean('botify_pr')).item() is not None else "—")
+
+  # ── B. Table catégories ──
+  st.subheader("Catégories")
+  cat_table = _verticale_category_table(vert_df, real_df, verticale)
+  st.dataframe(cat_table.to_pandas(), use_container_width=True, hide_index=True)
+
+  # ── C+D. Top/Bottom maillage ──
+  st.subheader("Pages les plus / moins maillées")
+  col_l, col_r = st.columns(2)
+  with col_l:
+    st.caption("Top 20 — Plus maillées (in_degree desc)")
+    st.dataframe(_top_n_pages(vert_df, "in_degree", 20, desc=True).to_pandas(), use_container_width=True, hide_index=True)
+  with col_r:
+    st.caption("Top 20 — Moins maillées (in_degree asc, >= 1)")
+    st.dataframe(_top_n_pages(vert_df, "in_degree", 20, desc=False, min_val=1).to_pandas(), use_container_width=True, hide_index=True)
+
+  # ── E+F. Top/Bottom PRi ──
+  st.subheader("PRi le plus fort / le plus faible")
+  col_l2, col_r2 = st.columns(2)
+  with col_l2:
+    st.caption("Top 20 — PRi le plus fort")
+    st.dataframe(_top_n_pages(vert_df, "pri_score", 20, desc=True).to_pandas(), use_container_width=True, hide_index=True)
+  with col_r2:
+    st.caption("Top 20 — Low power (PRi le plus faible)")
+    low_df = vert_df.filter(pl.col("is_low_power"))
+    if low_df.height > 0:
+      st.dataframe(_top_n_pages(low_df, "pri_score", 20, desc=False).to_pandas(), use_container_width=True, hide_index=True)
+    else:
+      st.info("Aucune page low power dans cette verticale.")
+
+  # ── G. Block types ──
+  vert_page_ids = vert_df.select("page_id")
+  vert_edges = full_edges_df.join(
+    vert_page_ids.select(pl.col("page_id").alias("source_id")),
+    on="source_id",
+    how="inner",
+  )
+  if vert_edges.height > 0:
+    st.subheader("Répartition des block types")
+    block_mix = vert_edges.group_by("block_type").len().sort("len", descending=True)
+    st.bar_chart(
+      block_mix.rename({"len": "arêtes"}).to_pandas().set_index("block_type"),
+      use_container_width=True,
+    )
+
+  # ── H. Pages /ck/ (keywords) ──
+  ck_df = vert_df.filter(pl.col("template") == "ck") if "template" in vert_df.columns else pl.DataFrame()
+  if ck_df.height > 0:
+    st.subheader(f"Pages /ck/ (keywords) — {ck_df.height:,} pages")
+    col_ck_l, col_ck_r = st.columns(2)
+    with col_ck_l:
+      st.caption("Top 10 /ck/ par PRi")
+      ck_cols = [c for c in ["path", "pri_score", "in_degree", "out_degree"] if c in ck_df.columns]
+      st.dataframe(ck_df.sort("pri_score", descending=True).head(10).select(ck_cols).to_pandas(), use_container_width=True, hide_index=True)
+    with col_ck_r:
+      orphan_ck = ck_df.filter(pl.col("in_degree") <= 2)
+      st.caption(f"/ck/ orphelines (in_degree <= 2) : {orphan_ck.height:,} / {ck_df.height:,}")
+      if orphan_ck.height > 0:
+        st.dataframe(orphan_ck.sort("pri_score", descending=False).head(10).select(ck_cols).to_pandas(), use_container_width=True, hide_index=True)
+
+  # ── I. Drill-down catégorie ──
+  _render_category_drilldown(vert_df, full_edges_df, real_df, verticale)
+
+
+def _real_for_verticale(
+  real_df: pl.DataFrame,
+  verticale: str,
+) -> pl.DataFrame | None:
+  """Filter real metrics to a verticale using botify_verticale mapping."""
+  botify_map: dict[str, list[str]] = {
+    "_vehicules_": ["Motors"],
+    "_immobilier_": ["RealEstate"],
+    "_mode_": ["Mode"],
+    "_maison_jardin_": ["MaisonJardin"],
+    "_electronique_": ["Autres"],  # Botify lumps electronics into Autres
+    "_loisirs_": ["Autres"],
+    "_famille_": ["Autres"],
+    "_services_": ["Services", "Jobs"],
+    "_autre_": ["Autres", "Vacances", "MatPro"],
+  }
+  botify_values = botify_map.get(verticale)
+  if botify_values is None or "botify_verticale" not in real_df.columns:
+    return None
+  return real_df.filter(pl.col("botify_verticale").is_in(botify_values))
+
+
+def _verticale_category_table(
+  vert_df: pl.DataFrame,
+  real_df: pl.DataFrame | None,
+  verticale: str,
+) -> pl.DataFrame:
+  """Build category-level summary table for a verticale."""
+  cat_stats = (
+    vert_df
+    .filter(pl.col("category").is_not_null())
+    .group_by("category")
+    .agg(
+      pl.col("template").mode().first().alias("template_dom"),
+      pl.len().alias("pages"),
+      pl.sum("pri_score").alias("pri_sum"),
+      pl.mean("pri_score").alias("pri_mean"),
+      pl.mean("in_degree").cast(pl.Float64).alias("avg_in"),
+      pl.mean("out_degree").cast(pl.Float64).alias("avg_out"),
+      (pl.col("is_low_power").cast(pl.Float64).mean() * 100).alias("low_power_%"),
+      (pl.col("can_give_juice").cast(pl.Float64).mean() * 100).alias("donor_%"),
+      (pl.col("in_degree") <= 2).cast(pl.Int64).sum().alias("orphelines"),
+    )
+    .sort("pri_sum", descending=True)
+  )
+  # Join real click data by category if available
+  if real_df is not None:
+    vert_real = _real_for_verticale(real_df, verticale)
+    if vert_real is not None and vert_real.height > 0:
+      real_cat = (
+        vert_real
+        .filter(pl.col("category").is_not_null())
+        .group_by("category")
+        .agg(
+          pl.len().alias("pages_reelles"),
+          pl.sum("real_clicks").alias("clicks_gsc"),
+          pl.mean("real_clicks").alias("clicks_avg"),
+          pl.mean("real_inlinks").alias("real_inlinks_avg"),
+        )
+      )
+      cat_stats = cat_stats.join(real_cat, on="category", how="left")
+  return cat_stats
+
+
+def _top_n_pages(
+  df: pl.DataFrame,
+  sort_col: str,
+  n: int,
+  desc: bool = True,
+  min_val: int | float | None = None,
+) -> pl.DataFrame:
+  """Return top N pages sorted by sort_col."""
+  base_cols = ["path", "template", "category", "pri_score", "rank", "in_degree", "out_degree"]
+  cols = [sort_col] + [c for c in base_cols if c != sort_col]
+  # Deduplicate column names (handles case where df already has duped columns)
+  seen: set[str] = set()
+  available = []
+  for c in cols:
+    if c in df.columns and c not in seen:
+      available.append(c)
+      seen.add(c)
+  result = df
+  if min_val is not None:
+    result = result.filter(pl.col(sort_col) >= min_val)
+  return result.sort(sort_col, descending=desc).head(n).select(available)
+
+
+def _render_category_drilldown(
+  vert_df: pl.DataFrame,
+  full_edges_df: pl.DataFrame,
+  real_df: pl.DataFrame | None,
+  verticale: str,
+) -> None:
+  """Render drill-down into a specific category within a verticale."""
+  st.subheader("Drill-down par catégorie")
+  cats = (
+    vert_df
+    .filter(pl.col("category").is_not_null())
+    .group_by("category")
+    .agg(pl.sum("pri_score").alias("ps"))
+    .sort("ps", descending=True)
+  )
+  cat_options = cats.get_column("category").to_list()
+  if not cat_options:
+    return
+
+  sel = st.selectbox("Catégorie", cat_options, key=f"catdd_{verticale}")
+  if not sel:
+    return
+
+  cat_df = vert_df.filter(pl.col("category") == sel)
+  cat_pri = float(cat_df.select(pl.sum("pri_score")).item())
+
+  # Mini KPIs
+  c1, c2, c3, c4, c5 = st.columns(5)
+  c1.metric("Pages", f"{cat_df.height:,}")
+  c2.metric("PRi sum", f"{cat_pri:.6f}")
+  avg_in = float(cat_df.select(pl.mean("in_degree")).item()) if cat_df.height else 0
+  c3.metric("Avg in°", f"{avg_in:.0f}")
+  avg_out = float(cat_df.select(pl.mean("out_degree")).item()) if cat_df.height else 0
+  c4.metric("Avg out°", f"{avg_out:.0f}")
+  c5.metric("Low power", f"{cat_df.filter(pl.col('is_low_power')).height:,}")
+
+  # Real click data for this category
+  if real_df is not None:
+    vert_real = _real_for_verticale(real_df, verticale)
+    if vert_real is not None:
+      cat_real = vert_real.filter(pl.col("category") == sel)
+      if cat_real.height > 0:
+        rc = st.columns(3)
+        total_clicks = cat_real.select(pl.sum("real_clicks")).item()
+        rc[0].metric("Pages réelles (CSV)", f"{cat_real.height:,}")
+        rc[1].metric("Clicks GSC", f"{int(total_clicks):,}" if total_clicks is not None else "—")
+        rc[2].metric("Avg Botify PR", f"{cat_real.select(pl.mean('botify_pr')).item():.1f}" if cat_real.select(pl.mean('botify_pr')).item() is not None else "—")
+
+  # Top/Bottom tables
+  col_l, col_r = st.columns(2)
+  with col_l:
+    st.caption(f"Plus maillées — {sel}")
+    st.dataframe(_top_n_pages(cat_df, "in_degree", 15, desc=True).to_pandas(), use_container_width=True, hide_index=True)
+  with col_r:
+    st.caption(f"Moins maillées — {sel}")
+    st.dataframe(_top_n_pages(cat_df, "in_degree", 15, desc=False, min_val=1).to_pandas(), use_container_width=True, hide_index=True)
+
+  # Template distribution
+  if "template" in cat_df.columns and cat_df.height > 0:
+    tpl_dist = cat_df.group_by("template").agg(pl.len().alias("pages"), pl.sum("pri_score").alias("pri_sum")).sort("pages", descending=True)
+    col_a, col_b = st.columns(2)
+    with col_a:
+      st.caption(f"Templates — {sel}")
+      st.bar_chart(tpl_dist.to_pandas().set_index("template")[["pages"]], use_container_width=True)
+    with col_b:
+      st.caption(f"PRi par template — {sel}")
+      st.bar_chart(tpl_dist.to_pandas().set_index("template")[["pri_sum"]], use_container_width=True)
+
+  # Scatter PRi vs in_degree
+  if cat_df.height > 0:
+    scatter_df = cat_df.select("page_id", "pri_score", "in_degree", "out_degree", "template")
+    if scatter_df.height > 50_000:
+      scatter_df = scatter_df.sample(n=50_000, seed=42)
+    try:
+      import plotly.express as px
+      fig = px.scatter(
+        scatter_df.to_pandas(),
+        x="in_degree",
+        y="pri_score",
+        color="template",
+        hover_data=["page_id", "out_degree"],
+        opacity=0.5,
+      )
+      fig.update_layout(height=400, margin=dict(t=10, l=10, r=10, b=10))
+      st.plotly_chart(fig, use_container_width=True)
+    except ImportError:
+      pass
+
+
 def _render_segments_tab(
   segment_metrics_df: pl.DataFrame | None,
   filters: dict[str, Any],
@@ -1052,24 +1930,18 @@ def _render_url_explorer_tab(
     return
 
   display_limit = st.slider("Nombre max de lignes URL", min_value=100, max_value=5000, value=1000, step=100)
+  explorer_cols = [
+    "page_id", "path", "depth", "pri_score", "rank",
+    "cheirank_score", "cheirank_rank", "in_degree", "out_degree",
+    "incoming_links", "outgoing_links", "can_give_juice", "is_low_power",
+  ]
+  for extra_col in ("template", "verticale", "category"):
+    if extra_col in filtered_url_df.columns:
+      explorer_cols.insert(3, extra_col)
   table_df = (
     filtered_url_df
     .head(display_limit)
-    .select(
-      "page_id",
-      "path",
-      "depth",
-      "pri_score",
-      "rank",
-      "cheirank_score",
-      "cheirank_rank",
-      "in_degree",
-      "out_degree",
-      "incoming_links",
-      "outgoing_links",
-      "can_give_juice",
-      "is_low_power",
-    )
+    .select([c for c in explorer_cols if c in filtered_url_df.columns])
   )
   state = st.dataframe(
     table_df.to_pandas(),

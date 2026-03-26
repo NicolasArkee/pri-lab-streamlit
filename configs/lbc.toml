@@ -1,0 +1,147 @@
+# ──────────────────────────────────────────────────────────────
+# PRi Lab — Configuration leboncoin.fr (maillage réel)
+# Source: data/maillage_model.json + data/estimation_pages.json
+# ──────────────────────────────────────────────────────────────
+
+[paths]
+input_json = "../../../data/knowledge_graph.json"
+maillage_model = "../../../data/maillage_model.json"
+workspace = "../artifacts/lbc"
+pages_parquet = "pages.parquet"
+edges_parquet = "edges.parquet"
+pri_scores_parquet = "pri_scores.parquet"
+run_metrics_json = "run_metrics.json"
+experiment_log_parquet = "experiment_runs.parquet"
+
+# ──────────────────────────────────────────────────────────────
+# Page generation — realistic LBC scale (~2M listing pages)
+# ──────────────────────────────────────────────────────────────
+[page_generation]
+# Volumes par template (source: estimation_pages.json)
+target_total_pages = 2_000_000
+
+# /c/ — catégories + facettes (33K)
+c_category_pages = 33_000
+# /cl/ — catégorie x géo (1.3M = template dominant)
+cl_geo_pages = 1_300_000
+# /ck/ — keywords Verbolia (550K)
+ck_keyword_pages = 550_000
+# /ckl/ — keyword + geo + facette (estimé ~100K)
+ckl_hybrid_pages = 100_000
+# /l/ — pages régions générales (3.3K)
+l_location_pages = 3_350
+# /ad/ — on n'inclut PAS les 90M annonces, mais un échantillon
+ad_sample_pages = 0
+# homepage + /dc/ + /guide/
+misc_pages = 60
+
+# Taxonomie géo
+regions = 37
+departements = 99
+villes_top = 500          # top 500 villes (80% du trafic geo)
+
+# Taxonomie catégories
+categories = 80
+super_categories = 12
+avg_facet_types_per_cat = 3.5
+avg_values_per_facet = 12
+avg_keywords_per_cat = 6_875   # 550K / 80 cats
+
+# ──────────────────────────────────────────────────────────────
+# Blocs de maillage interne — 7 blocs réels LBC
+# Poids = importance SEO du bloc (position HTML x volume)
+# ──────────────────────────────────────────────────────────────
+[blocks]
+
+[blocks.breadcrumb]
+enabled = true
+weight = 1.0              # content principal, toujours en haut
+max_links = 5
+present_on = ["/c/", "/ck/", "/ckl/", "/cl/"]
+
+[blocks.seo_top_filters]
+enabled = true
+weight = 0.85             # sticky filters + seoFooter (rendu 2x)
+max_links = 20
+present_on = ["/c/", "/ck/", "/ckl/", "/cl/", "/l/", "homepage"]
+
+[blocks.top_searches]
+enabled = true
+weight = 0.80             # seoFooter — liens vers /ck/
+max_links = 24
+present_on = ["/c/", "/ck/", "/ckl/", "/cl/", "/l/", "homepage"]
+
+[blocks.top_locations]
+enabled = true
+weight = 0.80             # seoFooter — liens vers /cl/
+max_links = 34
+present_on = ["/c/", "/ck/", "/ckl/", "/cl/", "/l/", "homepage"]
+
+[blocks.box_top_filters]
+enabled = true
+weight = 0.65             # seoFooter — cross-links marque x ville
+max_links = 10
+present_on = ["/cl/", "/ckl/"]
+
+[blocks.ad_listing]
+enabled = true
+weight = 0.50             # liens annonces dans les listings (nofollow souvent)
+max_links = 37
+present_on = ["/c/", "/ck/", "/cl/", "/ckl/", "/l/", "homepage"]
+
+[blocks.footer_corporate]
+enabled = true
+weight = 0.15             # footer identique partout — dilué par 247 liens
+max_links = 247
+present_on = ["all"]
+
+# ──────────────────────────────────────────────────────────────
+# Règles héritées (hiérarchie URL + cluster peer)
+# ──────────────────────────────────────────────────────────────
+[rules]
+enable_hierarchy_up = true
+enable_hierarchy_down = true
+enable_cluster_peer = true
+cluster_peer_k = 8
+max_out_links_per_page = 120    # LBC réel: ~130 liens/page en moyenne
+weight_hierarchy_up = 1.0
+weight_hierarchy_down = 0.7
+weight_cluster_peer = 0.4
+
+# ──────────────────────────────────────────────────────────────
+# PageRank
+# ──────────────────────────────────────────────────────────────
+[pagerank]
+damping = 0.85
+included_block_types = [
+  "breadcrumb",
+  "seo_top_filters",
+  "top_searches",
+  "top_locations",
+  "box_top_filters",
+  "ad_listing",
+  "footer_corporate",
+  "hierarchy_up",
+  "hierarchy_down",
+  "cluster_peer",
+]
+use_weights = true
+
+# ──────────────────────────────────────────────────────────────
+# Anchor scenarios
+# ──────────────────────────────────────────────────────────────
+[anchor_scenarios]
+output_dir = "scenarios"
+scenario_names = [
+  "scenario_1_exact_focus",
+  "scenario_2_balanced_mix",
+  "scenario_3_diversity_first",
+]
+
+# ──────────────────────────────────────────────────────────────
+# Benchmark
+# ──────────────────────────────────────────────────────────────
+[benchmark]
+node_count = 2_000_000
+target_edge_count = 80_000_000    # ~40 liens internes utiles/page en moyenne
+cluster_count = 20_000

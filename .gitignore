@@ -3,7 +3,9 @@
 src/*.egg-info/
 **/__pycache__/
 
-# Keep only demo artifacts for Streamlit Cloud.
+# Keep demo + LBC artifacts for Streamlit Cloud.
 artifacts/*
 !artifacts/default/
 !artifacts/default/**
+!artifacts/lbc/
+!artifacts/lbc/**

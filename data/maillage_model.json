@@ -1,0 +1,2479 @@
+{
+  "meta": {
+    "date": "2026-03-26",
+    "pages_crawled": 64,
+    "total_links_extracted": 11721
+  },
+  "blocs": {
+    "breadcrumb": {
+      "source": "seoBreadcrumb[]",
+      "anchor_rule": "breadcrumb[i].label",
+      "url_rule": "breadcrumb[i].path",
+      "max_links": 5,
+      "present_on": [
+        "/c/ L1",
+        "/c/ L2",
+        "/c/ L3",
+        "/ck/",
+        "/ckl/",
+        "/cl/"
+      ]
+    },
+    "seo_top_filters": {
+      "source": "seoTopFilters[20]",
+      "anchor_rule": "seoTopFilters[i].title",
+      "url_rule": "seoTopFilters[i].path",
+      "selection": "Top 20 filtres les plus utilises (stats-driven)",
+      "max_links": 20,
+      "rendered_in": "#sticky-filters-panel + #seoFooter (2 fois)",
+      "present_on": [
+        "/c/ L1",
+        "/c/ L2",
+        "/c/ L3",
+        "/ck/",
+        "/ckl/",
+        "/cl/",
+        "/l/",
+        "homepage"
+      ]
+    },
+    "top_searches": {
+      "source": "seoBoxColumns.top_searches[]",
+      "anchor_rule": "top_searches[i].title (nom du keyword)",
+      "url_rule": "top_searches[i].path (format /ck/{cat}/{slug})",
+      "selection": "Top 20-24 keywords Verbolia pour cette categorie",
+      "label_visible": "Les utilisateurs recherchent aussi...",
+      "max_links": 24,
+      "rendered_in": "#seoFooter",
+      "present_on": [
+        "/c/ L1",
+        "/c/ L2",
+        "/c/ L3",
+        "/ck/",
+        "/ckl/",
+        "/cl/",
+        "/l/",
+        "homepage"
+      ]
+    },
+    "top_locations": {
+      "source": "seoBoxColumns.top_locations[]",
+      "anchor_rule": "top_locations[i].title (format \"{Category} {Region}\")",
+      "url_rule": "top_locations[i].path (format /cl/{cat}/rp_{region})",
+      "selection": "34 regions francaises (taxonomie statique)",
+      "label_visible": "Localisations les plus demandees...",
+      "max_links": 34,
+      "rendered_in": "#seoFooter",
+      "present_on": [
+        "/c/ L1",
+        "/c/ L2",
+        "/c/ L3",
+        "/ck/",
+        "/ckl/",
+        "/cl/",
+        "/l/",
+        "homepage"
+      ]
+    },
+    "box_top_filters": {
+      "source": "seoBoxColumns.top_filters[]",
+      "anchor_rule": "\"{Category} {Brand} a {Ville}\"",
+      "url_rule": "/cl/{cat}/{geo}/{facet}",
+      "selection": "Cross-links: autres marques meme ville, meme marque villes proches",
+      "max_links": 10,
+      "rendered_in": "#seoFooter",
+      "present_on": [
+        "/cl/",
+        "/ckl/"
+      ]
+    },
+    "ad_listing": {
+      "source": "searchData.ads[35]",
+      "anchor_rule": "ad.subject (titre annonce)",
+      "url_rule": "/ad/{category_slug}/{list_id}",
+      "links_per_ad": 6,
+      "max_ads": 37,
+      "rendered_in": "#mainContent > article[data-test-id=\"ad\"]",
+      "present_on": [
+        "/c/ L1",
+        "/c/ L2",
+        "/c/ L3",
+        "/ck/",
+        "/cl/",
+        "/ckl/",
+        "/l/"
+      ]
+    },
+    "ad_detail_links": {
+      "source": "ad.location + ad.attributes",
+      "links": {
+        "geo_breadcrumb": "ad.location -> /cl/{cat}/rp_{region}, /cl/{cat}/dp_{dept}, /cl/{cat}/cp_{ville}",
+        "category": "ad.category_name -> /c/{category_slug}",
+        "brand": "ad.attributes[u_car_brand] -> /c/{cat}/u_car_brand:{BRAND}",
+        "model": "ad.attributes[u_car_model] -> /c/{cat}/u_car_brand:{BRAND}+u_car_model:{BRAND}_{Model}",
+        "type": "ad.attributes[vehicle_type] -> /c/{cat}/u_car_brand:{BRAND}+vehicle_type:{type}",
+        "legal": "/dc/vos_droits_et_obligations (toujours present)"
+      },
+      "total_links_avg": 15,
+      "rendered_in": "#mainContent",
+      "present_on": [
+        "/ad/"
+      ],
+      "samples": {
+        "ad_c_voitures_3048352860": [
+          {
+            "anchor": "Accueil",
+            "href": "/"
+          },
+          {
+            "anchor": "Voitures",
+            "href": "/c/voitures"
+          },
+          {
+            "anchor": "Bretagne",
+            "href": "/cl/voitures/rp_bretagne"
+          },
+          {
+            "anchor": "Finistère",
+            "href": "/cl/voitures/dp_finist%C3%A8re"
+          },
+          {
+            "anchor": "Châteaulin 29150",
+            "href": "/cl/voitures/cp_ch%C3%A2teaulin_29150"
+          },
+          {
+            "anchor": "CITROEN",
+            "href": "/c/voitures/u_car_brand:CITROEN"
+          },
+          {
+            "anchor": "C5 Aircross",
+            "href": "/c/voitures/u_car_brand:CITROEN+u_car_model:CITROEN_C5%20Aircross"
+          },
+          {
+            "anchor": "4x4, SUV &amp; Crossover",
+            "href": "/c/voitures/u_car_brand:CITROEN+vehicle_type:4x4"
+          },
+          {
+            "anchor": "Vos droits et obligations",
+            "href": "/dc/vos_droits_et_obligations"
+          },
+          {
+            "anchor": "Accueil",
+            "href": "/"
+          },
+          {
+            "anchor": "Voitures",
+            "href": "/c/voitures"
+          },
+          {
+            "anchor": "Bretagne",
+            "href": "/cl/voitures/rp_bretagne"
+          },
+          {
+            "anchor": "Finistère",
+            "href": "/cl/voitures/dp_finist%C3%A8re"
+          },
+          {
+            "anchor": "Châteaulin 29150",
+            "href": "/cl/voitures/cp_ch%C3%A2teaulin_29150"
+          }
+        ],
+        "ad_c_locations_3160083007": [
+          {
+            "anchor": "Accueil",
+            "href": "/"
+          },
+          {
+            "anchor": "Locations",
+            "href": "/c/locations"
+          },
+          {
+            "anchor": "Alsace",
+            "href": "/cl/locations/rp_alsace"
+          },
+          {
+            "anchor": "Haut-Rhin",
+            "href": "/cl/locations/dp_haut-rhin"
+          },
+          {
+            "anchor": "Flaxlanden 68720",
+            "href": "/cl/locations/cp_flaxlanden_68720"
+          },
+          {
+            "anchor": "Vos droits et obligations",
+            "href": "/dc/vos_droits_et_obligations"
+          },
+          {
+            "anchor": "Accueil",
+            "href": "/"
+          },
+          {
+            "anchor": "Locations",
+            "href": "/c/locations"
+          },
+          {
+            "anchor": "Alsace",
+            "href": "/cl/locations/rp_alsace"
+          },
+          {
+            "anchor": "Haut-Rhin",
+            "href": "/cl/locations/dp_haut-rhin"
+          },
+          {
+            "anchor": "Flaxlanden 68720",
+            "href": "/cl/locations/cp_flaxlanden_68720"
+          }
+        ],
+        "ad_c_motos_3166699564": [
+          {
+            "anchor": "Accueil",
+            "href": "/"
+          },
+          {
+            "anchor": "Motos",
+            "href": "/c/motos"
+          },
+          {
+            "anchor": "Provence-Alpes-Côte d&#x27;Azur",
+            "href": "/cl/motos/rp_provence-alpes-c%C3%B4te%20d&#x27;azur"
+          },
+          {
+            "anchor": "Alpes-Maritimes",
+            "href": "/cl/motos/dp_alpes-maritimes"
+          },
+          {
+            "anchor": "Nice 06000",
+            "href": "/cl/motos/cp_nice_06000"
+          },
+          {
+            "anchor": "Annonces similaires",
+            "href": "/visual_similar_ads/3166699564"
+          },
+          {
+            "anchor": "Nice",
+            "href": "/ad/motos/3166699564#map"
+          },
+          {
+            "anchor": "HARLEY-DAVIDSON",
+            "href": "/c/motos/u_moto_brand:HARLEY-DAVIDSON"
+          },
+          {
+            "anchor": "Sportster S",
+            "href": "/c/motos/u_moto_brand:HARLEY-DAVIDSON+u_moto_model:HARLEY-DAVIDSON_Sportster%20S"
+          },
+          {
+            "anchor": "Moto",
+            "href": "/c/motos/moto_type:moto+u_moto_brand:HARLEY-DAVIDSON"
+          },
+          {
+            "anchor": "1250 cm³",
+            "href": "/c/motos/cubic_capacity:1250+u_moto_brand:HARLEY-DAVIDSON"
+          },
+          {
+            "anchor": "Vos droits et obligations",
+            "href": "/dc/vos_droits_et_obligations"
+          },
+          {
+            "anchor": "Accueil",
+            "href": "/"
+          },
+          {
+            "anchor": "Motos",
+            "href": "/c/motos"
+          },
+          {
+            "anchor": "Provence-Alpes-Côte d&#x27;Azur",
+            "href": "/cl/motos/rp_provence-alpes-c%C3%B4te%20d&#x27;azur"
+          },
+          {
+            "anchor": "Alpes-Maritimes",
+            "href": "/cl/motos/dp_alpes-maritimes"
+          },
+          {
+            "anchor": "Nice 06000",
+            "href": "/cl/motos/cp_nice_06000"
+          }
+        ],
+        "ad_c_locations_saisonnieres_3138969614": [
+          {
+            "anchor": "Accueil",
+            "href": "/"
+          },
+          {
+            "anchor": "Locations saisonnières",
+            "href": "/c/locations_saisonnieres"
+          },
+          {
+            "anchor": "Provence-Alpes-Côte d&#x27;Azur",
+            "href": "/cl/locations_saisonnieres/rp_provence-alpes-c%C3%B4te%20d&#x27;azur"
+          },
+          {
+            "anchor": "Var",
+            "href": "/cl/locations_saisonnieres/dp_var"
+          },
+          {
+            "anchor": "Bormes-les-Mimosas 83230",
+            "href": "/cl/locations_saisonnieres/cp_bormes-les-mimosas_83230"
+          },
+          {
+            "anchor": "Chevallier",
+            "href": "/profile/bf9740f8-244d-4e5a-a4fc-f60b010f5fcf/offers"
+          },
+          {
+            "anchor": "4 personnes",
+            "href": "/c/locations_saisonnieres/capacity:4"
+          },
+          {
+            "anchor": "Chevallier",
+            "href": "/profile/bf9740f8-244d-4e5a-a4fc-f60b010f5fcf/offers"
+          },
+          {
+            "anchor": "Vos droits et obligations",
+            "href": "/dc/vos_droits_et_obligations"
+          },
+          {
+            "anchor": "Accueil",
+            "href": "/"
+          },
+          {
+            "anchor": "Locations saisonnières",
+            "href": "/c/locations_saisonnieres"
+          },
+          {
+            "anchor": "Provence-Alpes-Côte d&#x27;Azur",
+            "href": "/cl/locations_saisonnieres/rp_provence-alpes-c%C3%B4te%20d&#x27;azur"
+          },
+          {
+            "anchor": "Var",
+            "href": "/cl/locations_saisonnieres/dp_var"
+          },
+          {
+            "anchor": "Bormes-les-Mimosas 83230",
+            "href": "/cl/locations_saisonnieres/cp_bormes-les-mimosas_83230"
+          }
+        ],
+        "ad_c_voitures_f1_u_car_brand_RENAULT_3150622718": [
+          {
+            "anchor": "Accueil",
+            "href": "/"
+          },
+          {
+            "anchor": "Voitures",
+            "href": "/c/voitures"
+          },
+          {
+            "anchor": "Provence-Alpes-Côte d&#x27;Azur",
+            "href": "/cl/voitures/rp_provence-alpes-c%C3%B4te%20d&#x27;azur"
+          },
+          {
+            "anchor": "Bouches-du-Rhône",
+            "href": "/cl/voitures/dp_bouches-du-rh%C3%B4ne"
+          },
+          {
+            "anchor": "Vitrolles 13127",
+            "href": "/cl/voitures/cp_vitrolles_13127"
+          },
+          {
+            "anchor": "ou dès 459 € / mois",
+            "href": "#vehicle-simulator"
+          },
+          {
+            "anchor": "RENAULT",
+            "href": "/c/voitures/u_car_brand:RENAULT"
+          },
+          {
+            "anchor": "Austral",
+            "href": "/c/voitures/u_car_brand:RENAULT+u_car_model:RENAULT_Austral"
+          },
+          {
+            "anchor": "Berline",
+            "href": "/c/voitures/u_car_brand:RENAULT+vehicle_type:berline"
+          },
+          {
+            "anchor": "Vos droits et obligations",
+            "href": "/dc/vos_droits_et_obligations"
+          },
+          {
+            "anchor": "Accueil",
+            "href": "/"
+          },
+          {
+            "anchor": "Voitures",
+            "href": "/c/voitures"
+          },
+          {
+            "anchor": "Provence-Alpes-Côte d&#x27;Azur",
+            "href": "/cl/voitures/rp_provence-alpes-c%C3%B4te%20d&#x27;azur"
+          },
+          {
+            "anchor": "Bouches-du-Rhône",
+            "href": "/cl/voitures/dp_bouches-du-rh%C3%B4ne"
+          },
+          {
+            "anchor": "Vitrolles 13127",
+            "href": "/cl/voitures/cp_vitrolles_13127"
+          }
+        ],
+        "ad_c_motos_f1_u_moto_brand_HONDA_3156844927": [
+          {
+            "anchor": "Réserver",
+            "href": "/vehicule/transaction/demarrer-ma-transaction?listId=3156844927&amp;from=classif"
+          },
+          {
+            "anchor": "Réserver",
+            "href": "/vehicule/transaction/demarrer-ma-transaction?listId=3156844927&amp;from=classif"
+          },
+          {
+            "anchor": "Accueil",
+            "href": "/"
+          },
+          {
+            "anchor": "Motos",
+            "href": "/c/motos"
+          },
+          {
+            "anchor": "Bourgogne",
+            "href": "/cl/motos/rp_bourgogne"
+          },
+          {
+            "anchor": "Côte-d&#x27;Or",
+            "href": "/cl/motos/dp_c%C3%B4te-d&#x27;or"
+          },
+          {
+            "anchor": "Dijon 21000",
+            "href": "/cl/motos/cp_dijon_21000"
+          },
+          {
+            "anchor": "Annonces similaires",
+            "href": "/visual_similar_ads/3156844927"
+          },
+          {
+            "anchor": "Dijon",
+            "href": "/ad/motos/3156844927#map"
+          },
+          {
+            "anchor": "Réserver",
+            "href": "/vehicule/transaction/demarrer-ma-transaction?listId=3156844927&amp;from=classif"
+          },
+          {
+            "anchor": "HONDA",
+            "href": "/c/motos/u_moto_brand:HONDA"
+          },
+          {
+            "anchor": "NC",
+            "href": "/c/motos/u_moto_brand:HONDA+u_moto_model:HONDA_NC"
+          },
+          {
+            "anchor": "Moto",
+            "href": "/c/motos/moto_type:moto+u_moto_brand:HONDA"
+          },
+          {
+            "anchor": "750 cm³",
+            "href": "/c/motos/cubic_capacity:750+u_moto_brand:HONDA"
+          },
+          {
+            "anchor": "jmd",
+            "href": "/profile/c2db5f6f-424c-4bb9-b71f-121028c45b2f/offers"
+          },
+          {
+            "anchor": "Vos droits et obligations",
+            "href": "/dc/vos_droits_et_obligations"
+          },
+          {
+            "anchor": "Accueil",
+            "href": "/"
+          },
+          {
+            "anchor": "Motos",
+            "href": "/c/motos"
+          },
+          {
+            "anchor": "Bourgogne",
+            "href": "/cl/motos/rp_bourgogne"
+          },
+          {
+            "anchor": "Côte-d&#x27;Or",
+            "href": "/cl/motos/dp_c%C3%B4te-d&#x27;or"
+          },
+          {
+            "anchor": "Dijon 21000",
+            "href": "/cl/motos/cp_dijon_21000"
+          }
+        ],
+        "ad_c_voitures_f2_u_car_brand_3092624392": [
+          {
+            "anchor": "Accueil",
+            "href": "/"
+          },
+          {
+            "anchor": "Voitures",
+            "href": "/c/voitures"
+          },
+          {
+            "anchor": "Nord-Pas-de-Calais",
+            "href": "/cl/voitures/rp_nord-pas-de-calais"
+          },
+          {
+            "anchor": "Pas-de-Calais",
+            "href": "/cl/voitures/dp_pas-de-calais"
+          },
+          {
+            "anchor": "Avion 62210",
+            "href": "/cl/voitures/cp_avion_62210"
+          },
+          {
+            "anchor": "ou dès 228 € / mois",
+            "href": "#vehicle-simulator"
+          },
+          {
+            "anchor": "RENAULT",
+            "href": "/c/voitures/u_car_brand:RENAULT"
+          },
+          {
+            "anchor": "Clio",
+            "href": "/c/voitures/u_car_brand:RENAULT+u_car_model:RENAULT_Clio"
+          },
+          {
+            "anchor": "Berline",
+            "href": "/c/voitures/u_car_brand:RENAULT+vehicle_type:berline"
+          },
+          {
+            "anchor": "Vos droits et obligations",
+            "href": "/dc/vos_droits_et_obligations"
+          },
+          {
+            "anchor": "Accueil",
+            "href": "/"
+          },
+          {
+            "anchor": "Voitures",
+            "href": "/c/voitures"
+          },
+          {
+            "anchor": "Nord-Pas-de-Calais",
+            "href": "/cl/voitures/rp_nord-pas-de-calais"
+          },
+          {
+            "anchor": "Pas-de-Calais",
+            "href": "/cl/voitures/dp_pas-de-calais"
+          },
+          {
+            "anchor": "Avion 62210",
+            "href": "/cl/voitures/cp_avion_62210"
+          }
+        ],
+        "ad_c_motos_f2_u_moto_brand_3167698526": [
+          {
+            "anchor": "Accueil",
+            "href": "/"
+          },
+          {
+            "anchor": "Motos",
+            "href": "/c/motos"
+          },
+          {
+            "anchor": "Ile-de-France",
+            "href": "/cl/motos/rp_ile-de-france"
+          },
+          {
+            "anchor": "Paris",
+            "href": "/cl/motos/cp_paris"
+          },
+          {
+            "anchor": "Paris 75015",
+            "href": "/cl/motos/cp_paris_75015"
+          },
+          {
+            "anchor": "Annonces similaires",
+            "href": "/visual_similar_ads/3167698526"
+          },
+          {
+            "anchor": "Paris",
+            "href": "/ad/motos/3167698526#map"
+          },
+          {
+            "anchor": "HONDA",
+            "href": "/c/motos/u_moto_brand:HONDA"
+          },
+          {
+            "anchor": "CBR",
+            "href": "/c/motos/u_moto_brand:HONDA+u_moto_model:HONDA_CBR"
+          },
+          {
+            "anchor": "Moto",
+            "href": "/c/motos/moto_type:moto+u_moto_brand:HONDA"
+          },
+          {
+            "anchor": "650 cm³",
+            "href": "/c/motos/cubic_capacity:650+u_moto_brand:HONDA"
+          },
+          {
+            "anchor": "Vos droits et obligations",
+            "href": "/dc/vos_droits_et_obligations"
+          },
+          {
+            "anchor": "Accueil",
+            "href": "/"
+          },
+          {
+            "anchor": "Motos",
+            "href": "/c/motos"
+          },
+          {
+            "anchor": "Ile-de-France",
+            "href": "/cl/motos/rp_ile-de-france"
+          },
+          {
+            "anchor": "Paris",
+            "href": "/cl/motos/cp_paris"
+          },
+          {
+            "anchor": "Paris 75015",
+            "href": "/cl/motos/cp_paris_75015"
+          }
+        ]
+      }
+    },
+    "footer_corporate": {
+      "source": "Statique (identique sur toutes les pages)",
+      "total_links": 247,
+      "links": [
+        {
+          "anchor": "Plan du site",
+          "href": "/plan-du-site",
+          "id": ""
+        },
+        {
+          "anchor": "Qui sommes-nous ?",
+          "href": "https://leboncoincorporate.com/",
+          "id": ""
+        },
+        {
+          "anchor": "Nouveautés",
+          "href": "/evenement/nouveautes",
+          "id": ""
+        },
+        {
+          "anchor": "Nous rejoindre",
+          "href": "/boutique/11532/postulez_aux_offres_d_emploi_leboncoin.htm",
+          "id": ""
+        },
+        {
+          "anchor": "Nos engagements",
+          "href": "https://leboncoincorporate.com/nos-engagements/",
+          "id": ""
+        },
+        {
+          "anchor": "Espace presse",
+          "href": "https://presse.leboncoincorporate.com/",
+          "id": ""
+        },
+        {
+          "anchor": "",
+          "href": "https://itunes.apple.com/fr/app/leboncoin/id484115113",
+          "id": ""
+        },
+        {
+          "anchor": "",
+          "href": "https://play.google.com/store/apps/details?id=fr.leboncoin",
+          "id": ""
+        },
+        {
+          "anchor": "Conditions générales d’utilisation",
+          "href": "/dc/cgu",
+          "id": ""
+        },
+        {
+          "anchor": "Référencement et classement des annonces",
+          "href": "/dc/rules",
+          "id": ""
+        },
+        {
+          "anchor": "Conditions générales de vente",
+          "href": "/dc/cgv",
+          "id": ""
+        },
+        {
+          "anchor": "Politique de confidentialité",
+          "href": "/dc/cookies",
+          "id": ""
+        },
+        {
+          "anchor": "Vos droits et obligations",
+          "href": "/dc/vos_droits_et_obligations",
+          "id": ""
+        },
+        {
+          "anchor": "Avis utilisateurs",
+          "href": "/dc/avis_utilisateurs",
+          "id": ""
+        },
+        {
+          "anchor": "Confiance et sécurité",
+          "href": "/dc/charte_de_bonne_conduite",
+          "id": ""
+        },
+        {
+          "anchor": "Paiement en plusieurs fois",
+          "href": "/dc/paiement_en_plusieurs_fois",
+          "id": ""
+        },
+        {
+          "anchor": "Accessibilité : partiellement conforme",
+          "href": "/dc/accessibilite",
+          "id": ""
+        },
+        {
+          "anchor": "Automobile",
+          "href": "https://leboncoinsolutionspro.fr/automobile",
+          "id": "footer_auto_link"
+        },
+        {
+          "anchor": "Immobilier",
+          "href": "https://leboncoinsolutionspro.fr/immobilier",
+          "id": "footer_real_estate_link"
+        },
+        {
+          "anchor": "Emploi",
+          "href": "https://leboncoinsolutionspro.fr/emploi",
+          "id": "footer_recruitment_link"
+        },
+        {
+          "anchor": "Emploi TPE",
+          "href": "/solutions-emploi/offre-emploi-tpe",
+          "id": "footer_jobsTPE_link"
+        },
+        {
+          "anchor": "Commerces &amp; Services",
+          "href": "https://leboncoinsolutionspro.fr/commerces-services",
+          "id": "footer_multicat_link"
+        },
+        {
+          "anchor": "Publicité",
+          "href": "https://leboncoinpublicite.fr/",
+          "id": "footer_pub_link"
+        },
+        {
+          "anchor": "Tourisme",
+          "href": "https://leboncoinsolutionspro.fr/location-de-vacances",
+          "id": "footer_holidays_link"
+        },
+        {
+          "anchor": "Annuaire des Pros",
+          "href": "/boutiques/tout_secteur_d_activite/toutes_categories",
+          "id": "footer_pro_phonebook_link"
+        },
+        {
+          "anchor": "Nouveautés leboncoin immo",
+          "href": "/evenement/nouveautes-leboncoin-immo-pro",
+          "id": "footer_novelties_immo_link"
+        },
+        {
+          "anchor": "Nouveautés leboncoin véhicules",
+          "href": "/evenement/nouveautes-leboncoin-vehicules-pro",
+          "id": "footer_novelties_vehicules_link"
+        },
+        {
+          "anchor": "Fournisseur de technologies",
+          "href": "/solutions-pro/fournisseur-de-technologies",
+          "id": "footer_tech_provider_link"
+        },
+        {
+          "anchor": "Aide",
+          "href": "https://assistance.leboncoin.info/hc/fr",
+          "id": ""
+        },
+        {
+          "anchor": "La transaction sécurisée et la livraison",
+          "href": "/service/paiement-securise",
+          "id": ""
+        },
+        {
+          "anchor": "Le porte-monnaie",
+          "href": "/service/porte-monnaie",
+          "id": ""
+        },
+        {
+          "anchor": "Le service de réservation de vacances en ligne pour les hôte",
+          "href": "/reservation-de-vacances/hote",
+          "id": ""
+        },
+        {
+          "anchor": "Votre dossier de location en ligne",
+          "href": "/immo/profil-locataire",
+          "id": ""
+        },
+        {
+          "anchor": "Votre Pass Locataire+",
+          "href": "/service/pass-locataire-plus-immo",
+          "id": ""
+        },
+        {
+          "anchor": "Votre espace bailleur",
+          "href": "/service/espace-bailleur",
+          "id": ""
+        },
+        {
+          "anchor": "Statut de nos services",
+          "href": "https://status.leboncoin.fr",
+          "id": ""
+        },
+        {
+          "anchor": "Sécurité",
+          "href": "https://app.yogosha.com/cvd/adevinta-france/1mvkLXr7RZpiecTIsWDqn5",
+          "id": ""
+        },
+        {
+          "anchor": "AVendreALouer",
+          "href": "https://www.avendrealouer.fr",
+          "id": ""
+        },
+        {
+          "anchor": "leboncoin Immobilier Neuf",
+          "href": "https://immobilierneuf.leboncoin.fr",
+          "id": ""
+        },
+        {
+          "anchor": "Agriaffaires",
+          "href": "https://www.agriaffaires.com#at_medium=custom4&amp;at_campaign=fr_aa_veh_mot_lbc",
+          "id": ""
+        },
+        {
+          "anchor": "MachineryZone",
+          "href": "https://www.machineryzone.fr#at_medium=custom4&amp;at_campaign=fr_mz_veh_mot_lbc",
+          "id": ""
+        },
+        {
+          "anchor": "Truckscorner",
+          "href": "https://www.truckscorner.fr#at_medium=custom4&amp;at_campaign=fr_tc_veh_mot_lbc_",
+          "id": ""
+        },
+        {
+          "anchor": "LinkedIn",
+          "href": "https://www.linkedin.com/company/leboncoin",
+          "id": ""
+        },
+        {
+          "anchor": "twitter",
+          "href": "https://twitter.com/leboncoin/",
+          "id": ""
+        },
+        {
+          "anchor": "instagram",
+          "href": "https://www.instagram.com/leboncoin/",
+          "id": ""
+        },
+        {
+          "anchor": "pinterest",
+          "href": "https://www.pinterest.fr/leboncoin/",
+          "id": ""
+        },
+        {
+          "anchor": "Tout Immobilier",
+          "href": "/service/immobilier",
+          "id": ""
+        },
+        {
+          "anchor": "Ventes immobilières",
+          "href": "/c/ventes_immobilieres",
+          "id": ""
+        },
+        {
+          "anchor": "Appartement",
+          "href": "/c/ventes_immobilieres/real_estate_type:2",
+          "id": ""
+        },
+        {
+          "anchor": "Maison",
+          "href": "/c/ventes_immobilieres/real_estate_type:1",
+          "id": ""
+        },
+        {
+          "anchor": "Terrain",
+          "href": "/c/ventes_immobilieres/real_estate_type:3",
+          "id": ""
+        },
+        {
+          "anchor": "Voir tout",
+          "href": "/c/ventes_immobilieres",
+          "id": ""
+        },
+        {
+          "anchor": "Immobilier Neuf",
+          "href": "/recherche?category=9&amp;immo_sell_type=new",
+          "id": ""
+        },
+        {
+          "anchor": "Appartement",
+          "href": "/recherche?category=9&amp;real_estate_type=2&amp;immo_sell_type=new",
+          "id": ""
+        },
+        {
+          "anchor": "Maison",
+          "href": "/recherche?category=9&amp;real_estate_type=1&amp;immo_sell_type=new",
+          "id": ""
+        },
+        {
+          "anchor": "Programmes logements neufs",
+          "href": "https://immobilierneuf.leboncoin.fr/immobilier-neuf/appartement+maison+terrain",
+          "id": ""
+        },
+        {
+          "anchor": "Promoteurs immobiliers",
+          "href": "https://immobilierneuf.leboncoin.fr/outils-services/annuaires-promoteurs",
+          "id": ""
+        },
+        {
+          "anchor": "Locations",
+          "href": "/c/locations",
+          "id": ""
+        },
+        {
+          "anchor": "Appartement",
+          "href": "/c/locations/real_estate_type:2",
+          "id": ""
+        },
+        {
+          "anchor": "Maison",
+          "href": "/c/locations/real_estate_type:1",
+          "id": ""
+        },
+        {
+          "anchor": "Parking",
+          "href": "/c/locations/real_estate_type:4",
+          "id": ""
+        },
+        {
+          "anchor": "Voir tout",
+          "href": "/c/locations",
+          "id": ""
+        },
+        {
+          "anchor": "Colocations",
+          "href": "/c/colocations",
+          "id": ""
+        },
+        {
+          "anchor": "Bureaux &amp; Commerces",
+          "href": "/c/bureaux_commerces",
+          "id": ""
+        },
+        {
+          "anchor": "Services de déménagement",
+          "href": "/recherche?category=92",
+          "id": ""
+        },
+        {
+          "anchor": "Tout Véhicules",
+          "href": "/c/_vehicules_",
+          "id": ""
+        },
+        {
+          "anchor": "Voitures",
+          "href": "/c/voitures",
+          "id": ""
+        },
+        {
+          "anchor": "Audi",
+          "href": "/c/voitures/u_car_brand:AUDI",
+          "id": ""
+        },
+        {
+          "anchor": "BMW",
+          "href": "/c/voitures/u_car_brand:BMW",
+          "id": ""
+        },
+        {
+          "anchor": "Mercedes",
+          "href": "/c/voitures/u_car_brand:MERCEDES-BENZ",
+          "id": ""
+        },
+        {
+          "anchor": "Peugeot",
+          "href": "/c/voitures/u_car_brand:PEUGEOT",
+          "id": ""
+        },
+        {
+          "anchor": "Renault",
+          "href": "/c/voitures/u_car_brand:RENAULT",
+          "id": ""
+        },
+        {
+          "anchor": "Volkswagen",
+          "href": "/c/voitures/u_car_brand:VOLKSWAGEN",
+          "id": ""
+        },
+        {
+          "anchor": "Voir toutes les marques",
+          "href": "/c/voitures",
+          "id": ""
+        },
+        {
+          "anchor": "Motos",
+          "href": "/c/motos",
+          "id": ""
+        },
+        {
+          "anchor": "BMW",
+          "href": "/c/motos/u_moto_brand:BMW",
+          "id": ""
+        },
+        {
+          "anchor": "Honda",
+          "href": "/c/motos/u_moto_brand:HONDA",
+          "id": ""
+        },
+        {
+          "anchor": "Kawasaki",
+          "href": "/c/motos/u_moto_brand:KAWASAKI",
+          "id": ""
+        },
+        {
+          "anchor": "Suzuki",
+          "href": "/c/motos/u_moto_brand:SUZUKI",
+          "id": ""
+        },
+        {
+          "anchor": "Yamaha",
+          "href": "/c/motos/u_moto_brand:YAMAHA",
+          "id": ""
+        },
+        {
+          "anchor": "Voir toutes les marques",
+          "href": "/c/motos",
+          "id": ""
+        },
+        {
+          "anchor": "Caravaning",
+          "href": "/c/caravaning",
+          "id": ""
+        },
+        {
+          "anchor": "Utilitaires",
+          "href": "/c/utilitaires",
+          "id": ""
+        },
+        {
+          "anchor": "Camions",
+          "href": "https://www.truckscorner.fr/#at_medium=custom4&amp;at_campaign=fr_tc_veh_mot_lbc",
+          "id": ""
+        },
+        {
+          "anchor": "Nautisme",
+          "href": "/c/nautisme",
+          "id": ""
+        },
+        {
+          "anchor": "Vélos",
+          "href": "/recherche?category=55&amp;shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Équipement auto",
+          "href": "/c/equipement_auto?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Équipement moto",
+          "href": "/c/equipement_moto?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Équipement caravaning",
+          "href": "/c/equipement_caravaning?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Équipement nautisme",
+          "href": "/c/equipement_nautisme?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Équipements vélos",
+          "href": "/recherche?category=85&amp;shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Services de réparations mécaniques",
+          "href": "/recherche?category=93",
+          "id": ""
+        },
+        {
+          "anchor": "Tout Mode",
+          "href": "/c/_mode_?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Vêtements",
+          "href": "/c/vetements?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Femme",
+          "href": "/c/vetements/clothing_type:1?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Maternité",
+          "href": "/c/vetements/clothing_type:2?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Homme",
+          "href": "/c/vetements/clothing_type:3?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Enfant",
+          "href": "/c/vetements/clothing_type:4?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Chaussures",
+          "href": "/c/chaussures?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Femme",
+          "href": "/c/chaussures/shoe_type:1?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Homme",
+          "href": "/c/chaussures/shoe_type:2?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Enfant",
+          "href": "/c/chaussures/shoe_type:3?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Montres &amp; Bijoux",
+          "href": "/c/montres_bijoux?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Femme",
+          "href": "/c/montres_bijoux/accessories_univers:femme?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Homme",
+          "href": "/c/montres_bijoux/accessories_univers:homme?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Enfant",
+          "href": "/c/montres_bijoux/accessories_univers:enfant?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Mixte",
+          "href": "/c/montres_bijoux/accessories_univers:mixte?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Accessoires &amp; Bagagerie",
+          "href": "/c/accessoires_bagagerie?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Femme",
+          "href": "/c/accessoires_bagagerie/accessories_univers:femme?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Homme",
+          "href": "/c/accessoires_bagagerie/accessories_univers:homme?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Enfant",
+          "href": "/c/accessoires_bagagerie/accessories_univers:enfant?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Mixte",
+          "href": "/c/accessoires_bagagerie/accessories_univers:mixte?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Tout Maison &amp; Jardin",
+          "href": "/c/_maison_jardin_?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Ameublement",
+          "href": "/c/ameublement?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Armoire",
+          "href": "/c/ameublement/furniture_type:armoire?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Buffet",
+          "href": "/c/ameublement/furniture_type:buffet?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Canapé",
+          "href": "/c/ameublement/furniture_type:canape?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Chaise, tabouret et banc",
+          "href": "/c/ameublement/furniture_type:chaisetabouretetbanc?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Fauteuil",
+          "href": "/c/ameublement/furniture_type:fauteuil?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Lit",
+          "href": "/c/ameublement/furniture_type:lit?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Meuble de cuisine",
+          "href": "/c/ameublement/furniture_type:meubledecuisine?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Table de salle à manger",
+          "href": "/c/ameublement/furniture_type:tabledesalleamanger?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Voir tout",
+          "href": "/c/ameublement?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Papeterie &amp; Fournitures scolaires",
+          "href": "/c/papeterie_fournitures_scolaires?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Électroménager",
+          "href": "/c/electromenager?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Aspirateur",
+          "href": "/c/electromenager/home_appliance_product:aspirateur?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Congélateur",
+          "href": "/c/electromenager/home_appliance_product:congelateur?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Four",
+          "href": "/c/electromenager/home_appliance_product:four?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Lave-linge",
+          "href": "/c/electromenager/home_appliance_product:lavelinge?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Lave-vaisselle",
+          "href": "/c/electromenager/home_appliance_product:lavevaisselle?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Micro-ondes",
+          "href": "/c/electromenager/home_appliance_product:fouramicroondes?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Réfrigérateur",
+          "href": "/c/electromenager/home_appliance_product:refrigerateur?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Voir tout",
+          "href": "/c/electromenager?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Arts de la table",
+          "href": "/c/arts_de_la_table?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Assiette",
+          "href": "/c/arts_de_la_table/table_art_product:assiette?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Service de vaisselle",
+          "href": "/c/arts_de_la_table/table_art_product:servicedevaisselle?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Verre",
+          "href": "/c/arts_de_la_table/table_art_product:verre?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Voir tout",
+          "href": "/c/arts_de_la_table?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Décoration",
+          "href": "/c/decoration?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Applique",
+          "href": "/c/decoration/decoration_type:applique?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Horloge, pendule et réveil",
+          "href": "/c/decoration/decoration_type:horloge?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Lampadaire",
+          "href": "/c/decoration/decoration_type:lampadaire?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Lampe à poser",
+          "href": "/c/decoration/decoration_type:lampe_poser?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Lustre",
+          "href": "/c/decoration/decoration_type:lustre?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Miroir",
+          "href": "/c/decoration/decoration_type:miroir?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Rideaux, voilage et store",
+          "href": "/c/decoration/decoration_type:rideaux?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Sculpture et statue",
+          "href": "/c/decoration/decoration_type:sculpture?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Suspension",
+          "href": "/c/decoration/decoration_type:suspension?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Tableau et toile",
+          "href": "/c/decoration/decoration_type:tableau?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Tapis",
+          "href": "/c/decoration/decoration_type:tapis?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Vase, cache pot et céramique",
+          "href": "/c/decoration/decoration_type:vase?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Voir tout",
+          "href": "/c/decoration?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Linge de maison",
+          "href": "/c/linge_de_maison?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Équipement du lit",
+          "href": "/c/linge_de_maison/linens_type:equipementdulit?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Déco textile",
+          "href": "/c/linge_de_maison/linens_type:decotextile?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Linge de bain",
+          "href": "/c/linge_de_maison/linens_type:lingedebain?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Linge de lit",
+          "href": "/c/linge_de_maison/linens_type:lingedelit?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Linge de table",
+          "href": "/c/linge_de_maison/linens_type:lingedetable?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Autre",
+          "href": "/c/linge_de_maison?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Bricolage",
+          "href": "/c/bricolage?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Jardin &amp; Plantes",
+          "href": "/c/jardin_plantes?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Services de jardinerie &amp; bricolage",
+          "href": "/recherche?category=97",
+          "id": ""
+        },
+        {
+          "anchor": "Tout Famille",
+          "href": "/c/_famille_?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Équipement bébé",
+          "href": "/c/equipement_bebe?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Poussette",
+          "href": "/c/equipement_bebe/baby_equipment_type:pousette?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Siège auto",
+          "href": "/c/equipement_bebe/baby_equipment_type:siegeauto?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Voir tout",
+          "href": "/c/equipement_bebe?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Mobilier enfant",
+          "href": "/c/mobilier_enfant?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Baignoire",
+          "href": "/c/mobilier_enfant/children_room_furniture_product:bathtub?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Chaise haute",
+          "href": "/c/mobilier_enfant/children_room_furniture_product:highchair?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Lit bébé",
+          "href": "/c/mobilier_enfant/children_room_furniture_product:cot?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Voir tout",
+          "href": "/c/mobilier_enfant?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Vêtements bébé",
+          "href": "/c/vetements_bebe?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "0 mois à 3 mois",
+          "href": "/recherche?category=54&amp;shippable=1&amp;baby_age=p,0,1,3",
+          "id": ""
+        },
+        {
+          "anchor": "3 mois à 6 mois",
+          "href": "/recherche?category=54&amp;shippable=1&amp;baby_age=3,6",
+          "id": ""
+        },
+        {
+          "anchor": "6 mois à 9 mois",
+          "href": "/recherche?category=54&amp;shippable=1&amp;baby_age=6,9",
+          "id": ""
+        },
+        {
+          "anchor": "9 mois à 12 mois",
+          "href": "/recherche?category=54&amp;shippable=1&amp;baby_age=9,12",
+          "id": ""
+        },
+        {
+          "anchor": "12 mois à 18 mois",
+          "href": "/recherche?category=54&amp;shippable=1&amp;baby_age=12,18",
+          "id": ""
+        },
+        {
+          "anchor": "18 mois à 24 mois",
+          "href": "/recherche?category=54&amp;shippable=1&amp;baby_age=18,24",
+          "id": ""
+        },
+        {
+          "anchor": "Plus de 24 mois",
+          "href": "/recherche?category=54&amp;shippable=1&amp;baby_age=24,36",
+          "id": ""
+        },
+        {
+          "anchor": "Voir tout",
+          "href": "/c/vetements_bebe?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Vêtements enfants",
+          "href": "/recherche?category=22&amp;shippable=1&amp;clothing_type=4",
+          "id": ""
+        },
+        {
+          "anchor": "Vêtements maternité",
+          "href": "/recherche?category=22&amp;shippable=1&amp;clothing_type=2",
+          "id": ""
+        },
+        {
+          "anchor": "Chaussures enfants",
+          "href": "/recherche?category=53&amp;shippable=1&amp;shoe_type=3",
+          "id": ""
+        },
+        {
+          "anchor": "Montres &amp; bijoux enfants",
+          "href": "/recherche?category=42&amp;shippable=1&amp;accessories_univers=enfant",
+          "id": ""
+        },
+        {
+          "anchor": "Accessoires &amp; bagagerie enfants",
+          "href": "/recherche?category=47&amp;shippable=1&amp;accessories_univers=enfant",
+          "id": ""
+        },
+        {
+          "anchor": "Jeux &amp; Jouets",
+          "href": "/recherche?category=41&amp;shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Baby-Sitting",
+          "href": "/recherche?category=100",
+          "id": ""
+        },
+        {
+          "anchor": "Tout Électronique",
+          "href": "/c/_electronique_?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Ordinateurs",
+          "href": "/c/ordinateurs?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Accessoires informatique",
+          "href": "/c/accessoires_informatique?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Tablettes &amp; Liseuses",
+          "href": "/c/tablettes_liseuses?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Photo, audio &amp; vidéo",
+          "href": "/c/photo_audio_video?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Télévision",
+          "href": "/c/photo_audio_video/image_sound_product:television?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Enceintes",
+          "href": "/c/photo_audio_video/image_sound_product:enceinte?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Appareil photo",
+          "href": "/c/photo_audio_video/image_sound_product:appareilphotos?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Casque",
+          "href": "/c/photo_audio_video/image_sound_product:casque?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Vidéoprojecteur",
+          "href": "/c/photo_audio_video/image_sound_product:videoprojecteur?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Accessoires",
+          "href": "/c/photo_audio_video/image_sound_product:accessoires?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Écouteurs",
+          "href": "/c/photo_audio_video/image_sound_product:ecouteurs?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Voir tout",
+          "href": "/c/photo_audio_video?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Téléphones &amp; Objets connectés",
+          "href": "/c/telephones_objets_connectes?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Apple",
+          "href": "/c/telephones_objets_connectes/phone_brand:apple?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Samsung",
+          "href": "/c/telephones_objets_connectes/phone_brand:samsung?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Huawei",
+          "href": "/c/telephones_objets_connectes/phone_brand:huawei?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Sony",
+          "href": "/c/telephones_objets_connectes/phone_brand:sony?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "One plus",
+          "href": "/c/telephones_objets_connectes/phone_brand:oneplus?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Google",
+          "href": "/c/telephones_objets_connectes/phone_brand:google?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Voir tout",
+          "href": "/c/telephones_objets_connectes?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Accessoires téléphone &amp; Objets connectés",
+          "href": "/c/accessoires_telephone_objets_connectes?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Consoles",
+          "href": "/c/consoles?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Jeux vidéo",
+          "href": "/c/jeux_video?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Électroménager",
+          "href": "/recherche?category=20&amp;shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Services de réparations électroniques",
+          "href": "/recherche?category=95",
+          "id": ""
+        },
+        {
+          "anchor": "Tout Loisirs",
+          "href": "/c/_loisirs_?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Antiquités",
+          "href": "/c/antiquites?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Artistes &amp; Musiciens",
+          "href": "/recherche?category=101",
+          "id": ""
+        },
+        {
+          "anchor": "Billetterie",
+          "href": "/recherche?category=35",
+          "id": ""
+        },
+        {
+          "anchor": "Collection",
+          "href": "/c/collection?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "CD - Musique",
+          "href": "/c/cd_musique?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "DVD - Films",
+          "href": "/c/dvd_films?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Instruments de musique",
+          "href": "/c/instruments_de_musique?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Livres",
+          "href": "/c/livres?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Modélisme",
+          "href": "/c/modelisme?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Vins &amp; Gastronomie",
+          "href": "/c/vins_gastronomie?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Jeux &amp; Jouets",
+          "href": "/c/jeux_jouets?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Jeux de société",
+          "href": "/c/jeux_jouets/toy_type:jeuxdesociete?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Poupées et accessoires",
+          "href": "/c/jeux_jouets/toy_type:poupeesetaccessoires?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Porteurs, trotteurs et draisiennes",
+          "href": "/c/jeux_jouets/toy_type:porteurstrotteursetdraisiennes?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Jouets d’éveil",
+          "href": "/c/jeux_jouets/toy_type:jouetseveil?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Cuisines et dînettes",
+          "href": "/c/jeux_jouets/toy_type:cuisinetedinettes?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Jeux de construction",
+          "href": "/c/jeux_jouets/toy_type:jeuxdeconstruction?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Voitures et circuits",
+          "href": "/c/jeux_jouets/toy_type:voituresetcircuits?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Puzzle",
+          "href": "/c/jeux_jouets/toy_type:puzzle?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Voir tout",
+          "href": "/c/jeux_jouets?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Loisirs créatifs",
+          "href": "/c/loisirs_creatifs?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Sport &amp; Plein air",
+          "href": "/c/sport_plein_air?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Vélos",
+          "href": "/c/velos?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Vélo de route",
+          "href": "/c/velos/bicycle_type:course?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "VTT",
+          "href": "/c/velos/bicycle_type:vtt?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Vélo électrique",
+          "href": "/c/velos/bicycle_type:electrique?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Vélo enfant",
+          "href": "/c/velos/bicycle_type:enfant?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "VTC",
+          "href": "/c/velos/bicycle_type:vtc?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Vélo de ville",
+          "href": "/c/velos/bicycle_type:ville?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Voir tout",
+          "href": "/c/velos?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Équipements vélos",
+          "href": "/c/equipements_velos?shippable=1",
+          "id": ""
+        },
+        {
+          "anchor": "Bons plans !",
+          "href": "/service/bons-plans",
+          "id": ""
+        }
+      ]
+    }
+  },
+  "templates": {
+    "/ad/": {
+      "pages_crawled": 8,
+      "sections_present": [
+        "footer",
+        "footer_ads",
+        "main_content"
+      ],
+      "blocs_actifs": [
+        "ad_detail_links",
+        "footer_ads",
+        "footer_corporate"
+      ],
+      "sections": {
+        "footer": {
+          "avg_total": 46.2,
+          "destinations": {
+            "external": 23.0,
+            "other_internal": 12.2,
+            "/dc/": 9.0,
+            "/boutique/": 2.0
+          }
+        },
+        "footer_ads": {
+          "avg_total": 1.6,
+          "destinations": {
+            "external": 1.0,
+            "other_internal": 0.6
+          }
+        },
+        "main_content": {
+          "avg_total": 15.8,
+          "destinations": {
+            "/cl/": 6.0,
+            "/c/+facets": 2.8,
+            "/": 2.0,
+            "/c/": 2.0,
+            "other_internal": 1.6,
+            "/dc/": 1.0,
+            "/ad/": 0.4
+          }
+        },
+        "unknown": {
+          "avg_total": 8.1,
+          "destinations": {
+            "other_internal": 4.0,
+            "other": 2.1,
+            "/": 2.0
+          }
+        }
+      }
+    },
+    "/c/ L1": {
+      "pages_crawled": 10,
+      "sections_present": [
+        "breadcrumb",
+        "filters_bar",
+        "footer",
+        "footer_ads",
+        "seo_footer"
+      ],
+      "blocs_actifs": [
+        "breadcrumb",
+        "footer_ads",
+        "footer_corporate",
+        "seo_top_filters",
+        "top_locations",
+        "top_searches"
+      ],
+      "sections": {
+        "breadcrumb": {
+          "avg_total": 2.0,
+          "destinations": {
+            "/": 1.0,
+            "/c/": 1.0
+          }
+        },
+        "filters_bar": {
+          "avg_total": 51.7,
+          "destinations": {
+            "/ad/": 50.9,
+            "/boutique/": 0.8
+          }
+        },
+        "footer": {
+          "avg_total": 70.9,
+          "destinations": {
+            "external": 23.4,
+            "other_internal": 14.5,
+            "/c/+facets": 14.1,
+            "/dc/": 9.0,
+            "/c/": 7.9,
+            "/boutique/": 2.0
+          }
+        },
+        "footer_ads": {
+          "avg_total": 25.1,
+          "destinations": {
+            "/c/+facets": 19.1,
+            "/c/": 5.0,
+            "external": 1.0
+          }
+        },
+        "seo_footer": {
+          "avg_total": 52.7,
+          "destinations": {
+            "/cl/": 34.0,
+            "/ck/": 18.4,
+            "external": 0.3
+          }
+        },
+        "unknown": {
+          "avg_total": 7.0,
+          "destinations": {
+            "other_internal": 4.0,
+            "other": 2.0,
+            "/": 1.0
+          }
+        }
+      }
+    },
+    "/c/ L2": {
+      "pages_crawled": 8,
+      "sections_present": [
+        "breadcrumb",
+        "filters_bar",
+        "footer",
+        "footer_ads",
+        "seo_footer"
+      ],
+      "blocs_actifs": [
+        "breadcrumb",
+        "footer_ads",
+        "footer_corporate",
+        "seo_top_filters",
+        "top_locations",
+        "top_searches"
+      ],
+      "sections": {
+        "breadcrumb": {
+          "avg_total": 3.0,
+          "destinations": {
+            "/c/": 2.0,
+            "/": 1.0
+          }
+        },
+        "filters_bar": {
+          "avg_total": 30.4,
+          "destinations": {
+            "/ad/": 30.0,
+            "/boutique/": 0.4
+          }
+        },
+        "footer": {
+          "avg_total": 74.4,
+          "destinations": {
+            "external": 23.2,
+            "/c/+facets": 16.9,
+            "other_internal": 14.2,
+            "/c/": 9.1,
+            "/dc/": 9.0,
+            "/boutique/": 2.0
+          }
+        },
+        "footer_ads": {
+          "avg_total": 24.6,
+          "destinations": {
+            "/c/+facets": 23.6,
+            "external": 1.0
+          }
+        },
+        "seo_footer": {
+          "avg_total": 55.0,
+          "destinations": {
+            "/cl/": 34.0,
+            "/ck/": 21.0
+          }
+        },
+        "unknown": {
+          "avg_total": 7.0,
+          "destinations": {
+            "other_internal": 4.0,
+            "other": 2.0,
+            "/": 1.0
+          }
+        }
+      }
+    },
+    "/c/ L3": {
+      "pages_crawled": 5,
+      "sections_present": [
+        "breadcrumb",
+        "filters_bar",
+        "footer",
+        "footer_ads",
+        "seo_footer"
+      ],
+      "blocs_actifs": [
+        "breadcrumb",
+        "footer_ads",
+        "footer_corporate",
+        "seo_top_filters",
+        "top_locations",
+        "top_searches"
+      ],
+      "sections": {
+        "breadcrumb": {
+          "avg_total": 4.0,
+          "destinations": {
+            "/c/": 2.0,
+            "/": 1.0,
+            "/c/+facets": 1.0
+          }
+        },
+        "filters_bar": {
+          "avg_total": 49.0,
+          "destinations": {
+            "/ad/": 49.0
+          }
+        },
+        "footer": {
+          "avg_total": 71.0,
+          "destinations": {
+            "external": 23.4,
+            "other_internal": 14.6,
+            "/c/+facets": 13.0,
+            "/dc/": 9.0,
+            "/c/": 9.0,
+            "/boutique/": 2.0
+          }
+        },
+        "footer_ads": {
+          "avg_total": 20.2,
+          "destinations": {
+            "/c/+facets": 19.2,
+            "external": 1.0
+          }
+        },
+        "seo_footer": {
+          "avg_total": 58.0,
+          "destinations": {
+            "/cl/": 34.0,
+            "/ck/": 24.0
+          }
+        },
+        "unknown": {
+          "avg_total": 7.0,
+          "destinations": {
+            "other_internal": 4.0,
+            "other": 2.0,
+            "/": 1.0
+          }
+        }
+      }
+    },
+    "/ck/": {
+      "pages_crawled": 10,
+      "sections_present": [
+        "breadcrumb",
+        "filters_bar",
+        "footer",
+        "footer_ads",
+        "seo_footer"
+      ],
+      "blocs_actifs": [
+        "breadcrumb",
+        "footer_ads",
+        "footer_corporate",
+        "seo_top_filters",
+        "top_locations",
+        "top_searches"
+      ],
+      "sections": {
+        "breadcrumb": {
+          "avg_total": 3.0,
+          "destinations": {
+            "/c/": 2.0,
+            "/": 1.0
+          }
+        },
+        "filters_bar": {
+          "avg_total": 90.0,
+          "destinations": {
+            "/ad/": 85.9,
+            "/boutique/": 4.1
+          }
+        },
+        "footer": {
+          "avg_total": 73.2,
+          "destinations": {
+            "external": 23.8,
+            "other_internal": 15.5,
+            "/c/+facets": 13.4,
+            "/c/": 9.5,
+            "/dc/": 9.0,
+            "/boutique/": 2.0
+          }
+        },
+        "footer_ads": {
+          "avg_total": 24.2,
+          "destinations": {
+            "/c/+facets": 18.2,
+            "/ck/": 5.0,
+            "external": 1.0
+          }
+        },
+        "seo_footer": {
+          "avg_total": 58.0,
+          "destinations": {
+            "/cl/": 34.0,
+            "/ck/": 24.0
+          }
+        },
+        "unknown": {
+          "avg_total": 7.0,
+          "destinations": {
+            "other_internal": 4.0,
+            "other": 2.0,
+            "/": 1.0
+          }
+        }
+      }
+    },
+    "/ckl/": {
+      "pages_crawled": 3,
+      "sections_present": [
+        "breadcrumb",
+        "filters_bar",
+        "footer",
+        "footer_ads",
+        "seo_footer"
+      ],
+      "blocs_actifs": [
+        "breadcrumb",
+        "footer_ads",
+        "footer_corporate",
+        "seo_top_filters",
+        "top_locations",
+        "top_searches"
+      ],
+      "sections": {
+        "breadcrumb": {
+          "avg_total": 4.0,
+          "destinations": {
+            "/c/": 2.0,
+            "/": 1.0,
+            "/c/+facets": 1.0
+          }
+        },
+        "filters_bar": {
+          "avg_total": 132.7,
+          "destinations": {
+            "/ad/": 131.7,
+            "/boutique/": 1.0
+          }
+        },
+        "footer": {
+          "avg_total": 74.0,
+          "destinations": {
+            "external": 24.0,
+            "other_internal": 16.0,
+            "/c/": 12.0,
+            "/c/+facets": 11.0,
+            "/dc/": 9.0,
+            "/boutique/": 2.0
+          }
+        },
+        "footer_ads": {
+          "avg_total": 34.3,
+          "destinations": {
+            "/c/+facets": 20.0,
+            "/cl/": 10.0,
+            "/ckl/": 3.3,
+            "external": 1.0
+          }
+        },
+        "seo_footer": {
+          "avg_total": 24.0,
+          "destinations": {
+            "/ck/": 24.0
+          }
+        },
+        "unknown": {
+          "avg_total": 7.0,
+          "destinations": {
+            "other_internal": 4.0,
+            "other": 2.0,
+            "/": 1.0
+          }
+        }
+      }
+    },
+    "/cl/": {
+      "pages_crawled": 13,
+      "sections_present": [
+        "breadcrumb",
+        "filters_bar",
+        "footer",
+        "footer_ads",
+        "seo_footer"
+      ],
+      "blocs_actifs": [
+        "breadcrumb",
+        "footer_ads",
+        "footer_corporate",
+        "seo_top_filters",
+        "top_locations",
+        "top_searches"
+      ],
+      "sections": {
+        "breadcrumb": {
+          "avg_total": 1.5,
+          "destinations": {
+            "/c/": 0.8,
+            "/": 0.7
+          }
+        },
+        "filters_bar": {
+          "avg_total": 61.7,
+          "destinations": {
+            "/ad/": 60.2,
+            "/boutique/": 1.5
+          }
+        },
+        "footer": {
+          "avg_total": 49.7,
+          "destinations": {
+            "external": 16.5,
+            "other_internal": 10.6,
+            "/c/+facets": 8.5,
+            "/c/": 6.5,
+            "/dc/": 6.2,
+            "/boutique/": 1.4
+          }
+        },
+        "footer_ads": {
+          "avg_total": 18.4,
+          "destinations": {
+            "/c/+facets": 13.2,
+            "/cl/": 4.5,
+            "external": 0.7
+          }
+        },
+        "seo_footer": {
+          "avg_total": 22.6,
+          "destinations": {
+            "/ck/": 12.0,
+            "/cl/": 10.2,
+            "/ckl/": 0.4
+          }
+        },
+        "unknown": {
+          "avg_total": 8.3,
+          "destinations": {
+            "other_internal": 2.8,
+            "/c/": 2.5,
+            "/": 1.6,
+            "other": 1.4
+          }
+        }
+      }
+    },
+    "/l/": {
+      "pages_crawled": 5,
+      "sections_present": [
+        "footer",
+        "footer_ads",
+        "seo_footer"
+      ],
+      "blocs_actifs": [
+        "footer_ads",
+        "footer_corporate",
+        "seo_top_filters",
+        "top_locations",
+        "top_searches"
+      ],
+      "sections": {
+        "footer": {
+          "avg_total": 47.0,
+          "destinations": {
+            "external": 23.0,
+            "other_internal": 13.0,
+            "/dc/": 9.0,
+            "/boutique/": 2.0
+          }
+        },
+        "footer_ads": {
+          "avg_total": 6.0,
+          "destinations": {
+            "/l/": 5.0,
+            "external": 1.0
+          }
+        },
+        "seo_footer": {
+          "avg_total": 18.8,
+          "destinations": {
+            "/l/": 18.8
+          }
+        },
+        "unknown": {
+          "avg_total": 7.0,
+          "destinations": {
+            "other_internal": 4.0,
+            "other": 2.0,
+            "/": 1.0
+          }
+        }
+      }
+    },
+    "homepage": {
+      "pages_crawled": 1,
+      "sections_present": [
+        "footer",
+        "main_content",
+        "seo_footer"
+      ],
+      "blocs_actifs": [
+        "ad_listing",
+        "footer_corporate",
+        "seo_top_filters",
+        "top_locations",
+        "top_searches"
+      ],
+      "sections": {
+        "footer": {
+          "avg_total": 247.0,
+          "destinations": {
+            "/c/+facets": 99.0,
+            "/c/": 71.0,
+            "other_internal": 40.0,
+            "external": 26.0,
+            "/dc/": 9.0,
+            "/boutique/": 2.0
+          }
+        },
+        "main_content": {
+          "avg_total": 11.0,
+          "destinations": {
+            "/c/": 8.0,
+            "other_internal": 3.0
+          }
+        },
+        "seo_footer": {
+          "avg_total": 120.0,
+          "destinations": {
+            "/c/": 93.0,
+            "/l/": 26.0,
+            "external": 1.0
+          }
+        },
+        "unknown": {
+          "avg_total": 6.0,
+          "destinations": {
+            "other_internal": 4.0,
+            "other": 2.0
+          }
+        }
+      }
+    },
+    "plan_du_site": {
+      "pages_crawled": 1,
+      "sections_present": [
+        "footer",
+        "main_content"
+      ],
+      "blocs_actifs": [
+        "ad_listing",
+        "footer_corporate"
+      ],
+      "sections": {
+        "footer": {
+          "avg_total": 47.0,
+          "destinations": {
+            "external": 23.0,
+            "other_internal": 13.0,
+            "/dc/": 9.0,
+            "/boutique/": 2.0
+          }
+        },
+        "main_content": {
+          "avg_total": 128.0,
+          "destinations": {
+            "/c/": 93.0,
+            "/l/": 26.0,
+            "other_internal": 6.0,
+            "external": 2.0,
+            "/": 1.0
+          }
+        },
+        "unknown": {
+          "avg_total": 7.0,
+          "destinations": {
+            "other_internal": 4.0,
+            "other": 2.0,
+            "/": 1.0
+          }
+        }
+      }
+    }
+  }
+}

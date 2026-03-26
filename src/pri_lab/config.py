@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 from pathlib import Path
 import tomllib
 
@@ -14,6 +14,34 @@ class PathsConfig:
   pri_scores_parquet: Path
   run_metrics_json: Path
   experiment_log_parquet: Path
+  maillage_model: Path | None = None
+
+
+@dataclass(frozen=True)
+class BlockConfig:
+  """Configuration for a single LBC maillage block."""
+  enabled: bool = True
+  weight: float = 1.0
+  max_links: int = 20
+  present_on: list[str] = field(default_factory=lambda: ["all"])
+
+
+@dataclass(frozen=True)
+class PageGenerationConfig:
+  """Target page counts per template for LBC graph generation."""
+  target_total_pages: int = 2_000_000
+  c_category_pages: int = 33_000
+  cl_geo_pages: int = 1_300_000
+  ck_keyword_pages: int = 550_000
+  ckl_hybrid_pages: int = 100_000
+  l_location_pages: int = 3_350
+  ad_sample_pages: int = 0
+  misc_pages: int = 60
+  regions: int = 37
+  departements: int = 99
+  villes_top: int = 500
+  categories: int = 80
+  super_categories: int = 12
 
 
 @dataclass(frozen=True)
@@ -48,6 +76,8 @@ class ExperimentConfig:
   rules: RulesConfig
   pagerank: PagerankConfig
   benchmark: BenchmarkConfig
+  blocks: dict[str, BlockConfig] = field(default_factory=dict)
+  page_generation: PageGenerationConfig = field(default_factory=PageGenerationConfig)
 
   def to_dict(self) -> dict[str, object]:
     config = asdict(self)
@@ -71,11 +101,20 @@ def load_experiment_config(
   rules = raw.get("rules", {})
   pagerank = raw.get("pagerank", {})
   benchmark = raw.get("benchmark", {})
+  blocks_raw = raw.get("blocks", {})
+  page_gen_raw = raw.get("page_generation", {})
 
   workspace = (
     workspace_override.expanduser().resolve()
     if workspace_override is not None
     else _resolve_path(config_dir, str(paths.get("workspace", "../artifacts/default")))
+  )
+
+  maillage_model_raw = paths.get("maillage_model")
+  maillage_model_path = (
+    _resolve_path(config_dir, str(maillage_model_raw))
+    if maillage_model_raw is not None
+    else None
   )
 
   paths_config = PathsConfig(
@@ -86,6 +125,7 @@ def load_experiment_config(
     pri_scores_parquet=_resolve_artifact_path(workspace, paths.get("pri_scores_parquet", "pri_scores.parquet")),
     run_metrics_json=_resolve_artifact_path(workspace, paths.get("run_metrics_json", "run_metrics.json")),
     experiment_log_parquet=_resolve_artifact_path(workspace, paths.get("experiment_log_parquet", "experiment_runs.parquet")),
+    maillage_model=maillage_model_path,
   )
 
   rules_config = RulesConfig(
@@ -111,11 +151,41 @@ def load_experiment_config(
     cluster_count=int(benchmark.get("cluster_count", 2_000)),
   )
 
+  # Parse LBC block configs
+  blocks: dict[str, BlockConfig] = {}
+  for block_name, block_data in blocks_raw.items():
+    if isinstance(block_data, dict):
+      blocks[block_name] = BlockConfig(
+        enabled=bool(block_data.get("enabled", True)),
+        weight=float(block_data.get("weight", 1.0)),
+        max_links=int(block_data.get("max_links", 20)),
+        present_on=[str(v) for v in block_data.get("present_on", ["all"])],
+      )
+
+  # Parse page generation config
+  page_generation = PageGenerationConfig(
+    target_total_pages=int(page_gen_raw.get("target_total_pages", 2_000_000)),
+    c_category_pages=int(page_gen_raw.get("c_category_pages", 33_000)),
+    cl_geo_pages=int(page_gen_raw.get("cl_geo_pages", 1_300_000)),
+    ck_keyword_pages=int(page_gen_raw.get("ck_keyword_pages", 550_000)),
+    ckl_hybrid_pages=int(page_gen_raw.get("ckl_hybrid_pages", 100_000)),
+    l_location_pages=int(page_gen_raw.get("l_location_pages", 3_350)),
+    ad_sample_pages=int(page_gen_raw.get("ad_sample_pages", 0)),
+    misc_pages=int(page_gen_raw.get("misc_pages", 60)),
+    regions=int(page_gen_raw.get("regions", 37)),
+    departements=int(page_gen_raw.get("departements", 99)),
+    villes_top=int(page_gen_raw.get("villes_top", 500)),
+    categories=int(page_gen_raw.get("categories", 80)),
+    super_categories=int(page_gen_raw.get("super_categories", 12)),
+  )
+
   return ExperimentConfig(
     paths=paths_config,
     rules=rules_config,
     pagerank=pagerank_config,
     benchmark=benchmark_config,
+    blocks=blocks,
+    page_generation=page_generation,
   )
 
 
